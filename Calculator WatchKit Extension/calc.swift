@@ -24,6 +24,7 @@ public class Calc
 	var numeric_stack = [Double]()
 	var operator_stack = [button]()
 
+	var last_operand : Double = 0
 	var last_was_operator : Bool = false
 	var last_operator : button = button.plus
 	var register : Double = 0
@@ -133,14 +134,14 @@ public class Calc
 					decimal_factor *= 10
 					response = String(register)
 					}
-				last_was_equals = false;
-				last_was_operator = false;
+				last_was_equals = false
+				last_was_operator = false
 
 			case button.dot:
 				integer_digits = false
 				response = String(Int(register)) + "."
-				last_was_equals = false;
-				last_was_operator = false;
+				last_was_equals = false
+				last_was_operator = false
 
 			
 			case button.plus, button.minus, button.multiply, button.divide, button.power:
@@ -165,23 +166,26 @@ public class Calc
 					}
 				new_integer = true
 				last_operator = key
-				last_was_equals = false;
-				last_was_operator = true;
+				last_was_equals = false
+				last_was_operator = true
 
 			case button.equals:
 				if (last_was_equals)
 					{
 					numeric_stack.append(register)
-					reduce(last_operator);
+					numeric_stack.append(last_operand)
+					operator_stack.append(last_operator)
+					reduce(key)
 					}
 				else
 					{
+					last_operand = register
 					numeric_stack.append(register)
 					reduce(key);
 					}
 				new_integer = true
-				last_was_equals = true;
-				last_was_operator = false;
+				last_was_equals = true
+				last_was_operator = false
 				
 				if (Double(Int(numeric_stack.last!)) == numeric_stack.last!)
 					{
@@ -192,6 +196,6 @@ public class Calc
 					response = String(numeric_stack.removeLast())
 					}
 			}
-		return response;
+		return response
 		}
 }

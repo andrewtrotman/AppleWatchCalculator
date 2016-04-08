@@ -23,10 +23,13 @@ public class Calc
 	
 	var numeric_stack = [Double]()
 	var operator_stack = [button]()
-	var last_operator : button = button.equals
 
+	var last_was_operator : Bool = false
+	var last_operator : button = button.plus
 	var register : Double = 0
 	var integer_digits : Bool = true
+	var last_was_equals : Bool = false
+	var new_integer : Bool = true
 	var decimal_factor : Int = 10
 
 	/*
@@ -64,15 +67,20 @@ public class Calc
 			switch (operation)
 				{
 				case button.plus:
-					numeric_stack.append(operand_1 + operand_2)
+					register = operand_1 + operand_2
+					numeric_stack.append(register)
 				case button.minus:
-					numeric_stack.append(operand_1 - operand_2)
+					register = operand_1 - operand_2
+					numeric_stack.append(register)
 				case button.multiply:
-					numeric_stack.append(operand_1 * operand_2)
+					register = operand_1 * operand_2
+					numeric_stack.append(register)
 				case button.divide:
-					numeric_stack.append(operand_1 / operand_2)
+					register = operand_1 / operand_2
+					numeric_stack.append(register)
 				case button.power:
-					numeric_stack.append(pow(operand_1, operand_2))
+					register = pow(operand_1, operand_2)
+					numeric_stack.append(register)
 				default:
 					break
 				}
@@ -87,53 +95,102 @@ public class Calc
 		CLEAR()
 		-------
 	*/
-	public func clear() -> Double
+	public func clear() -> String
 		{
 		numeric_stack.removeAll()
 		operator_stack.removeAll()
-		register = 0
-		integer_digits = true
-		decimal_factor = 10
+		new_integer = true
 
-		return 0;
+		return "0";
 		}
-		
+
 	/*
 		PRESS()
 		-------
 	*/
-	public func press(key : button) -> Double
+	public func press(key : button) -> String
 		{
-		var response : Double
+		var response : String
 
 		switch (key)
 			{
 			case button.zero, button.one, button.two, button.three, button.four, button.five, button.six, button.seven, button.eight, button.nine:
+				if (new_integer)
+					{
+					register = 0;
+					integer_digits = true
+					decimal_factor = 10
+					new_integer = false
+					}
 				if (integer_digits)
 					{
 					register = register * 10 + Double(key.rawValue)
+					response = String(Int(register))
 					}
 				else
 					{
 					register = register + (Double(key.rawValue) / Double(decimal_factor))
 					decimal_factor *= 10
+					response = String(register)
 					}
-				response = register
+				last_was_equals = false;
+				last_was_operator = false;
+
 			case button.dot:
-				integer_digits = false;
-				response = register;
+				integer_digits = false
+				response = String(Int(register)) + "."
+				last_was_equals = false;
+				last_was_operator = false;
+
+			
 			case button.plus, button.minus, button.multiply, button.divide, button.power:
-				numeric_stack.append(register);
-				last_operator = key;
-				reduce(key);
-				register = 0;
-				integer_digits = true;
-				decimal_factor = 10;
-				response = numeric_stack.last!;
+				if (!last_was_operator)
+					{
+					numeric_stack.append(register)
+					reduce(key)
+					}
+				else
+					{
+					operator_stack.removeLast()
+					operator_stack.append(key)
+					}
+
+				if (Double(Int(numeric_stack.last!)) == numeric_stack.last!)
+					{
+					response = String(Int(numeric_stack.last!))
+					}
+				else
+					{
+					response = String(numeric_stack.last!)
+					}
+				new_integer = true
+				last_operator = key
+				last_was_equals = false;
+				last_was_operator = true;
+
 			case button.equals:
-				numeric_stack.append(register);
-				reduce(key);
-				response = numeric_stack.removeLast();
+				if (last_was_equals)
+					{
+					numeric_stack.append(register)
+					reduce(last_operator);
+					}
+				else
+					{
+					numeric_stack.append(register)
+					reduce(key);
+					}
+				new_integer = true
+				last_was_equals = true;
+				last_was_operator = false;
+				
+				if (Double(Int(numeric_stack.last!)) == numeric_stack.last!)
+					{
+					response = String(Int(numeric_stack.removeLast()))
+					}
+				else
+					{
+					response = String(numeric_stack.removeLast())
+					}
 			}
 		return response;
 		}

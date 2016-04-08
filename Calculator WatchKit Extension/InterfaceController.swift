@@ -53,7 +53,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func equals()
 		{
-		setTitle(String(calculator.press(Calc.button.equals)))
+		setTitle(calculator.press(Calc.button.equals))
 		}
 	
 	/*
@@ -62,7 +62,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func power()
 		{
-		setTitle(String(calculator.press(Calc.button.power)))
+		setTitle(calculator.press(Calc.button.power))
 		}
 		
 	/*
@@ -71,7 +71,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func divide()
 		{
-		setTitle(String(calculator.press(Calc.button.divide)))
+		setTitle(calculator.press(Calc.button.divide))
 		}
 	
 	/*
@@ -80,7 +80,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func multiply()
 		{
-		setTitle(String(calculator.press(Calc.button.multiply)))
+		setTitle(calculator.press(Calc.button.multiply))
 		}
 	
 	/*
@@ -89,7 +89,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func minus()
 		{
-		setTitle(String(calculator.press(Calc.button.minus)))
+		setTitle(calculator.press(Calc.button.minus))
 		}
 	
 	/*
@@ -98,7 +98,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func plus()
 		{
-		setTitle(String(calculator.press(Calc.button.plus)))
+		setTitle(calculator.press(Calc.button.plus))
 		}
 
 	/*
@@ -107,7 +107,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func clear()
 		{
-		setTitle(String(calculator.clear()))
+		setTitle(calculator.clear())
 		}
 		
 	/*
@@ -116,7 +116,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func dot()
 		{
-		setTitle(String(calculator.press(Calc.button.dot)))
+		setTitle(calculator.press(Calc.button.dot))
 		}
 	/*
 		NINE()
@@ -124,7 +124,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func nine()
 		{
-		setTitle(String(calculator.press(Calc.button.nine)))
+		setTitle(calculator.press(Calc.button.nine))
 		}
 
 	/*
@@ -133,7 +133,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func eight()
 		{
-		setTitle(String(calculator.press(Calc.button.eight)))
+		setTitle(calculator.press(Calc.button.eight))
 		}
 
 	/*
@@ -142,7 +142,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func seven()
 		{
-		setTitle(String(calculator.press(Calc.button.seven)))
+		setTitle(calculator.press(Calc.button.seven))
 		}
 
 	/*
@@ -151,7 +151,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func six()
 		{
-		setTitle(String(calculator.press(Calc.button.six)))
+		setTitle(calculator.press(Calc.button.six))
 		}
 
 	/*
@@ -160,7 +160,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func five()
 		{
-		setTitle(String(calculator.press(Calc.button.five)))
+		setTitle(calculator.press(Calc.button.five))
 		}
 
 	/*
@@ -169,7 +169,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func four()
 		{
-		setTitle(String(calculator.press(Calc.button.four)))
+		setTitle(calculator.press(Calc.button.four))
 		}
 
 	/*
@@ -178,7 +178,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func three()
 		{
-		setTitle(String(calculator.press(Calc.button.three)))
+		setTitle(calculator.press(Calc.button.three))
 		}
 
 	/*
@@ -187,7 +187,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func two()
 		{
-		setTitle(String(calculator.press(Calc.button.two)))
+		setTitle(calculator.press(Calc.button.two))
 		}
 
 	/*
@@ -196,7 +196,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func one()
 		{
-		setTitle(String(calculator.press(Calc.button.one)))
+		setTitle(calculator.press(Calc.button.one))
 		}
 
 	/*
@@ -205,6 +205,6 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func zero()
 		{
-		setTitle(String(calculator.press(Calc.button.zero)))
+		setTitle(calculator.press(Calc.button.zero))
 		}
 }

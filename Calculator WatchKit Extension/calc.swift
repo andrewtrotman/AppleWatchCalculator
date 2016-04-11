@@ -24,15 +24,34 @@ public class Calc
 	var numeric_stack = [Double]()
 	var operator_stack = [button]()
 
-	var last_operand : Double = 0
-	var last_was_operator : Bool = false
-	var last_operator : button = button.plus
-	var register : Double = 0
-	var integer_digits : Bool = true
-	var last_was_equals : Bool = false
-	var new_integer : Bool = true
-	var decimal_factor : Int = 10
+	var last_operand : Double
+	var last_was_operator : Bool
+	var last_operator : button
+	var register : Double
+	var last_was_equals : Bool
+	var new_integer : Bool
+	var decimal_factor : Int
 
+	/*
+		INIT()
+		------
+	*/
+	init()
+		{
+		numeric_stack.removeAll()
+		operator_stack.removeAll()
+
+		last_operand = 0
+		last_was_operator = false
+		last_operator = button.equals
+		register = 0
+		last_was_equals = true
+		new_integer = true
+		decimal_factor = 0
+		
+		clear()
+		}
+	
 	/*
 		PRECIDENCE()
 		------------
@@ -91,7 +110,7 @@ public class Calc
 		operator_stack.append(next_operator)
 		}
 	}
-	
+
 	/*
 		CLEAR()
 		-------
@@ -100,9 +119,64 @@ public class Calc
 		{
 		numeric_stack.removeAll()
 		operator_stack.removeAll()
-		new_integer = true
 
-		return "0";
+		last_operand = 0
+		last_was_operator = false
+		last_operator = button.equals
+		register = 0
+		last_was_equals = true
+		new_integer = true
+		decimal_factor = 0
+
+		return result_to_display(0)
+		}
+
+	/*
+		RESULT_TO_DISPLAY
+		-----------------
+	*/
+	func result_to_display(value : Double) -> String
+		{
+		let max_digits : Int = 10
+		var digits_after_dot : Int
+		
+		if (value.isNaN)
+			{
+			return "NaN";
+			}
+		else if (value.isInfinite)
+			{
+			if (value.isSignMinus)
+				{
+				return "-∞";
+				}
+			else
+				{
+				return "∞";
+				}
+			}
+		else if (decimal_factor == 1 && round(value) == value)
+			{
+			return String(Int64(value))
+			}
+		else
+			{
+			if (last_was_equals)
+				{
+				let decimal_part = value - round(value)
+				digits_after_dot = decimal_part == 0 ? 0 : Int(log10(decimal_part))
+				}
+			else
+				{
+				digits_after_dot = -decimal_factor - 1
+				}
+				
+			let formatter = NSNumberFormatter()
+			formatter.minimumIntegerDigits = 1
+			formatter.maximumFractionDigits = max_digits
+			formatter.minimumFractionDigits = digits_after_dot
+			return formatter.stringFromNumber(value)! + (decimal_factor == -1 ? "." : "")
+			}
 		}
 
 	/*
@@ -111,38 +185,34 @@ public class Calc
 	*/
 	public func press(key : button) -> String
 		{
-		var response : String
-
 		switch (key)
 			{
 			case button.zero, button.one, button.two, button.three, button.four, button.five, button.six, button.seven, button.eight, button.nine:
 				if (new_integer)
 					{
 					register = 0;
-					integer_digits = true
-					decimal_factor = 10
+					decimal_factor = 0
 					new_integer = false
 					}
-				if (integer_digits)
+				register = register * (decimal_factor == 0 ? 10 : 1) + Double(key.rawValue) * pow(10.0, Double(decimal_factor))
+				if (decimal_factor < 0)
 					{
-					register = register * 10 + Double(key.rawValue)
-					response = String(Int(register))
-					}
-				else
-					{
-					register = register + (Double(key.rawValue) / Double(decimal_factor))
-					decimal_factor *= 10
-					response = String(register)
+					decimal_factor -= 1
 					}
 				last_was_equals = false
 				last_was_operator = false
+				return result_to_display(register)
 
 			case button.dot:
-				integer_digits = false
-				response = String(Int(register)) + "."
+				if (new_integer)
+					{
+					register = 0;
+					new_integer = false;
+					}
+				decimal_factor = -1;
 				last_was_equals = false
 				last_was_operator = false
-
+				return result_to_display(register)
 			
 			case button.plus, button.minus, button.multiply, button.divide, button.power:
 				if (!last_was_operator)
@@ -155,19 +225,12 @@ public class Calc
 					operator_stack.removeLast()
 					operator_stack.append(key)
 					}
-
-				if (Double(Int(numeric_stack.last!)) == numeric_stack.last!)
-					{
-					response = String(Int(numeric_stack.last!))
-					}
-				else
-					{
-					response = String(numeric_stack.last!)
-					}
 				new_integer = true
 				last_operator = key
 				last_was_equals = false
 				last_was_operator = true
+			
+				return result_to_display(numeric_stack.last!)
 
 			case button.equals:
 				if (last_was_equals)
@@ -186,16 +249,7 @@ public class Calc
 				new_integer = true
 				last_was_equals = true
 				last_was_operator = false
-				
-				if (Double(Int(numeric_stack.last!)) == numeric_stack.last!)
-					{
-					response = String(Int(numeric_stack.removeLast()))
-					}
-				else
-					{
-					response = String(numeric_stack.removeLast())
-					}
+				return result_to_display(numeric_stack.isEmpty ? register : numeric_stack.removeLast())
 			}
-		return response
 		}
 }

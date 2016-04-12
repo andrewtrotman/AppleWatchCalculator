@@ -112,7 +112,8 @@ public class Calc
 		else
 			{
 			let sign : Int = value < 0 ? -1 : 1
-			let digits = sign < 0 ? max_digits - 1 : max_digits
+//			let digits = sign < 0 ? max_digits - 1 : max_digits
+			let digits = max_digits
 			let integer_part = floor(abs(value))
 			var fractional_part = abs(value) - integer_part
 

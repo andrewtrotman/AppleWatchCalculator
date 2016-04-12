@@ -14,11 +14,13 @@ import Foundation
 */
 public class Calc
 	{
+	let max_digits : Int = 10
+
 	public enum button : Int
 		{
 		case zero = 0, one, two, three, four, five, six, seven, eight, nine
 		case dot, equals
-		case plus, minus, multiply, divide, power;
+		case plus, minus, multiply, divide, power
 		}
 	
 	var numeric_stack = [Double]()
@@ -51,65 +53,6 @@ public class Calc
 		
 		clear()
 		}
-	
-	/*
-		PRECIDENCE()
-		------------
-	*/
-	func precidence(operation : button) -> Int
-		{
-		switch (operation)
-			{
-			case button.equals:
-				return 0
-			case button.plus, button.minus:
-				return 1
-			case button.multiply, button.divide:
-				return 2
-			case button.power:
-				return 3
-			default:
-				return -1
-			}
-		}
-
-	/*
-		REDUCE()
-		--------
-	*/
-	func reduce(next_operator : button)
-		{
-		while (!operator_stack.isEmpty && precidence(operator_stack.last!) >= precidence(next_operator))
-			{
-			let operand_2 = numeric_stack.removeLast()
-			let operand_1 = numeric_stack.removeLast()
-			let operation = operator_stack.removeLast()
-			switch (operation)
-				{
-				case button.plus:
-					register = operand_1 + operand_2
-					numeric_stack.append(register)
-				case button.minus:
-					register = operand_1 - operand_2
-					numeric_stack.append(register)
-				case button.multiply:
-					register = operand_1 * operand_2
-					numeric_stack.append(register)
-				case button.divide:
-					register = operand_1 / operand_2
-					numeric_stack.append(register)
-				case button.power:
-					register = pow(operand_1, operand_2)
-					numeric_stack.append(register)
-				default:
-					break
-				}
-		}
-	if (next_operator != button.equals)
-		{
-		operator_stack.append(next_operator)
-		}
-	}
 
 	/*
 		CLEAR()
@@ -132,27 +75,131 @@ public class Calc
 		}
 
 	/*
+		PRECIDENCE()
+		------------
+	*/
+	func precidence(operation : button) -> Int
+		{
+		switch (operation)
+			{
+			case button.equals:
+				return 0
+			case button.plus, button.minus:
+				return 1
+			case button.multiply, button.divide:
+				return 2
+			case button.power:
+				return 3
+			default:
+				return -1
+			}
+		}
+
+	/*
+		ROUND_TO_SIGNIFICANT_FIGURES()
+		------------------------------
+	*/
+	func round_to_significant_figures(value : Double) -> (rounded : Double, digits_before_dot : Int, digits_after_dot : Int)
+		{
+		if (value >= pow(10, Double(max_digits)))
+			{
+			return (Double.infinity, 1, 0)
+			}
+		else if (value <= -pow(10, Double(max_digits)))
+			{
+			return (-Double.infinity, 1, 0)
+			}
+		else
+			{
+			let sign : Int = value < 0 ? -1 : 1
+			let digits = sign < 0 ? max_digits - 1 : max_digits
+			let integer_part = floor(abs(value))
+			var fractional_part = abs(value) - integer_part
+
+			let digits_before_dot : Int = Int(integer_part == 0 ? 1 : ceil(log10(integer_part + 1)))
+			let decimal_places = pow(10, Double(digits - digits_before_dot))
+		
+			fractional_part = round(fractional_part * decimal_places) / decimal_places
+			let answer = sign == -1 ? -(integer_part + fractional_part) : integer_part + fractional_part
+			
+			let digits_after_dot = fractional_part == 0 ? 0 : Int(ceil(-log10(fractional_part)))
+
+			return (answer, digits_before_dot, digits_after_dot)
+			}
+		}
+
+	/*
+		CHECK_AND_PUSH()
+		----------------
+	*/
+	func check_and_push(value : Double)
+		{
+		register = round_to_significant_figures(value).rounded
+		let negative_zero = -pow(10, -Double(max_digits))
+		let positive_zero = pow(10, -Double(max_digits))
+		
+		if (register >= negative_zero && register <= positive_zero)
+			{
+			register = 0
+			}
+		
+		numeric_stack.append(register)
+		}
+
+	/*
+		REDUCE()
+		--------
+	*/
+	func reduce(next_operator : button)
+		{
+		while (!operator_stack.isEmpty && precidence(operator_stack.last!) >= precidence(next_operator))
+			{
+			let operand_2 = numeric_stack.removeLast()
+			let operand_1 = numeric_stack.removeLast()
+			let operation = operator_stack.removeLast()
+			switch (operation)
+				{
+				case button.plus:
+					check_and_push(operand_1 + operand_2)
+				case button.minus:
+					check_and_push(operand_1 - operand_2)
+				case button.multiply:
+					check_and_push(operand_1 * operand_2)
+				case button.divide:
+					check_and_push(operand_1 / operand_2)
+				case button.power:
+					check_and_push(pow(operand_1, operand_2))
+				default:
+					break
+				}
+		}
+	if (next_operator != button.equals)
+		{
+		operator_stack.append(next_operator)
+		}
+	}
+
+	/*
 		RESULT_TO_DISPLAY
 		-----------------
 	*/
 	func result_to_display(value : Double) -> String
 		{
-		let max_digits : Int = 10
 		var digits_after_dot : Int
 		
 		if (value.isNaN)
 			{
-			return "NaN";
+			return "NaN"
 			}
 		else if (value.isInfinite)
 			{
 			if (value.isSignMinus)
 				{
-				return "-∞";
+				return "-∞"
 				}
 			else
 				{
-				return "∞";
+				return "∞"
 				}
 			}
 		else if (decimal_factor == 1 && round(value) == value)
@@ -163,8 +210,8 @@ public class Calc
 			{
 			if (last_was_equals)
 				{
-				let decimal_part = value - round(value)
-				digits_after_dot = decimal_part == 0 ? 0 : Int(log10(decimal_part))
+				let details = round_to_significant_figures(value)
+				digits_after_dot = details.digits_after_dot
 				}
 			else
 				{
@@ -173,7 +220,7 @@ public class Calc
 				
 			let formatter = NSNumberFormatter()
 			formatter.minimumIntegerDigits = 1
-			formatter.maximumFractionDigits = max_digits
+			formatter.maximumFractionDigits = digits_after_dot
 			formatter.minimumFractionDigits = digits_after_dot
 			return formatter.stringFromNumber(value)! + (decimal_factor == -1 ? "." : "")
 			}
@@ -190,14 +237,21 @@ public class Calc
 			case button.zero, button.one, button.two, button.three, button.four, button.five, button.six, button.seven, button.eight, button.nine:
 				if (new_integer)
 					{
-					register = 0;
+					register = 0
 					decimal_factor = 0
 					new_integer = false
 					}
-				register = register * (decimal_factor == 0 ? 10 : 1) + Double(key.rawValue) * pow(10.0, Double(decimal_factor))
-				if (decimal_factor < 0)
+
+				var formatted = round_to_significant_figures(register)
+				if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits)
 					{
-					decimal_factor -= 1
+					register = register * (decimal_factor == 0 ? 10 : 1) + Double(key.rawValue) * pow(10.0, Double(decimal_factor))
+					formatted = round_to_significant_figures(register)
+					register = formatted.rounded
+					if (decimal_factor < 0)
+						{
+						decimal_factor -= 1
+						}
 					}
 				last_was_equals = false
 				last_was_operator = false
@@ -206,10 +260,10 @@ public class Calc
 			case button.dot:
 				if (new_integer)
 					{
-					register = 0;
-					new_integer = false;
+					register = 0
+					new_integer = false
 					}
-				decimal_factor = -1;
+				decimal_factor = -1
 				last_was_equals = false
 				last_was_operator = false
 				return result_to_display(register)
@@ -244,7 +298,7 @@ public class Calc
 					{
 					last_operand = register
 					numeric_stack.append(register)
-					reduce(key);
+					reduce(key)
 					}
 				new_integer = true
 				last_was_equals = true

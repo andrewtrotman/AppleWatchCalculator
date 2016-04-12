@@ -122,8 +122,17 @@ public class Calc
 			fractional_part = round(fractional_part * decimal_places) / decimal_places
 			let answer = sign == -1 ? -(integer_part + fractional_part) : integer_part + fractional_part
 			
-			let digits_after_dot = fractional_part == 0 ? 0 : Int(ceil(-log10(fractional_part)))
-
+			var digits_after_dot = digits - digits_before_dot
+			var shift_register : Int = Int(round(fractional_part * decimal_places))
+			while (((shift_register / 10) * 10) == shift_register)
+				{
+				shift_register /= 10
+				digits_after_dot -= 1
+				if (shift_register == 0)
+					{
+					break;
+					}
+				}
 			return (answer, digits_before_dot, digits_after_dot)
 			}
 		}

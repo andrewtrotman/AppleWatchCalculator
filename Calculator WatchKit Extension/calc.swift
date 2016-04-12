@@ -286,6 +286,9 @@ public class Calc
 					}
 				else
 					{
+					/*
+						This is for when the user goes 4 + * 4 which should equal 16 not 8.
+					*/
 					operator_stack.removeLast()
 					operator_stack.append(key)
 					}

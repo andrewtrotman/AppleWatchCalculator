@@ -14,13 +14,21 @@
                             <items>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="pxY-ec-uZE">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="C" id="fof-Yk-6gT">
+                                        <button width="0.25" height="1" alignment="left" title="AC" id="fof-Yk-6gT">
                                             <connections>
                                                 <action selector="clear" destination="AgC-eL-Hgc" id="gwo-wn-uoN"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?" id="T0I-id-V8n"/>
-                                        <button width="0.25" height="1" alignment="left" title="?" id="saq-Ja-8h9"/>
+                                        <button width="0.25" height="1" alignment="left" title="√" id="T0I-id-V8n">
+                                            <connections>
+                                                <action selector="square_root" destination="AgC-eL-Hgc" id="uDY-jj-aPO"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="±" id="saq-Ja-8h9">
+                                            <connections>
+                                                <action selector="plus_minus" destination="AgC-eL-Hgc" id="xYv-To-dCZ"/>
+                                            </connections>
+                                        </button>
                                         <button width="0.25" height="1" alignment="left" title="÷" id="s0E-aS-JF4">
                                             <connections>
                                                 <action selector="divide" destination="AgC-eL-Hgc" id="mwe-zf-Dpm"/>

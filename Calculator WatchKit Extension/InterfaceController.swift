@@ -46,7 +46,25 @@ class InterfaceController: WKInterfaceController
 		// This method is called when watch view controller is no longer visible
 		super.didDeactivate()
 		}
-		
+
+	/*
+		SQUARE_ROOT()
+		-------------
+	*/
+	@IBAction func square_root()
+		{
+		setTitle(calculator.press(Calc.button.square_root))
+		}
+	
+	/*
+		PLUS_MINUS()
+		------------
+	*/
+	@IBAction func plus_minus()
+		{
+		setTitle(calculator.press(Calc.button.plus_minus))
+		}
+	
 	/*
 		EQUALS()
 		--------

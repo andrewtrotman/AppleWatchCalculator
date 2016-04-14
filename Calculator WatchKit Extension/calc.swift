@@ -19,8 +19,9 @@ public class Calc
 	public enum button : Int
 		{
 		case zero = 0, one, two, three, four, five, six, seven, eight, nine
-		case dot, equals
+		case dot, plus_minus, equals
 		case plus, minus, multiply, divide, power
+		case square_root
 		}
 	
 	var numeric_stack = [Double]()
@@ -33,6 +34,7 @@ public class Calc
 	var last_was_equals : Bool
 	var new_integer : Bool
 	var decimal_factor : Int
+	var input_mode : Bool
 
 	/*
 		INIT()
@@ -49,6 +51,7 @@ public class Calc
 		register = 0
 		last_was_equals = true
 		new_integer = true
+		input_mode = true
 		decimal_factor = 0
 		
 		clear()
@@ -69,6 +72,7 @@ public class Calc
 		register = 0
 		last_was_equals = true
 		new_integer = true
+		input_mode = true
 		decimal_factor = 0
 
 		return result_to_display(0)
@@ -112,7 +116,6 @@ public class Calc
 		else
 			{
 			let sign : Int = value < 0 ? -1 : 1
-//			let digits = sign < 0 ? max_digits - 1 : max_digits
 			let digits = max_digits
 			let integer_part = floor(abs(value))
 			var fractional_part = abs(value) - integer_part
@@ -125,13 +128,20 @@ public class Calc
 			
 			var digits_after_dot = digits - digits_before_dot
 			var shift_register : Int = Int(round(fractional_part * decimal_places))
-			while (((shift_register / 10) * 10) == shift_register)
+			if (shift_register == 0)
 				{
-				shift_register /= 10
-				digits_after_dot -= 1
-				if (shift_register == 0)
+				digits_after_dot = 0
+				}
+			else
+				{
+				while (((shift_register / 10) * 10) == shift_register)
 					{
-					break;
+					shift_register /= 10
+					digits_after_dot -= 1
+					if (shift_register == 0)
+						{
+						break;
+						}
 					}
 				}
 			return (answer, digits_before_dot, digits_after_dot)
@@ -144,15 +154,21 @@ public class Calc
 	*/
 	func check_and_push(value : Double)
 		{
-		register = round_to_significant_figures(value).rounded
-		let negative_zero = -pow(10, -Double(max_digits))
-		let positive_zero = pow(10, -Double(max_digits))
-		
-		if (register >= negative_zero && register <= positive_zero)
+		if (value.isNaN)
 			{
-			register = 0
+			register = value
 			}
-		
+		else
+			{
+			register = round_to_significant_figures(value).rounded
+			let negative_zero = -pow(10, -Double(max_digits))
+			let positive_zero = pow(10, -Double(max_digits))
+			
+			if (register >= negative_zero && register <= positive_zero)
+				{
+				register = 0
+				}
+			}
 		numeric_stack.append(register)
 		}
 
@@ -164,6 +180,9 @@ public class Calc
 		{
 		while (!operator_stack.isEmpty && precidence(operator_stack.last!) >= precidence(next_operator))
 			{
+			/*
+				Binary operators
+			*/
 			let operand_2 = numeric_stack.removeLast()
 			let operand_1 = numeric_stack.removeLast()
 			let operation = operator_stack.removeLast()
@@ -218,9 +237,9 @@ public class Calc
 			}
 		else
 			{
-			if (last_was_equals)
+			let details = round_to_significant_figures(value)
+			if (!input_mode)
 				{
-				let details = round_to_significant_figures(value)
 				digits_after_dot = details.digits_after_dot
 				}
 			else
@@ -232,7 +251,7 @@ public class Calc
 			formatter.minimumIntegerDigits = 1
 			formatter.maximumFractionDigits = digits_after_dot
 			formatter.minimumFractionDigits = digits_after_dot
-			return formatter.stringFromNumber(value)! + (decimal_factor == -1 ? "." : "")
+			return formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
 			}
 		}
 
@@ -242,6 +261,7 @@ public class Calc
 	*/
 	public func press(key : button) -> String
 		{
+		input_mode = false;
 		switch (key)
 			{
 			case button.zero, button.one, button.two, button.three, button.four, button.five, button.six, button.seven, button.eight, button.nine:
@@ -253,7 +273,7 @@ public class Calc
 					}
 
 				var formatted = round_to_significant_figures(register)
-				if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits)
+				if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor < max_digits)
 					{
 					register = register * (decimal_factor == 0 ? 10 : 1) + Double(key.rawValue) * pow(10.0, Double(decimal_factor))
 					formatted = round_to_significant_figures(register)
@@ -265,6 +285,7 @@ public class Calc
 					}
 				last_was_equals = false
 				last_was_operator = false
+				input_mode = true;
 				return result_to_display(register)
 
 			case button.dot:
@@ -276,6 +297,7 @@ public class Calc
 				decimal_factor = -1
 				last_was_equals = false
 				last_was_operator = false
+				input_mode = true;
 				return result_to_display(register)
 			
 			case button.plus, button.minus, button.multiply, button.divide, button.power:
@@ -298,7 +320,19 @@ public class Calc
 				last_was_operator = true
 			
 				return result_to_display(numeric_stack.last!)
+			
+			case button.plus_minus:
+				register = -register
+				new_integer = true
 
+				return result_to_display(register);
+			
+			case button.square_root:
+				register = sqrt(register)
+				new_integer = true
+
+				return result_to_display(register);
+			
 			case button.equals:
 				if (last_was_equals)
 					{

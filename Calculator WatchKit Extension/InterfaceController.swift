@@ -48,6 +48,103 @@ class InterfaceController: WKInterfaceController
 		}
 
 	/*
+		SINE()
+		------
+	*/
+	@IBAction func sine()
+		{
+		setTitle("Sin")
+		}
+	
+	/*
+		SINE_INVERSE()
+		--------------
+	*/
+	@IBAction func sine_inverse()
+		{
+		}
+	
+	/*
+		SINE_HYPERBOLIC()
+		-----------------
+	*/
+	@IBAction func sine_hyperbolic()
+		{
+		}
+	
+	/*
+		SINE_HYPERBOLIC_INVERSE()
+		-------------------------
+	*/
+	@IBAction func sine_hyperbolic_inverse()
+		{
+		}
+	
+	/*
+		COSINE()
+		--------
+	*/
+	@IBAction func cosine()
+		{
+		}
+	
+	/*
+		COSINE_INVERSE()
+		----------------
+	*/
+	@IBAction func cosine_inverse()
+		{
+		}
+	
+	/*
+		COSINE_HYPERBOLIC()
+		-------------------
+	*/
+	@IBAction func cosine_hyperbolic()
+		{
+		}
+	
+	/*
+		COSINE_HYPERBOLIC_INVERSE()
+		---------------------------
+	*/
+	@IBAction func cosine_hyperbolic_inverse()
+		{
+		}
+	
+	/*
+		TANGENT()
+		---------
+	*/
+	@IBAction func tangent()
+		{
+		}
+
+	/*
+		TANGENT_INVERSE()
+		-----------------
+	*/
+	@IBAction func tangent_inverse()
+		{
+		}
+	
+	/*
+		TANGENT_HYPERBOLIC()
+		--------------------
+	*/
+	@IBAction func tangent_hyperbolic()
+		{
+		}
+	
+	/*
+		TANGENT_HYPERBOLIC_INVERSE()
+		----------------------------
+	*/
+	@IBAction func tangent_hyperbolic_inverse()
+		{
+		}
+
+	/*
 		SQUARE_ROOT()
 		-------------
 	*/

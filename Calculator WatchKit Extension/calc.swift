@@ -1,10 +1,9 @@
-//
-//  Calc.swift
-//  Calculator
-//
-//  Created by Andrew Trotman on 8/04/16.
-//  Copyright © 2016 Pinnated. All rights reserved.
-//
+/*
+	CALC.SWIFT
+	----------
+	Copyright (c) 2016 Pinnated.  All rights reserved.
+	Written by Andrew Trotman
+*/
 
 import Foundation
 

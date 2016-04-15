@@ -25,6 +25,7 @@ class InterfaceController: WKInterfaceController
 		{
 		super.awakeWithContext(context)
 		// Configure interface objects here.
+		setTitle("");
 		}
 
 	/*
@@ -69,6 +70,78 @@ class InterfaceController: WKInterfaceController
 		setTitle("")
 		}
 
+	/*
+		DEGREES()
+		---------
+	*/
+	@IBAction func degrees()
+		{
+		setTitle(calculator.press(Calc.button.degrees))
+		}
+	
+	/*
+		RADIANS()
+		---------
+	*/
+	@IBAction func radians()
+		{
+		setTitle(calculator.press(Calc.button.radians))
+		}
+	
+	/*
+		GRADIANS()
+		----------
+	*/
+	@IBAction func gradians()
+		{
+		setTitle(calculator.press(Calc.button.gradians))
+		}
+
+	/*
+		LN()
+		----
+	*/
+	@IBAction func ln()
+		{
+		setTitle(calculator.press(Calc.button.ln))
+		}
+	
+	/*
+		LOG2()
+		------
+	*/
+	@IBAction func log2()
+		{
+		setTitle(calculator.press(Calc.button.log2))
+		}
+	
+	/*
+		LOG10()
+		-------
+	*/
+	@IBAction func log10()
+		{
+		setTitle(calculator.press(Calc.button.log10))
+		}
+		
+	/*
+		E()
+		---
+	*/
+	@IBAction func e()
+		{
+		setTitle(calculator.press(Calc.button.e))
+		}
+	
+	/*
+		PI()
+		----
+	*/
+	@IBAction func pi()
+		{
+		setTitle(calculator.press(Calc.button.pi))
+		}
+	
 	/*
 		SINE()
 		------

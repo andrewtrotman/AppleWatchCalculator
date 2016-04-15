@@ -174,7 +174,11 @@
                                                 <action selector="tangent" destination="hgJ-Jp-7lk" id="ldh-au-hwl"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?ln" id="cKP-kr-6nH"/>
+                                        <button width="0.25" height="1" alignment="left" title="ln" id="cKP-kr-6nH">
+                                            <connections>
+                                                <action selector="ln" destination="hgJ-Jp-7lk" id="68C-tg-Z4h"/>
+                                            </connections>
+                                        </button>
                                     </items>
                                 </group>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="NiA-99-MSG">
@@ -197,7 +201,11 @@
                                                 <action selector="tangent_inverse" destination="hgJ-Jp-7lk" id="Rx8-Ne-dAJ"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?log2" id="1mg-ez-UBS"/>
+                                        <button width="0.25" height="1" alignment="left" title="log2" id="1mg-ez-UBS">
+                                            <connections>
+                                                <action selector="log2" destination="hgJ-Jp-7lk" id="3k3-TN-nhv"/>
+                                            </connections>
+                                        </button>
                                     </items>
                                 </group>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="K2z-4U-EuB">
@@ -220,7 +228,11 @@
                                                 <action selector="tangent_hyperbolic" destination="hgJ-Jp-7lk" id="ZYJ-1j-8z9"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?log10" id="lLn-BU-Eku"/>
+                                        <button width="0.25" height="1" alignment="left" title="log10" id="lLn-BU-Eku">
+                                            <connections>
+                                                <action selector="log10" destination="hgJ-Jp-7lk" id="WFt-zw-C8N"/>
+                                            </connections>
+                                        </button>
                                     </items>
                                 </group>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="O4n-Jv-5NY">
@@ -240,17 +252,36 @@
                                                 <action selector="tangent_hyperbolic_inverse" destination="hgJ-Jp-7lk" id="V6b-rg-kll"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?deg" id="rCA-hN-uI4"/>
+                                        <button width="0.25" height="1" alignment="left" title="deg" id="rCA-hN-uI4">
+                                            <connections>
+                                                <action selector="degrees" destination="hgJ-Jp-7lk" id="PTN-th-pwh"/>
+                                            </connections>
+                                        </button>
                                     </items>
                                 </group>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="icg-qT-uUu">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="?e" id="mXE-BQ-ftJ"/>
-                                        <button width="0.25" height="1" alignment="left" title="?pi" id="HK8-mJ-jtS"/>
-                                        <button width="0.25" height="1" alignment="left" title="?grad" id="REe-rT-zky">
-                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        <button width="0.25" height="1" alignment="left" title="e" id="mXE-BQ-ftJ">
+                                            <connections>
+                                                <action selector="e" destination="hgJ-Jp-7lk" id="ItF-JY-sHF"/>
+                                            </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?rad" id="oe1-44-vXf"/>
+                                        <button width="0.25" height="1" alignment="left" title="π" id="HK8-mJ-jtS">
+                                            <connections>
+                                                <action selector="pi" destination="hgJ-Jp-7lk" id="DQn-Nb-lMb"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="grad" id="REe-rT-zky">
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="gradians" destination="hgJ-Jp-7lk" id="YUn-2c-Dx9"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="rad" id="oe1-44-vXf">
+                                            <connections>
+                                                <action selector="radians" destination="hgJ-Jp-7lk" id="oNf-z4-7fX"/>
+                                            </connections>
+                                        </button>
                                     </items>
                                 </group>
                             </items>

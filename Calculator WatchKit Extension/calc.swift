@@ -25,8 +25,19 @@ public class Calc
 		case sine_inverse, cosine_inverse, tangent_inverse
 		case sine_hyperbolic, cosine_hyperbolic, tangent_hyperbolic
 		case sine_hyperbolic_inverse, cosine_hyperbolic_inverse, tangent_hyperbolic_inverse
+		case e, pi
+		case ln, log2, log10
+		case degrees, radians, gradians
 		}
 	
+	enum trig_mode : String
+		{
+		case degrees = " "
+		case radians = "r"
+		case gradians = "g"
+		}
+	
+	var angle_format : trig_mode
 	var numeric_stack = [Double]()
 	var operator_stack = [button]()
 
@@ -59,6 +70,7 @@ public class Calc
 		input_mode = true
 		decimal_factor = 0
 		last_answer = "0"
+		angle_format = trig_mode.degrees
 		
 		clear()
 		}
@@ -81,7 +93,7 @@ public class Calc
 		input_mode = true
 		decimal_factor = 0
 		last_answer = "0"
-
+		angle_format = trig_mode.degrees
 
 		return set_last_answer(result_to_display(0))
 		}
@@ -103,6 +115,23 @@ public class Calc
 	public func get_last_answer() -> String
 		{
 		return last_answer
+		}
+
+	/*
+		ANGLE_TO_RADIANS()
+		------------------
+	*/
+	func angle_to_radians(angle : Double, format : trig_mode) -> Double
+		{
+		switch (format)
+			{
+			case trig_mode.degrees:
+				return angle * M_PI / 180
+			case trig_mode.radians:
+				return angle
+			case trig_mode.gradians:
+				return angle * M_PI / 200
+			}
 		}
 
 	/*
@@ -198,6 +227,29 @@ public class Calc
 			}
 		numeric_stack.append(register)
 		}
+	
+	/*
+		SET_TRIG_MODE()
+		---------------
+	*/
+	func set_trig_mode(key : button) -> String
+		{
+		let answer = get_last_answer()
+		
+		switch (key)
+			{
+			case button.degrees:
+				angle_format = trig_mode.degrees
+			case button.radians:
+				angle_format = trig_mode.radians
+			case button.gradians:
+				angle_format = trig_mode.gradians
+			default:
+				angle_format = trig_mode.degrees
+			}
+
+		return angle_format.rawValue + String(answer.characters.dropFirst())
+		}
 
 	/*
 		REDUCE()
@@ -236,6 +288,34 @@ public class Calc
 	}
 	
 	/*
+		SET_CONSTANT()
+		--------------
+	*/
+	func set_constant(operation : button) -> String
+		{
+		if (new_integer)
+			{
+			register = 0
+			decimal_factor = 0
+			new_integer = false
+			}
+
+		last_was_equals = false
+		last_was_operator = false
+
+		switch (operation)
+			{
+			case button.e:
+				register = M_E
+			case button.pi:
+				register = M_PI
+			default:
+				break
+			}
+		return result_to_display(register)
+		}
+	
+	/*
 		UNARY_FUNCTION
 		--------------
 	*/
@@ -243,39 +323,45 @@ public class Calc
 	{
 	switch (operation)
 		{
-			case button.plus_minus:
-				register = -register
-			case button.square_root:
-				register = sqrt(register)
-			case button.sine:
-				register = sin(register)
-			case button.cosine:
-				register = cos(register)
-			case button.tangent:
-				register = tan(register)
-			case button.sine_inverse:
-				register = asin(register)
-			case button.cosine_inverse:
-				register = acos(register)
-			case button.tangent_inverse:
-				register = atan(register)
-			case button.sine_hyperbolic:
-				register = sinh(register)
-			case button.cosine_hyperbolic:
-				register = cosh(register)
-			case button.tangent_hyperbolic:
-				register = tanh(register)
-			case button.sine_hyperbolic_inverse:
-				register = asinh(register)
-			case button.cosine_hyperbolic_inverse:
-				register = acosh(register)
-			case button.tangent_hyperbolic_inverse:
-				register = atanh(register)
-			default:
-				break;
+		case button.plus_minus:
+			register = -register
+		case button.square_root:
+			register = sqrt(register)
+		case button.sine:
+			register = sin(register)
+		case button.cosine:
+			register = cos(register)
+		case button.tangent:
+			register = tan(register)
+		case button.sine_inverse:
+			register = asin(register)
+		case button.cosine_inverse:
+			register = acos(register)
+		case button.tangent_inverse:
+			register = atan(register)
+		case button.sine_hyperbolic:
+			register = sinh(register)
+		case button.cosine_hyperbolic:
+			register = cosh(register)
+		case button.tangent_hyperbolic:
+			register = tanh(register)
+		case button.sine_hyperbolic_inverse:
+			register = asinh(register)
+		case button.cosine_hyperbolic_inverse:
+			register = acosh(register)
+		case button.tangent_hyperbolic_inverse:
+			register = atanh(register)
+		case button.ln:
+			register = log(register)
+		case button.log10:
+			register = log10(register)
+		case button.log2:
+			register = log2(register)
+		default:
+			break
 		}
 	new_integer = true
-	return result_to_display(register);
+	return result_to_display(register)
 	}
 
 	/*
@@ -321,7 +407,14 @@ public class Calc
 			formatter.minimumIntegerDigits = 1
 			formatter.maximumFractionDigits = digits_after_dot
 			formatter.minimumFractionDigits = digits_after_dot
-			return formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
+			
+			var answer : String
+			answer = angle_format.rawValue;
+			if (answer != "" && !details.rounded.isSignMinus)
+				{
+				answer = answer + " "
+				}
+			return answer + formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
 			}
 		}
 
@@ -391,9 +484,21 @@ public class Calc
 			
 				return set_last_answer(result_to_display(numeric_stack.last!))
 			
-			case button.plus_minus, button.square_root, button.sine, button.cosine, button.tangent, button.sine_inverse, button.cosine_inverse, button.tangent_inverse, button.sine_hyperbolic, button.cosine_hyperbolic, button.tangent_hyperbolic, button.sine_hyperbolic_inverse, button.cosine_hyperbolic_inverse, button.tangent_hyperbolic_inverse:
+			case button.plus_minus, button.square_root,
+				button.sine, button.cosine, button.tangent,
+				button.sine_inverse, button.cosine_inverse, button.tangent_inverse,
+				button.sine_hyperbolic, button.cosine_hyperbolic, button.tangent_hyperbolic,
+				button.sine_hyperbolic_inverse, button.cosine_hyperbolic_inverse, button.tangent_hyperbolic_inverse,
+				button.ln, button.log2, button.log10:
+				
 				return set_last_answer(unary_function(key))
 			
+			case button.e, button.pi:
+				return set_last_answer(set_constant(key))
+			
+			case button.degrees, button.radians, button.gradians:
+				return set_last_answer(set_trig_mode(key))
+
 			case button.equals:
 				if (last_was_equals)
 					{

@@ -9,14 +9,14 @@
 import WatchKit
 import Foundation
 
+var calculator = Calc()
+
 /*
 	CLASS INTERFACECONTROLLER
 	-------------------------
 */
 class InterfaceController: WKInterfaceController
 	{
-	var calculator = Calc()
-	
 	/*
 		AWAKEWITHCONTEXT()
 		------------------
@@ -35,6 +35,27 @@ class InterfaceController: WKInterfaceController
 		{
 		// This method is called when watch view controller is about to be visible to user
 		super.willActivate()
+		setTitle(calculator.get_last_answer());
+		}
+	
+	/*
+		WILLDISAPPEAR()
+		---------------
+	*/
+	override func willDisappear()
+		{
+		super.willDisappear()
+		setTitle("");
+		}
+	
+	/*
+		DIDAPPEAR()
+		-----------
+	*/
+	override func didAppear()
+		{
+		super.didAppear()
+		setTitle(calculator.get_last_answer());
 		}
 
 	/*
@@ -45,6 +66,7 @@ class InterfaceController: WKInterfaceController
 		{
 		// This method is called when watch view controller is no longer visible
 		super.didDeactivate()
+		setTitle("")
 		}
 
 	/*
@@ -53,7 +75,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func sine()
 		{
-		setTitle("Sin")
+		setTitle(calculator.press(Calc.button.sine))
 		}
 	
 	/*
@@ -62,6 +84,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func sine_inverse()
 		{
+		setTitle(calculator.press(Calc.button.sine_inverse))
 		}
 	
 	/*
@@ -70,6 +93,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func sine_hyperbolic()
 		{
+		setTitle(calculator.press(Calc.button.sine_hyperbolic))
 		}
 	
 	/*
@@ -78,6 +102,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func sine_hyperbolic_inverse()
 		{
+		setTitle(calculator.press(Calc.button.sine_hyperbolic_inverse))
 		}
 	
 	/*
@@ -86,6 +111,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func cosine()
 		{
+		setTitle(calculator.press(Calc.button.cosine))
 		}
 	
 	/*
@@ -94,6 +120,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func cosine_inverse()
 		{
+		setTitle(calculator.press(Calc.button.cosine_inverse))
 		}
 	
 	/*
@@ -102,6 +129,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func cosine_hyperbolic()
 		{
+		setTitle(calculator.press(Calc.button.cosine_hyperbolic))
 		}
 	
 	/*
@@ -110,6 +138,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func cosine_hyperbolic_inverse()
 		{
+		setTitle(calculator.press(Calc.button.cosine_hyperbolic_inverse))
 		}
 	
 	/*
@@ -118,6 +147,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func tangent()
 		{
+		setTitle(calculator.press(Calc.button.tangent))
 		}
 
 	/*
@@ -126,6 +156,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func tangent_inverse()
 		{
+		setTitle(calculator.press(Calc.button.tangent_inverse))
 		}
 	
 	/*
@@ -134,6 +165,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func tangent_hyperbolic()
 		{
+		setTitle(calculator.press(Calc.button.tangent_hyperbolic))
 		}
 	
 	/*
@@ -142,6 +174,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func tangent_hyperbolic_inverse()
 		{
+		setTitle(calculator.press(Calc.button.tangent_hyperbolic_inverse))
 		}
 
 	/*

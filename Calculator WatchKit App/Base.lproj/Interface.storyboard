@@ -174,11 +174,7 @@
                                                 <action selector="tangent" destination="hgJ-Jp-7lk" id="ldh-au-hwl"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?ln" id="cKP-kr-6nH">
-                                            <connections>
-                                                <action selector="divide" destination="AgC-eL-Hgc" id="pqI-Bi-4WP"/>
-                                            </connections>
-                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="?ln" id="cKP-kr-6nH"/>
                                     </items>
                                 </group>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="NiA-99-MSG">
@@ -201,11 +197,7 @@
                                                 <action selector="tangent_inverse" destination="hgJ-Jp-7lk" id="Rx8-Ne-dAJ"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?log2" id="1mg-ez-UBS">
-                                            <connections>
-                                                <action selector="multiply" destination="AgC-eL-Hgc" id="pRp-Ad-Afk"/>
-                                            </connections>
-                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="?log2" id="1mg-ez-UBS"/>
                                     </items>
                                 </group>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="K2z-4U-EuB">
@@ -228,11 +220,7 @@
                                                 <action selector="tangent_hyperbolic" destination="hgJ-Jp-7lk" id="ZYJ-1j-8z9"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?log10" id="lLn-BU-Eku">
-                                            <connections>
-                                                <action selector="minus" destination="AgC-eL-Hgc" id="n89-xQ-F5A"/>
-                                            </connections>
-                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="?log10" id="lLn-BU-Eku"/>
                                     </items>
                                 </group>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="O4n-Jv-5NY">
@@ -252,36 +240,17 @@
                                                 <action selector="tangent_hyperbolic_inverse" destination="hgJ-Jp-7lk" id="V6b-rg-kll"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?deg" id="rCA-hN-uI4">
-                                            <connections>
-                                                <action selector="plus" destination="AgC-eL-Hgc" id="OlD-X3-ELd"/>
-                                            </connections>
-                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="?deg" id="rCA-hN-uI4"/>
                                     </items>
                                 </group>
                                 <group width="1" height="0.20000000000000001" alignment="left" id="icg-qT-uUu">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="?e" id="mXE-BQ-ftJ">
-                                            <connections>
-                                                <action selector="zero" destination="AgC-eL-Hgc" id="nSq-Rq-Xwj"/>
-                                            </connections>
-                                        </button>
-                                        <button width="0.25" height="1" alignment="left" title="?pi" id="HK8-mJ-jtS">
-                                            <connections>
-                                                <action selector="dot" destination="AgC-eL-Hgc" id="3mH-lk-XPT"/>
-                                            </connections>
-                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="?e" id="mXE-BQ-ftJ"/>
+                                        <button width="0.25" height="1" alignment="left" title="?pi" id="HK8-mJ-jtS"/>
                                         <button width="0.25" height="1" alignment="left" title="?grad" id="REe-rT-zky">
                                             <fontDescription key="font" type="system" pointSize="15"/>
-                                            <connections>
-                                                <action selector="power" destination="AgC-eL-Hgc" id="3X0-Jz-tZR"/>
-                                            </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="?rad" id="oe1-44-vXf">
-                                            <connections>
-                                                <action selector="equals" destination="AgC-eL-Hgc" id="5D1-Km-YTc"/>
-                                            </connections>
-                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="?rad" id="oe1-44-vXf"/>
                                     </items>
                                 </group>
                             </items>

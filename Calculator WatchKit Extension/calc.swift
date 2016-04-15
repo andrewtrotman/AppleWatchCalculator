@@ -21,6 +21,10 @@ public class Calc
 		case dot, plus_minus, equals
 		case plus, minus, multiply, divide, power
 		case square_root
+		case sine, cosine, tangent
+		case sine_inverse, cosine_inverse, tangent_inverse
+		case sine_hyperbolic, cosine_hyperbolic, tangent_hyperbolic
+		case sine_hyperbolic_inverse, cosine_hyperbolic_inverse, tangent_hyperbolic_inverse
 		}
 	
 	var numeric_stack = [Double]()
@@ -34,6 +38,8 @@ public class Calc
 	var new_integer : Bool
 	var decimal_factor : Int
 	var input_mode : Bool
+	
+	var last_answer : String
 
 	/*
 		INIT()
@@ -52,6 +58,7 @@ public class Calc
 		new_integer = true
 		input_mode = true
 		decimal_factor = 0
+		last_answer = "0"
 		
 		clear()
 		}
@@ -73,8 +80,29 @@ public class Calc
 		new_integer = true
 		input_mode = true
 		decimal_factor = 0
+		last_answer = "0"
 
-		return result_to_display(0)
+
+		return set_last_answer(result_to_display(0))
+		}
+
+	/*
+		SET_LAST_ANSWER()
+		-----------------
+	*/
+	func set_last_answer(value : String) -> String
+		{
+		last_answer = value
+		return value
+		}
+	
+	/*
+		GET_LAST_ANSWER()
+		-----------------
+	*/
+	public func get_last_answer() -> String
+		{
+		return last_answer
 		}
 
 	/*
@@ -206,6 +234,49 @@ public class Calc
 		operator_stack.append(next_operator)
 		}
 	}
+	
+	/*
+		UNARY_FUNCTION
+		--------------
+	*/
+	func unary_function(operation : button) -> String
+	{
+	switch (operation)
+		{
+			case button.plus_minus:
+				register = -register
+			case button.square_root:
+				register = sqrt(register)
+			case button.sine:
+				register = sin(register)
+			case button.cosine:
+				register = cos(register)
+			case button.tangent:
+				register = tan(register)
+			case button.sine_inverse:
+				register = asin(register)
+			case button.cosine_inverse:
+				register = acos(register)
+			case button.tangent_inverse:
+				register = atan(register)
+			case button.sine_hyperbolic:
+				register = sinh(register)
+			case button.cosine_hyperbolic:
+				register = cosh(register)
+			case button.tangent_hyperbolic:
+				register = tanh(register)
+			case button.sine_hyperbolic_inverse:
+				register = asinh(register)
+			case button.cosine_hyperbolic_inverse:
+				register = acosh(register)
+			case button.tangent_hyperbolic_inverse:
+				register = atanh(register)
+			default:
+				break;
+		}
+	new_integer = true
+	return result_to_display(register);
+	}
 
 	/*
 		RESULT_TO_DISPLAY
@@ -285,7 +356,7 @@ public class Calc
 				last_was_equals = false
 				last_was_operator = false
 				input_mode = true;
-				return result_to_display(register)
+				return set_last_answer(result_to_display(register))
 
 			case button.dot:
 				if (new_integer)
@@ -297,7 +368,7 @@ public class Calc
 				last_was_equals = false
 				last_was_operator = false
 				input_mode = true;
-				return result_to_display(register)
+				return set_last_answer(result_to_display(register))
 			
 			case button.plus, button.minus, button.multiply, button.divide, button.power:
 				if (!last_was_operator)
@@ -318,19 +389,10 @@ public class Calc
 				last_was_equals = false
 				last_was_operator = true
 			
-				return result_to_display(numeric_stack.last!)
+				return set_last_answer(result_to_display(numeric_stack.last!))
 			
-			case button.plus_minus:
-				register = -register
-				new_integer = true
-
-				return result_to_display(register);
-			
-			case button.square_root:
-				register = sqrt(register)
-				new_integer = true
-
-				return result_to_display(register);
+			case button.plus_minus, button.square_root, button.sine, button.cosine, button.tangent, button.sine_inverse, button.cosine_inverse, button.tangent_inverse, button.sine_hyperbolic, button.cosine_hyperbolic, button.tangent_hyperbolic, button.sine_hyperbolic_inverse, button.cosine_hyperbolic_inverse, button.tangent_hyperbolic_inverse:
+				return set_last_answer(unary_function(key))
 			
 			case button.equals:
 				if (last_was_equals)
@@ -349,7 +411,7 @@ public class Calc
 				new_integer = true
 				last_was_equals = true
 				last_was_operator = false
-				return result_to_display(numeric_stack.isEmpty ? register : numeric_stack.removeLast())
+				return set_last_answer(result_to_display(numeric_stack.isEmpty ? register : numeric_stack.removeLast()))
 			}
 		}
 }

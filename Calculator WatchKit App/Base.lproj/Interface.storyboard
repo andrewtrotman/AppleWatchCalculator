@@ -10,9 +10,9 @@
             <objects>
                 <controller title="Answer" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Calculator_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group width="1" height="1" alignment="center" verticalAlignment="center" layout="vertical" id="ytW-NM-AAQ">
+                        <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" backgroundImage="numbers.png" layout="vertical" id="ytW-NM-AAQ">
                             <items>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="pxY-ec-uZE">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="pxY-ec-uZE">
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="AC" id="fof-Yk-6gT">
                                             <connections>
@@ -36,7 +36,7 @@
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="jpk-SI-gtG">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="jpk-SI-gtG">
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="7" id="Lr6-Y9-HCF">
                                             <fontDescription key="font" type="system" pointSize="15"/>
@@ -63,7 +63,7 @@
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="KOd-7c-419">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="KOd-7c-419">
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="4" id="qok-aS-Ny9">
                                             <connections>
@@ -87,7 +87,7 @@
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="Vv2-T2-69Z">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="Vv2-T2-69Z">
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="1" id="1KW-3m-oob">
                                             <connections>
@@ -111,7 +111,7 @@
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="9Uf-zo-Xat">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="9Uf-zo-Xat">
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="0" id="szX-Sc-Uyt">
                                             <connections>
@@ -137,7 +137,6 @@
                                     </items>
                                 </group>
                             </items>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </group>
                     </items>
                     <connections>
@@ -152,132 +151,132 @@
             <objects>
                 <controller title="Answer" id="hgJ-Jp-7lk" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="center" verticalAlignment="center" layout="vertical" id="Nyh-Hy-RZh">
+                        <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" backgroundImage="trig.png" layout="vertical" id="Nyh-Hy-RZh">
                             <items>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="m1A-wq-Bgs">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="m1A-wq-Bgs">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="sin" id="Cei-6q-W8U">
+                                        <button width="0.25" height="1" alignment="left" id="Cei-6q-W8U">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="sine" destination="hgJ-Jp-7lk" id="P49-10-8LZ"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="cos" id="bLh-tb-9sn">
+                                        <button width="0.25" height="1" alignment="left" id="bLh-tb-9sn">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="cosine" destination="hgJ-Jp-7lk" id="bMv-2k-zm1"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="tan" id="vAF-vG-bhr">
+                                        <button width="0.25" height="1" alignment="left" id="vAF-vG-bhr">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="tangent" destination="hgJ-Jp-7lk" id="ldh-au-hwl"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="ln" id="cKP-kr-6nH">
+                                        <button width="0.25" height="1" alignment="left" id="cKP-kr-6nH">
                                             <connections>
                                                 <action selector="ln" destination="hgJ-Jp-7lk" id="68C-tg-Z4h"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="NiA-99-MSG">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="NiA-99-MSG">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="sin-1" id="U4u-r1-Wom">
+                                        <button width="0.25" height="1" alignment="left" id="U4u-r1-Wom">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="sine_inverse" destination="hgJ-Jp-7lk" id="DKa-52-jMa"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="cos-1" id="dGA-qf-98T">
+                                        <button width="0.25" height="1" alignment="left" id="dGA-qf-98T">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="cosine_inverse" destination="hgJ-Jp-7lk" id="sW3-kT-rc2"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="tan-1" id="Wcj-DY-QEb">
+                                        <button width="0.25" height="1" alignment="left" id="Wcj-DY-QEb">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="tangent_inverse" destination="hgJ-Jp-7lk" id="Rx8-Ne-dAJ"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="log2" id="1mg-ez-UBS">
+                                        <button width="0.25" height="1" alignment="left" id="1mg-ez-UBS">
                                             <connections>
                                                 <action selector="log2" destination="hgJ-Jp-7lk" id="3k3-TN-nhv"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="K2z-4U-EuB">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="K2z-4U-EuB">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="sinh" id="rtG-rj-Yu0">
+                                        <button width="0.25" height="1" alignment="left" id="rtG-rj-Yu0">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="sine_hyperbolic" destination="hgJ-Jp-7lk" id="d8Z-zQ-zvz"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="cosh" id="Q1c-ma-GD8">
+                                        <button width="0.25" height="1" alignment="left" id="Q1c-ma-GD8">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="cosine_hyperbolic" destination="hgJ-Jp-7lk" id="gPu-F1-JKV"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="tanh" id="mO6-rS-9tB">
+                                        <button width="0.25" height="1" alignment="left" id="mO6-rS-9tB">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="tangent_hyperbolic" destination="hgJ-Jp-7lk" id="ZYJ-1j-8z9"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="log10" id="lLn-BU-Eku">
+                                        <button width="0.25" height="1" alignment="left" id="lLn-BU-Eku">
                                             <connections>
                                                 <action selector="log10" destination="hgJ-Jp-7lk" id="WFt-zw-C8N"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="O4n-Jv-5NY">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="O4n-Jv-5NY">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="sinh-1" id="qYj-hd-LPJ">
+                                        <button width="0.25" height="1" alignment="left" id="qYj-hd-LPJ">
                                             <connections>
                                                 <action selector="sine_hyperbolic_inverse" destination="hgJ-Jp-7lk" id="6MD-ep-m0u"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="cosch-1" id="e20-II-AbJ">
+                                        <button width="0.25" height="1" alignment="left" id="e20-II-AbJ">
                                             <connections>
                                                 <action selector="cosine_hyperbolic_inverse" destination="hgJ-Jp-7lk" id="qtB-bv-hDO"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="tanh-1" id="OzV-yM-Mhi">
+                                        <button width="0.25" height="1" alignment="left" id="OzV-yM-Mhi">
                                             <connections>
                                                 <action selector="tangent_hyperbolic_inverse" destination="hgJ-Jp-7lk" id="V6b-rg-kll"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="deg" id="rCA-hN-uI4">
+                                        <button width="0.25" height="1" alignment="left" id="rCA-hN-uI4">
                                             <connections>
                                                 <action selector="degrees" destination="hgJ-Jp-7lk" id="PTN-th-pwh"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.20000000000000001" alignment="left" id="icg-qT-uUu">
+                                <group width="1" height="0.20000000000000001" alignment="left" alpha="0.050000000000000003" id="icg-qT-uUu">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="e" id="mXE-BQ-ftJ">
+                                        <button width="0.25" height="1" alignment="left" id="mXE-BQ-ftJ">
                                             <connections>
                                                 <action selector="e" destination="hgJ-Jp-7lk" id="ItF-JY-sHF"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="π" id="HK8-mJ-jtS">
+                                        <button width="0.25" height="1" alignment="left" id="HK8-mJ-jtS">
                                             <connections>
                                                 <action selector="pi" destination="hgJ-Jp-7lk" id="DQn-Nb-lMb"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="grad" id="REe-rT-zky">
+                                        <button width="0.25" height="1" alignment="left" id="REe-rT-zky">
                                             <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
                                                 <action selector="gradians" destination="hgJ-Jp-7lk" id="YUn-2c-Dx9"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="rad" id="oe1-44-vXf">
+                                        <button width="0.25" height="1" alignment="left" id="oe1-44-vXf">
                                             <connections>
                                                 <action selector="radians" destination="hgJ-Jp-7lk" id="oNf-z4-7fX"/>
                                             </connections>

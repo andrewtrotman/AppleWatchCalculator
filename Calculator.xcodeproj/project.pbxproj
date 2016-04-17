@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49169DAA1CC3562400BB1EAB /* trig.png in Resources */ = {isa = PBXBuildFile; fileRef = 49169DA91CC3562400BB1EAB /* trig.png */; };
+		49169DAC1CC357B600BB1EAB /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 49169DAB1CC357B600BB1EAB /* numbers.png */; };
 		497848BF1CB701C40037B908 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497848BE1CB701C40037B908 /* AppDelegate.swift */; };
 		497848C11CB701C40037B908 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497848C01CB701C40037B908 /* ViewController.swift */; };
 		497848C41CB701C40037B908 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497848C21CB701C40037B908 /* Main.storyboard */; };
@@ -82,6 +84,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		49169DA91CC3562400BB1EAB /* trig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trig.png; sourceTree = "<group>"; };
+		49169DAB1CC357B600BB1EAB /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = numbers.png; sourceTree = "<group>"; };
 		497848BB1CB701C40037B908 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		497848BE1CB701C40037B908 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		497848C01CB701C40037B908 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				497848E81CB701C50037B908 /* Interface.storyboard */,
+				49169DAB1CC357B600BB1EAB /* numbers.png */,
+				49169DA91CC3562400BB1EAB /* trig.png */,
 				497848EB1CB701C50037B908 /* Assets.xcassets */,
 				497848ED1CB701C50037B908 /* Info.plist */,
 			);
@@ -389,6 +395,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				497848EC1CB701C50037B908 /* Assets.xcassets in Resources */,
+				49169DAA1CC3562400BB1EAB /* trig.png in Resources */,
+				49169DAC1CC357B600BB1EAB /* numbers.png in Resources */,
 				497848EA1CB701C50037B908 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

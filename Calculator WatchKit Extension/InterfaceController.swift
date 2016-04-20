@@ -25,7 +25,7 @@ class InterfaceController: WKInterfaceController
 		{
 		super.awakeWithContext(context)
 		// Configure interface objects here.
-		setTitle("");
+		display_results("", pling: false);
 		}
 
 	/*
@@ -36,7 +36,7 @@ class InterfaceController: WKInterfaceController
 		{
 		// This method is called when watch view controller is about to be visible to user
 		super.willActivate()
-		setTitle(calculator.get_last_answer());
+		display_results(calculator.get_last_answer(), pling: false);
 		}
 	
 	/*
@@ -46,7 +46,7 @@ class InterfaceController: WKInterfaceController
 	override func willDisappear()
 		{
 		super.willDisappear()
-		setTitle("");
+		display_results("", pling: false);
 		}
 	
 	/*
@@ -56,7 +56,7 @@ class InterfaceController: WKInterfaceController
 	override func didAppear()
 		{
 		super.didAppear()
-		setTitle(calculator.get_last_answer());
+		display_results(calculator.get_last_answer(), pling: false);
 		}
 
 	/*
@@ -67,7 +67,23 @@ class InterfaceController: WKInterfaceController
 		{
 		// This method is called when watch view controller is no longer visible
 		super.didDeactivate()
-		setTitle("")
+		display_results("", pling: false)
+		}
+
+	/*
+		DISPLAY_RESULTS()
+		-----------------
+	*/
+	func display_results(result : String, pling : Bool = true)
+		{
+		var mode : String = ""
+		
+		if (calculator.get_trig_mode() != Calc.trig_mode.degrees)
+			{
+			mode = calculator.get_trig_mode().rawValue + (result.hasPrefix("-") ? "" : " ")
+			}
+		setTitle(mode + result)
+		WKInterfaceDevice.currentDevice().playHaptic(.Click)
 		}
 
 	/*
@@ -76,7 +92,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func degrees()
 		{
-		setTitle(calculator.press(Calc.button.degrees))
+		display_results(calculator.press(Calc.button.degrees))
 		}
 	
 	/*
@@ -85,7 +101,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func radians()
 		{
-		setTitle(calculator.press(Calc.button.radians))
+		display_results(calculator.press(Calc.button.radians))
 		}
 	
 	/*
@@ -94,7 +110,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func gradians()
 		{
-		setTitle(calculator.press(Calc.button.gradians))
+		display_results(calculator.press(Calc.button.gradians))
 		}
 
 	/*
@@ -103,7 +119,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func ln()
 		{
-		setTitle(calculator.press(Calc.button.ln))
+		display_results(calculator.press(Calc.button.ln))
 		}
 	
 	/*
@@ -112,7 +128,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func log2()
 		{
-		setTitle(calculator.press(Calc.button.log2))
+		display_results(calculator.press(Calc.button.log2))
 		}
 	
 	/*
@@ -121,7 +137,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func log10()
 		{
-		setTitle(calculator.press(Calc.button.log10))
+		display_results(calculator.press(Calc.button.log10))
 		}
 		
 	/*
@@ -130,7 +146,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func e()
 		{
-		setTitle(calculator.press(Calc.button.e))
+		display_results(calculator.press(Calc.button.e))
 		}
 	
 	/*
@@ -139,7 +155,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func pi()
 		{
-		setTitle(calculator.press(Calc.button.pi))
+		display_results(calculator.press(Calc.button.pi))
 		}
 	
 	/*
@@ -148,7 +164,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func sine()
 		{
-		setTitle(calculator.press(Calc.button.sine))
+		display_results(calculator.press(Calc.button.sine))
 		}
 	
 	/*
@@ -157,7 +173,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func sine_inverse()
 		{
-		setTitle(calculator.press(Calc.button.sine_inverse))
+		display_results(calculator.press(Calc.button.sine_inverse))
 		}
 	
 	/*
@@ -166,7 +182,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func sine_hyperbolic()
 		{
-		setTitle(calculator.press(Calc.button.sine_hyperbolic))
+		display_results(calculator.press(Calc.button.sine_hyperbolic))
 		}
 	
 	/*
@@ -175,7 +191,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func sine_hyperbolic_inverse()
 		{
-		setTitle(calculator.press(Calc.button.sine_hyperbolic_inverse))
+		display_results(calculator.press(Calc.button.sine_hyperbolic_inverse))
 		}
 	
 	/*
@@ -184,7 +200,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func cosine()
 		{
-		setTitle(calculator.press(Calc.button.cosine))
+		display_results(calculator.press(Calc.button.cosine))
 		}
 	
 	/*
@@ -193,7 +209,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func cosine_inverse()
 		{
-		setTitle(calculator.press(Calc.button.cosine_inverse))
+		display_results(calculator.press(Calc.button.cosine_inverse))
 		}
 	
 	/*
@@ -202,7 +218,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func cosine_hyperbolic()
 		{
-		setTitle(calculator.press(Calc.button.cosine_hyperbolic))
+		display_results(calculator.press(Calc.button.cosine_hyperbolic))
 		}
 	
 	/*
@@ -211,7 +227,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func cosine_hyperbolic_inverse()
 		{
-		setTitle(calculator.press(Calc.button.cosine_hyperbolic_inverse))
+		display_results(calculator.press(Calc.button.cosine_hyperbolic_inverse))
 		}
 	
 	/*
@@ -220,7 +236,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func tangent()
 		{
-		setTitle(calculator.press(Calc.button.tangent))
+		display_results(calculator.press(Calc.button.tangent))
 		}
 
 	/*
@@ -229,7 +245,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func tangent_inverse()
 		{
-		setTitle(calculator.press(Calc.button.tangent_inverse))
+		display_results(calculator.press(Calc.button.tangent_inverse))
 		}
 	
 	/*
@@ -238,7 +254,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func tangent_hyperbolic()
 		{
-		setTitle(calculator.press(Calc.button.tangent_hyperbolic))
+		display_results(calculator.press(Calc.button.tangent_hyperbolic))
 		}
 	
 	/*
@@ -247,7 +263,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func tangent_hyperbolic_inverse()
 		{
-		setTitle(calculator.press(Calc.button.tangent_hyperbolic_inverse))
+		display_results(calculator.press(Calc.button.tangent_hyperbolic_inverse))
 		}
 
 	/*
@@ -256,7 +272,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func square_root()
 		{
-		setTitle(calculator.press(Calc.button.square_root))
+		display_results(calculator.press(Calc.button.square_root))
 		}
 	
 	/*
@@ -265,7 +281,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func plus_minus()
 		{
-		setTitle(calculator.press(Calc.button.plus_minus))
+		display_results(calculator.press(Calc.button.plus_minus))
 		}
 	
 	/*
@@ -274,7 +290,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func equals()
 		{
-		setTitle(calculator.press(Calc.button.equals))
+		display_results(calculator.press(Calc.button.equals))
 		}
 	
 	/*
@@ -283,7 +299,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func power()
 		{
-		setTitle(calculator.press(Calc.button.power))
+		display_results(calculator.press(Calc.button.power))
 		}
 		
 	/*
@@ -292,7 +308,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func divide()
 		{
-		setTitle(calculator.press(Calc.button.divide))
+		display_results(calculator.press(Calc.button.divide))
 		}
 	
 	/*
@@ -301,7 +317,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func multiply()
 		{
-		setTitle(calculator.press(Calc.button.multiply))
+		display_results(calculator.press(Calc.button.multiply))
 		}
 	
 	/*
@@ -310,7 +326,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func minus()
 		{
-		setTitle(calculator.press(Calc.button.minus))
+		display_results(calculator.press(Calc.button.minus))
 		}
 	
 	/*
@@ -319,7 +335,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func plus()
 		{
-		setTitle(calculator.press(Calc.button.plus))
+		display_results(calculator.press(Calc.button.plus))
 		}
 
 	/*
@@ -328,7 +344,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func clear()
 		{
-		setTitle(calculator.clear())
+		display_results(calculator.clear())
 		}
 		
 	/*
@@ -337,7 +353,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func dot()
 		{
-		setTitle(calculator.press(Calc.button.dot))
+		display_results(calculator.press(Calc.button.dot))
 		}
 	/*
 		NINE()
@@ -345,7 +361,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func nine()
 		{
-		setTitle(calculator.press(Calc.button.nine))
+		display_results(calculator.press(Calc.button.nine))
 		}
 
 	/*
@@ -354,7 +370,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func eight()
 		{
-		setTitle(calculator.press(Calc.button.eight))
+		display_results(calculator.press(Calc.button.eight))
 		}
 
 	/*
@@ -363,7 +379,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func seven()
 		{
-		setTitle(calculator.press(Calc.button.seven))
+		display_results(calculator.press(Calc.button.seven))
 		}
 
 	/*
@@ -372,7 +388,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func six()
 		{
-		setTitle(calculator.press(Calc.button.six))
+		display_results(calculator.press(Calc.button.six))
 		}
 
 	/*
@@ -381,7 +397,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func five()
 		{
-		setTitle(calculator.press(Calc.button.five))
+		display_results(calculator.press(Calc.button.five))
 		}
 
 	/*
@@ -390,7 +406,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func four()
 		{
-		setTitle(calculator.press(Calc.button.four))
+		display_results(calculator.press(Calc.button.four))
 		}
 
 	/*
@@ -399,7 +415,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func three()
 		{
-		setTitle(calculator.press(Calc.button.three))
+		display_results(calculator.press(Calc.button.three))
 		}
 
 	/*
@@ -408,7 +424,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func two()
 		{
-		setTitle(calculator.press(Calc.button.two))
+		display_results(calculator.press(Calc.button.two))
 		}
 
 	/*
@@ -417,7 +433,7 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func one()
 		{
-		setTitle(calculator.press(Calc.button.one))
+		display_results(calculator.press(Calc.button.one))
 		}
 
 	/*
@@ -426,6 +442,6 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func zero()
 		{
-		setTitle(calculator.press(Calc.button.zero))
+		display_results(calculator.press(Calc.button.zero))
 		}
 }

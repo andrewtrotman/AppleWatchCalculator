@@ -144,7 +144,112 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-265" y="186"/>
+            <point key="canvasLocation" x="-313" y="175"/>
+        </scene>
+        <!--Answer-->
+        <scene sceneID="8x7-yf-W34">
+            <objects>
+                <controller title="Answer" id="g8Y-4d-gnt">
+                    <items>
+                        <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" layout="vertical" id="nzZ-mf-Jtz">
+                            <items>
+                                <group width="134" height="0.20000000000000001" alignment="left" id="zfg-tG-QIo">
+                                    <items>
+                                        <button width="0.25" height="1" alignment="left" title="mc" id="caA-BG-d6D">
+                                            <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="m-" id="p4V-2f-RM5">
+                                            <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="m+" id="yZU-05-YsH">
+                                            <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="mr" id="wZC-rk-e1d">
+                                            <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.20000000000000001" alignment="left" id="Glz-vq-u9J">
+                                    <items>
+                                        <button width="0.25" height="1" alignment="left" title="and" id="Pmr-1Y-DIC">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="or" id="xgC-b8-3Pa">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="A" id="XMH-D8-qgy">
+                                            <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="B" id="GfG-5F-D3I">
+                                            <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.20000000000000001" alignment="left" id="k9B-Mu-Iys">
+                                    <items>
+                                        <button width="0.25" height="1" alignment="left" title="xor" id="KCR-WY-jJP">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="not" id="CKA-GB-poJ">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="C" id="jiy-ey-X9P">
+                                            <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="D" id="DNz-aZ-PCM">
+                                            <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.20000000000000001" alignment="left" id="G12-zC-Flb">
+                                    <items>
+                                        <button width="0.25" height="1" alignment="left" title="&lt;&lt;" id="dsk-2Y-ppX">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="&gt;&gt;" id="4Z3-0w-6hg">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="E" id="ryt-Z7-eqO">
+                                            <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="F" id="HZt-nW-B8c">
+                                            <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.20000000000000001" alignment="left" id="RSH-pe-Nib">
+                                    <items>
+                                        <button width="0.25" height="1" alignment="left" title="hex" id="3xv-Df-aLe">
+                                            <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="dec" id="Xec-ek-hBT">
+                                            <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="oct" id="axc-Ef-aUq">
+                                            <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" title="bin" id="ZTt-yY-b7l">
+                                            <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="198" y="175"/>
         </scene>
         <!--Answer-->
         <scene sceneID="mYG-aZ-9Mb">
@@ -287,9 +392,12 @@
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </group>
                     </items>
+                    <connections>
+                        <segue destination="g8Y-4d-gnt" kind="relationship" relationship="nextPage" id="2cI-O4-rPh"/>
+                    </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="18" y="186"/>
+            <point key="canvasLocation" x="-55" y="175"/>
         </scene>
     </scenes>
 </document>

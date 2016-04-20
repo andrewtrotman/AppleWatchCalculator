@@ -30,9 +30,9 @@ public class Calc
 		case degrees, radians, gradians
 		}
 	
-	enum trig_mode : String
+	public enum trig_mode : String
 		{
-		case degrees = " "
+		case degrees = "d"
 		case radians = "r"
 		case gradians = "g"
 		}
@@ -93,7 +93,12 @@ public class Calc
 		input_mode = true
 		decimal_factor = 0
 		last_answer = "0"
-		angle_format = trig_mode.degrees
+		
+		/*
+			Don't change the angle mode coz that turns out to require the user to repeatedly click the mode button every
+			time they click the AC button.
+		*/
+//		angle_format = trig_mode.degrees
 
 		return set_last_answer(result_to_display(0))
 		}
@@ -109,6 +114,15 @@ public class Calc
 		}
 	
 	/*
+		GET_TRIG_MODE
+		-------------
+	*/
+	public func get_trig_mode() -> trig_mode
+		{
+		return angle_format
+		}
+	
+	/*
 		GET_LAST_ANSWER()
 		-----------------
 	*/
@@ -121,9 +135,9 @@ public class Calc
 		ANGLE_TO_RADIANS()
 		------------------
 	*/
-	func angle_to_radians(angle : Double, format : trig_mode) -> Double
+	func angle_to_radians(angle : Double) -> Double
 		{
-		switch (format)
+		switch (angle_format)
 			{
 			case trig_mode.degrees:
 				return angle * M_PI / 180
@@ -131,6 +145,24 @@ public class Calc
 				return angle
 			case trig_mode.gradians:
 				return angle * M_PI / 200
+			}
+		}
+
+
+	/*
+		RADIANS_TO_ANGLE()
+		------------------
+	*/
+	func radians_to_angle(radians : Double) -> Double
+		{
+		switch (angle_format)
+			{
+			case trig_mode.degrees:
+				return radians * 180 / M_PI
+			case trig_mode.radians:
+				return radians
+			case trig_mode.gradians:
+				return radians * 200 / M_PI
 			}
 		}
 
@@ -234,8 +266,6 @@ public class Calc
 	*/
 	func set_trig_mode(key : button) -> String
 		{
-		let answer = get_last_answer()
-		
 		switch (key)
 			{
 			case button.degrees:
@@ -248,7 +278,7 @@ public class Calc
 				angle_format = trig_mode.degrees
 			}
 
-		return angle_format.rawValue + String(answer.characters.dropFirst())
+		return get_last_answer()
 		}
 
 	/*
@@ -328,17 +358,17 @@ public class Calc
 		case button.square_root:
 			register = sqrt(register)
 		case button.sine:
-			register = sin(register)
+			register = sin(angle_to_radians(register))
 		case button.cosine:
-			register = cos(register)
+			register = cos(angle_to_radians(register))
 		case button.tangent:
-			register = tan(register)
+			register = tan(angle_to_radians(register))
 		case button.sine_inverse:
-			register = asin(register)
+			register = radians_to_angle(asin(register))
 		case button.cosine_inverse:
-			register = acos(register)
+			register = radians_to_angle(acos(register))
 		case button.tangent_inverse:
-			register = atan(register)
+			register = radians_to_angle(atan(register))
 		case button.sine_hyperbolic:
 			register = sinh(register)
 		case button.cosine_hyperbolic:
@@ -408,13 +438,7 @@ public class Calc
 			formatter.maximumFractionDigits = digits_after_dot
 			formatter.minimumFractionDigits = digits_after_dot
 			
-			var answer : String
-			answer = angle_format.rawValue;
-			if (answer != "" && !details.rounded.isSignMinus)
-				{
-				answer = answer + " "
-				}
-			return answer + formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
+			return formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
 			}
 		}
 

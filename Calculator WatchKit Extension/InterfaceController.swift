@@ -83,7 +83,10 @@ class InterfaceController: WKInterfaceController
 			mode = calculator.get_trig_mode().rawValue + (result.hasPrefix("-") ? "" : " ")
 			}
 		setTitle(mode + result)
-		WKInterfaceDevice.currentDevice().playHaptic(.Click)
+		if (pling)
+			{
+			WKInterfaceDevice.currentDevice().playHaptic(.Click)
+			}
 		}
 
 	/*

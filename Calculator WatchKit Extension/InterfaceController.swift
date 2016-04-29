@@ -153,6 +153,14 @@ class InterfaceController: WKInterfaceController
 		}
 	
 	/*
+		C()
+		---
+	*/
+	@IBAction func c()
+		{
+		display_results(calculator.press(Calc.button.c))
+		}
+	/*
 		PI()
 		----
 	*/
@@ -269,6 +277,14 @@ class InterfaceController: WKInterfaceController
 		display_results(calculator.press(Calc.button.tangent_hyperbolic_inverse))
 		}
 
+	/*
+		CUBE_ROOT()
+		-----------
+	*/
+	@IBAction func cube_root()
+		{
+		display_results(calculator.press(Calc.button.cube_root))
+		}
 	/*
 		SQUARE_ROOT()
 		-------------

@@ -20,12 +20,12 @@ public class Calc
 		case zero = 0, one, two, three, four, five, six, seven, eight, nine
 		case dot, plus_minus, equals
 		case plus, minus, multiply, divide, power
-		case square_root
+		case square_root, cube_root
 		case sine, cosine, tangent
 		case sine_inverse, cosine_inverse, tangent_inverse
 		case sine_hyperbolic, cosine_hyperbolic, tangent_hyperbolic
 		case sine_hyperbolic_inverse, cosine_hyperbolic_inverse, tangent_hyperbolic_inverse
-		case e, pi
+		case e, pi, c
 		case ln, log2, log10
 		case degrees, radians, gradians
 		}
@@ -339,6 +339,8 @@ public class Calc
 				register = M_E
 			case button.pi:
 				register = M_PI
+			case button.c:
+				register = 299792458			// speed of light (m/s)
 			default:
 				break
 			}
@@ -357,6 +359,8 @@ public class Calc
 			register = -register
 		case button.square_root:
 			register = sqrt(register)
+		case button.cube_root:
+			register = cbrt(register)
 		case button.sine:
 			register = sin(angle_to_radians(register))
 		case button.cosine:
@@ -508,7 +512,7 @@ public class Calc
 			
 				return set_last_answer(result_to_display(numeric_stack.last!))
 			
-			case button.plus_minus, button.square_root,
+			case button.plus_minus, button.square_root, button.cube_root,
 				button.sine, button.cosine, button.tangent,
 				button.sine_inverse, button.cosine_inverse, button.tangent_inverse,
 				button.sine_hyperbolic, button.cosine_hyperbolic, button.tangent_hyperbolic,
@@ -517,7 +521,7 @@ public class Calc
 				
 				return set_last_answer(unary_function(key))
 			
-			case button.e, button.pi:
+			case button.e, button.pi, button.c:
 				return set_last_answer(set_constant(key))
 			
 			case button.degrees, button.radians, button.gradians:

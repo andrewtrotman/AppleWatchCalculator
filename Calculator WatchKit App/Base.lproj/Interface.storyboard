@@ -144,7 +144,72 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-355" y="429"/>
+            <point key="canvasLocation" x="-289" y="408"/>
+        </scene>
+        <!--Answer-->
+        <scene sceneID="kI1-Pw-zXt">
+            <objects>
+                <controller title="Answer" id="u36-A4-sKU" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" layout="vertical" id="O1b-1X-3oy">
+                            <items>
+                                <group width="1" height="0.25" alignment="left" id="eM4-rG-sfR"/>
+                                <group width="1" height="0.25" alignment="left" id="7Ye-LQ-loF"/>
+                                <group width="1" height="0.25" alignment="left" id="xgU-Hg-nnl">
+                                    <items>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="π" id="YcE-pR-d9A">
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="pi" destination="hgJ-Jp-7lk" id="8jN-0p-e2o"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="e" id="hSp-ou-rlQ">
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="e" destination="hgJ-Jp-7lk" id="t6e-xF-rLr"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="c" id="cRn-bI-Uih">
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="c" destination="u36-A4-sKU" id="UNe-1r-3Ho"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.25" alignment="left" id="5V9-Kx-2AI">
+                                    <items>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="deg" id="L6e-fM-alP">
+                                            <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="degrees" destination="hgJ-Jp-7lk" id="3oL-gb-0y7"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="rad" id="igY-nf-aME">
+                                            <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="radians" destination="hgJ-Jp-7lk" id="G1m-C1-hZz"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="grad" id="lI0-hU-6BX">
+                                            <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="gradians" destination="hgJ-Jp-7lk" id="bZ1-kw-iNI"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <segue destination="AgC-eL-Hgc" kind="relationship" relationship="nextPage" id="JdL-8S-zHX"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="490" y="-18"/>
         </scene>
         <!--Answer-->
         <scene sceneID="8x7-yf-W34">
@@ -218,7 +283,7 @@
                     </items>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="237" y="429"/>
+            <point key="canvasLocation" x="239" y="408"/>
         </scene>
         <!--Answer-->
         <scene sceneID="mYG-aZ-9Mb">
@@ -366,7 +431,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-82" y="429"/>
+            <point key="canvasLocation" x="-20" y="408"/>
         </scene>
         <!--Answer-->
         <scene sceneID="2qO-yd-7Oi">
@@ -467,6 +532,7 @@
                                     </items>
                                 </group>
                             </items>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </group>
                     </items>
                     <connections>
@@ -474,7 +540,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-82" y="6"/>
+            <point key="canvasLocation" x="-289" y="-18"/>
         </scene>
         <!--Answer-->
         <scene sceneID="Y1x-O4-xNu">
@@ -508,7 +574,7 @@
                                 <group width="1" height="0.25" alignment="left" id="peV-4S-DUJ">
                                     <items>
                                         <button width="0.33329999999999999" height="1" alignment="left" title="ln" id="tAq-Vi-7Vm">
-                                            <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="ln" destination="hgJ-Jp-7lk" id="7vl-uQ-v6X"/>
                                             </connections>
@@ -530,16 +596,9 @@
                                 <group width="1" height="0.25" alignment="left" id="BSJ-va-TCj">
                                     <items>
                                         <button width="0.33329999999999999" height="1" alignment="left" title="log2" id="cNt-HD-LfO">
-                                            <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="log2" destination="hgJ-Jp-7lk" id="SLN-KM-q6D"/>
-                                            </connections>
-                                        </button>
-                                        <button width="0.33300000000000002" height="1" alignment="left" title="^" id="vrG-D2-H7I">
-                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="font" type="system" pointSize="15"/>
-                                            <connections>
-                                                <action selector="power" destination="AgC-eL-Hgc" id="CmC-yE-gMy"/>
                                             </connections>
                                         </button>
                                         <button width="0.33300000000000002" height="1" alignment="left" title="√" id="eJ1-sz-k5t">
@@ -548,20 +607,27 @@
                                                 <action selector="square_root" destination="AgC-eL-Hgc" id="s8y-U3-yyW"/>
                                             </connections>
                                         </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="∛" id="A0H-mY-hE5">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="cube_root" destination="ssS-gV-zfh" id="V6d-c8-tGe"/>
+                                            </connections>
+                                        </button>
                                     </items>
                                 </group>
                                 <group width="1" height="0.25" alignment="left" id="yNz-4W-sji">
                                     <items>
                                         <button width="0.33329999999999999" height="1" alignment="left" title="log10" id="M9h-CI-pSS">
-                                            <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="log10" destination="hgJ-Jp-7lk" id="1gD-jf-Fnp"/>
                                             </connections>
                                         </button>
-                                        <button width="0.33329999999999999" height="1" alignment="left" title="π" id="A0H-mY-hE5">
-                                            <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <button width="0.33300000000000002" height="1" alignment="left" title="^" id="vrG-D2-H7I">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
                                             <connections>
-                                                <action selector="pi" destination="hgJ-Jp-7lk" id="Pqc-BZ-E1g"/>
+                                                <action selector="power" destination="AgC-eL-Hgc" id="CmC-yE-gMy"/>
                                             </connections>
                                         </button>
                                         <button width="0.33300000000000002" height="1" alignment="left" title="=" id="GtX-Kq-sDc">
@@ -573,14 +639,131 @@
                                     </items>
                                 </group>
                             </items>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </group>
                     </items>
                     <connections>
-                        <segue destination="AgC-eL-Hgc" kind="relationship" relationship="nextPage" id="I5H-kY-mko"/>
+                        <segue destination="E32-b2-Jui" kind="relationship" relationship="nextPage" id="qFQ-oC-AYz"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="237" y="6"/>
+            <point key="canvasLocation" x="-20" y="-18"/>
+        </scene>
+        <!--Answer-->
+        <scene sceneID="aBH-zn-Ulh">
+            <objects>
+                <controller title="Answer" id="E32-b2-Jui" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" layout="vertical" id="Mla-93-uH5">
+                            <items>
+                                <group width="1" height="0.25" alignment="left" id="vUu-GH-RO0">
+                                    <items>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="sin" id="dWh-IQ-X6H">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="sine" destination="hgJ-Jp-7lk" id="TnR-kO-Zvj"/>
+                                            </connections>
+                                        </button>
+                                        <button width="43.5" height="1" alignment="left" title="cos" id="ETg-DA-h8M">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="cosine" destination="hgJ-Jp-7lk" id="rNv-VM-1Kb"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="tan" id="adx-SC-CN0">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="tangent" destination="hgJ-Jp-7lk" id="Nlw-u4-Saz"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.25" alignment="left" id="GAh-J5-f7P">
+                                    <items>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="sin-1" id="0z3-VR-HZc">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="sine_inverse" destination="hgJ-Jp-7lk" id="Mno-DO-Jmj"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="cos-1" id="lFp-Tg-DxU">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="cosine_inverse" destination="hgJ-Jp-7lk" id="pt1-bN-xdD"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="tan-1" id="Ggu-8N-eDD">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="tangent_inverse" destination="hgJ-Jp-7lk" id="HNf-7E-wj4"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.25" alignment="left" id="9gv-8j-G6L">
+                                    <items>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="sinh" id="JLO-YW-eps">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="sine_hyperbolic" destination="hgJ-Jp-7lk" id="weE-G5-KPo"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="cosh" id="5Up-7j-3HM">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="cosine_hyperbolic" destination="hgJ-Jp-7lk" id="n6R-wa-fCw"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="tanh" id="VSm-cw-icl">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="tangent_hyperbolic" destination="hgJ-Jp-7lk" id="XLV-cA-vsZ"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.25" alignment="left" id="2i0-Ua-YVW">
+                                    <items>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="sinh-1" id="bql-Ff-HiS">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="sine_hyperbolic_inverse" destination="hgJ-Jp-7lk" id="2Cr-l7-q5t"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="cosh-1" id="kdX-uG-fiN">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="cosine_hyperbolic_inverse" destination="hgJ-Jp-7lk" id="tmv-wx-en4"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.33329999999999999" height="1" alignment="left" title="tanh-1" id="3In-kL-mfS">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="tangent_hyperbolic_inverse" destination="hgJ-Jp-7lk" id="S6j-ee-tV6"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <segue destination="u36-A4-sKU" kind="relationship" relationship="nextPage" id="GOx-0v-pzZ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="239" y="-18"/>
         </scene>
     </scenes>
 </document>

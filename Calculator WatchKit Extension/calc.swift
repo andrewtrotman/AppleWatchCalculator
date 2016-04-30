@@ -14,6 +14,7 @@ import Foundation
 public class Calc
 	{
 	let max_digits : Int = 10
+	let max_hex_value : Int64 = 0xFFFFFFFF
 
 	public enum button : Int
 		{
@@ -28,6 +29,8 @@ public class Calc
 		case e, pi, c
 		case ln, log2, log10
 		case degrees, radians, gradians
+		case memory_plus, memory_minus, memory_clear, memory_recall
+		case and, or, xor, not, shift_left, shift_right
 		}
 	
 	public enum trig_mode : String
@@ -51,6 +54,9 @@ public class Calc
 	var input_mode : Bool
 	
 	var last_answer : String
+	var last_answer_as_value : Double
+	
+	var memory : Double
 
 	/*
 		INIT()
@@ -70,6 +76,8 @@ public class Calc
 		input_mode = true
 		decimal_factor = 0
 		last_answer = "0"
+		last_answer_as_value = 0
+		memory = 0
 		angle_format = trig_mode.degrees
 		
 		clear()
@@ -93,24 +101,27 @@ public class Calc
 		input_mode = true
 		decimal_factor = 0
 		last_answer = "0"
-		
+		last_answer_as_value = 0
+		memory = 0
+
 		/*
 			Don't change the angle mode coz that turns out to require the user to repeatedly click the mode button every
 			time they click the AC button.
 		*/
 //		angle_format = trig_mode.degrees
 
-		return set_last_answer(result_to_display(0))
+		return set_last_answer(result_to_display(0), as_double: 0)
 		}
 
 	/*
 		SET_LAST_ANSWER()
 		-----------------
 	*/
-	func set_last_answer(value : String) -> String
+	func set_last_answer(as_string : String, as_double : Double) -> String
 		{
-		last_answer = value
-		return value
+		last_answer = as_string
+		last_answer_as_value = as_double
+		return last_answer
 		}
 	
 	/*
@@ -176,12 +187,18 @@ public class Calc
 			{
 			case button.equals:
 				return 0
-			case button.plus, button.minus:
+			case button.or:
 				return 1
-			case button.multiply, button.divide:
+			case button.xor:
 				return 2
-			case button.power:
+			case button.and:
 				return 3
+			case button.plus, button.minus:
+				return 4
+			case button.multiply, button.divide:
+				return 5
+			case button.power:
+				return 6
 			default:
 				return -1
 			}
@@ -215,7 +232,7 @@ public class Calc
 			let answer = sign == -1 ? -(integer_part + fractional_part) : integer_part + fractional_part
 			
 			var digits_after_dot = digits - digits_before_dot
-			var shift_register : Int = Int(round(fractional_part * decimal_places))
+			var shift_register : Int64 = Int64(round(fractional_part * decimal_places))
 			if (shift_register == 0)
 				{
 				digits_after_dot = 0
@@ -264,7 +281,7 @@ public class Calc
 		SET_TRIG_MODE()
 		---------------
 	*/
-	func set_trig_mode(key : button) -> String
+	func set_trig_mode(key : button)
 		{
 		switch (key)
 			{
@@ -277,8 +294,6 @@ public class Calc
 			default:
 				angle_format = trig_mode.degrees
 			}
-
-		return get_last_answer()
 		}
 
 	/*
@@ -307,6 +322,12 @@ public class Calc
 					check_and_push(operand_1 / operand_2)
 				case button.power:
 					check_and_push(pow(operand_1, operand_2))
+				case button.and:
+					check_and_push(Double(Int64(operand_1) & Int64(operand_2)))
+				case button.or:
+					check_and_push(Double(Int64(operand_1) | Int64(operand_2)))
+				case button.xor:
+					check_and_push(Double(Int64(operand_1) ^ Int64(operand_2)))
 				default:
 					break
 				}
@@ -321,7 +342,7 @@ public class Calc
 		SET_CONSTANT()
 		--------------
 	*/
-	func set_constant(operation : button) -> String
+	func set_constant(operation : button) -> Double
 		{
 		if (new_integer)
 			{
@@ -344,14 +365,14 @@ public class Calc
 			default:
 				break
 			}
-		return result_to_display(register)
+		return register
 		}
 	
 	/*
 		UNARY_FUNCTION
 		--------------
 	*/
-	func unary_function(operation : button) -> String
+	func unary_function(operation : button) -> Double
 	{
 	switch (operation)
 		{
@@ -391,11 +412,17 @@ public class Calc
 			register = log10(register)
 		case button.log2:
 			register = log2(register)
+		case button.shift_left:
+			register = Double(Int64(register) << 1)
+		case button.shift_right:
+			register = Double(Int64(register) >> 1)
+		case button.not:
+			register = Double(~Int64(register) & max_hex_value)
 		default:
 			break
 		}
 	new_integer = true
-	return result_to_display(register)
+	return register
 	}
 
 	/*
@@ -477,7 +504,7 @@ public class Calc
 				last_was_equals = false
 				last_was_operator = false
 				input_mode = true;
-				return set_last_answer(result_to_display(register))
+				return set_last_answer(result_to_display(register), as_double: register)
 
 			case button.dot:
 				if (new_integer)
@@ -489,9 +516,10 @@ public class Calc
 				last_was_equals = false
 				last_was_operator = false
 				input_mode = true;
-				return set_last_answer(result_to_display(register))
+				return set_last_answer(result_to_display(register), as_double: register)
 			
-			case button.plus, button.minus, button.multiply, button.divide, button.power:
+			case button.plus, button.minus, button.multiply, button.divide, button.power,
+				button.and, button.xor, button.or:
 				if (!last_was_operator)
 					{
 					numeric_stack.append(register)
@@ -510,22 +538,42 @@ public class Calc
 				last_was_equals = false
 				last_was_operator = true
 			
-				return set_last_answer(result_to_display(numeric_stack.last!))
+				return set_last_answer(result_to_display(numeric_stack.last!), as_double: numeric_stack.last!)
 			
 			case button.plus_minus, button.square_root, button.cube_root,
 				button.sine, button.cosine, button.tangent,
 				button.sine_inverse, button.cosine_inverse, button.tangent_inverse,
 				button.sine_hyperbolic, button.cosine_hyperbolic, button.tangent_hyperbolic,
 				button.sine_hyperbolic_inverse, button.cosine_hyperbolic_inverse, button.tangent_hyperbolic_inverse,
-				button.ln, button.log2, button.log10:
+				button.ln, button.log2, button.log10,
+				button.shift_left, button.shift_right, button.not:
 				
-				return set_last_answer(unary_function(key))
+				register = unary_function(key)
+				return set_last_answer(result_to_display(register), as_double: register)
 			
 			case button.e, button.pi, button.c:
-				return set_last_answer(set_constant(key))
+				register = set_constant(key)
+				return set_last_answer(result_to_display(register), as_double: register)
+			
+			case button.memory_plus:
+				memory = memory + last_answer_as_value
+				return get_last_answer()
+			
+			case button.memory_minus:
+				memory = memory + last_answer_as_value
+				return get_last_answer()
+			
+			case button.memory_clear:
+				memory = 0
+				return get_last_answer()
+			
+			case button.memory_recall:
+				register = memory;
+				return set_last_answer(result_to_display(register), as_double: register)
 			
 			case button.degrees, button.radians, button.gradians:
-				return set_last_answer(set_trig_mode(key))
+				set_trig_mode(key)
+				return get_last_answer()
 
 			case button.equals:
 				if (last_was_equals)
@@ -544,7 +592,9 @@ public class Calc
 				new_integer = true
 				last_was_equals = true
 				last_was_operator = false
-				return set_last_answer(result_to_display(numeric_stack.isEmpty ? register : numeric_stack.removeLast()))
+				
+				let val = numeric_stack.isEmpty ? register : numeric_stack.removeLast()
+				return set_last_answer(result_to_display(val), as_double: val)
 			}
 		}
 }

@@ -117,6 +117,95 @@ class InterfaceController: WKInterfaceController
 		}
 
 	/*
+		AND()
+		-----
+	*/
+	@IBAction func and()
+		{
+		display_results(calculator.press(Calc.button.and))
+		}
+
+	/*
+		OR()
+		----
+	*/
+	@IBAction func or()
+		{
+		display_results(calculator.press(Calc.button.or))
+		}
+
+	/*
+		XOR()
+		-----
+	*/
+	@IBAction func xor()
+		{
+		display_results(calculator.press(Calc.button.xor))
+		}
+
+	/*
+		NOT()
+		-----
+	*/
+	@IBAction func not()
+		{
+		display_results(calculator.press(Calc.button.not))
+		}
+	
+	/*
+		SHIFT_LEFT()
+		------------
+	*/
+	@IBAction func shift_left()
+		{
+		display_results(calculator.press(Calc.button.shift_left))
+		}
+	
+	/*
+		SHIFT_RIGHT()
+		-------------
+	*/
+	@IBAction func shift_right()
+		{
+		display_results(calculator.press(Calc.button.shift_right))
+		}
+	/*
+		MEMORY_CLEAR()
+		--------------
+	*/
+	@IBAction func memory_clear()
+		{
+		display_results(calculator.press(Calc.button.memory_clear))
+		}
+	
+	/*
+		MEMORY_RECALL()
+		---------------
+	*/
+	@IBAction func memory_recall()
+		{
+		display_results(calculator.press(Calc.button.memory_recall))
+		}
+
+	/*
+		MEMORY_PLUS()
+		-------------
+	*/
+	@IBAction func memory_plus()
+		{
+		display_results(calculator.press(Calc.button.memory_plus))
+		}
+	
+	/*
+		MEMORY_MINUS()
+		--------------
+	*/
+	@IBAction func memory_minus()
+		{
+		display_results(calculator.press(Calc.button.memory_minus))
+		}
+	
+	/*
 		LN()
 		----
 	*/

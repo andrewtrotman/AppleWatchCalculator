@@ -24,6 +24,7 @@
 		497848F81CB701C50037B908 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497848F71CB701C50037B908 /* InterfaceController.swift */; };
 		497848FA1CB701C50037B908 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497848F91CB701C50037B908 /* ExtensionDelegate.swift */; };
 		497848FC1CB701C50037B908 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 497848FB1CB701C50037B908 /* Assets.xcassets */; };
+		499BD16A1CDDD86B0086F8C1 /* TipInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499BD1691CDDD86B0086F8C1 /* TipInterfaceController.swift */; };
 		49BCD10A1CB71DC2002789D3 /* calc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCD1091CB71DC2002789D3 /* calc.swift */; };
 		49BCD10B1CB71DC2002789D3 /* calc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCD1091CB71DC2002789D3 /* calc.swift */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,7 @@
 		497848F91CB701C50037B908 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		497848FB1CB701C50037B908 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		497848FD1CB701C50037B908 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		499BD1691CDDD86B0086F8C1 /* TipInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipInterfaceController.swift; sourceTree = "<group>"; };
 		49BCD1091CB71DC2002789D3 /* calc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				497848F71CB701C50037B908 /* InterfaceController.swift */,
+				499BD1691CDDD86B0086F8C1 /* TipInterfaceController.swift */,
 				49BCD1091CB71DC2002789D3 /* calc.swift */,
 				497848F91CB701C50037B908 /* ExtensionDelegate.swift */,
 				497848FB1CB701C50037B908 /* Assets.xcassets */,
@@ -450,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				497848FA1CB701C50037B908 /* ExtensionDelegate.swift in Sources */,
+				499BD16A1CDDD86B0086F8C1 /* TipInterfaceController.swift in Sources */,
 				49BCD10B1CB71DC2002789D3 /* calc.swift in Sources */,
 				497848F81CB701C50037B908 /* InterfaceController.swift in Sources */,
 			);

@@ -141,6 +141,15 @@ public class Calc
 		{
 		return last_answer
 		}
+	
+	/*
+		GET_LAST_ANSWER_AS_VALUE()
+		--------------------------
+	*/
+	public func get_last_answer_as_value() -> Double
+		{
+		return last_answer_as_value
+		}
 
 	/*
 		ANGLE_TO_RADIANS()

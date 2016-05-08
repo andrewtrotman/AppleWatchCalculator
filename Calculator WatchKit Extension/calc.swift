@@ -150,6 +150,16 @@ public class Calc
 		}
 	
 	/*
+		GET_BASE()
+		----------
+		Returns 10 for base 10 and 16 fgor base 16
+	*/
+	public func get_base() -> Int
+		{
+		return numeric_base
+		}
+	
+	/*
 		GET_LAST_ANSWER_AS_VALUE()
 		--------------------------
 	*/
@@ -219,6 +229,7 @@ public class Calc
 				return -1
 			}
 		}
+	
 
 	/*
 		ROUND_TO_SIGNIFICANT_FIGURES()
@@ -440,6 +451,65 @@ public class Calc
 	new_integer = true
 	return register
 	}
+	
+	/*
+		RESULT_TO_DISPLAY_BASE()
+		------------------------
+	*/
+	func result_to_display_base(original_value : Double, required_digits_after_dot : Int, base : Int) -> String
+		{
+		var leading_zeros = true
+		var answer : String = ""
+		var value = abs(original_value)
+		var significant_digits = 0
+		var digits_after_dot = 0
+		
+		for power in (-8 ... 8).reverse()
+			{
+			if (power < 0 && value < 0.00000000001 || digits_after_dot >= required_digits_after_dot)
+				{
+				break;
+				}
+				
+			if (power < 0)
+				{
+				leading_zeros = false
+				digits_after_dot = digits_after_dot + 1
+				}
+				
+			if (power == -1)
+				{
+				answer = answer == "" ? "0." : answer + "."
+				}
+
+			let divisor : Double = pow(Double(base), Double(power))
+			if (value >= divisor)
+				{
+				leading_zeros = false
+				let digit = floor(value / divisor)
+				let remainder = value - digit * divisor
+
+				let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+				answer = answer + letter[Int(digit)]
+
+				value = remainder
+				}
+			else if (!leading_zeros)
+				{
+				answer = answer + "0"
+				}
+				
+			if (!leading_zeros)
+				{
+				significant_digits = significant_digits + 1
+				if (significant_digits > max_digits)
+					{
+					break;
+					}
+				}
+			}
+		return answer == "" ? "0" : answer
+		}
 
 	/*
 		RESULT_TO_DISPLAY
@@ -485,7 +555,10 @@ public class Calc
 			formatter.maximumFractionDigits = digits_after_dot
 			formatter.minimumFractionDigits = digits_after_dot
 			
+			let got = result_to_display_base(details.rounded, required_digits_after_dot: digits_after_dot, base: 10)
+			
 			return formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
+//			return got + (input_mode && decimal_factor == -1 ? "." : "")
 			}
 		}
 
@@ -530,6 +603,10 @@ public class Calc
 					}
 			
 			case button.dot:
+				if (decimal_factor < -1)
+					{
+					return get_last_answer()
+					}
 				if (new_integer)
 					{
 					register = 0

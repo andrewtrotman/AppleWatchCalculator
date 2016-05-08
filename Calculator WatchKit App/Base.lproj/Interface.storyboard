@@ -256,6 +256,9 @@
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="hex" id="VrD-oF-nwd">
                                             <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="hexadecimal" destination="ssS-gV-zfh" id="0S9-3o-2wP"/>
+                                            </connections>
                                         </button>
                                         <button width="0.25" height="1" alignment="left" title="&lt;&lt;" id="5Zx-oD-RfC">
                                             <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
@@ -281,6 +284,9 @@
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="dec" id="v1P-ld-Ylm">
                                             <color key="backgroundColor" red="0.3803921569" green="0.43529411759999997" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="decimal" destination="ssS-gV-zfh" id="eSq-Jb-HBa"/>
+                                            </connections>
                                         </button>
                                         <button width="0.25" height="1" alignment="left" title="and" id="bZM-ZH-jbL">
                                             <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
@@ -306,12 +312,21 @@
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="A" id="4kc-CD-sdG">
                                             <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="ten" destination="ssS-gV-zfh" id="IqX-3N-JEk"/>
+                                            </connections>
                                         </button>
                                         <button width="0.25" height="1" alignment="left" title="B" id="Fei-4S-4rl">
                                             <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="eleven" destination="ssS-gV-zfh" id="1AA-bv-vzq"/>
+                                            </connections>
                                         </button>
                                         <button width="0.25" height="1" alignment="left" title="C" id="smD-i0-Q5Z">
                                             <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="twelve" destination="ssS-gV-zfh" id="eZv-sB-U3q"/>
+                                            </connections>
                                         </button>
                                         <button width="0.25" height="1" alignment="left" title="M-" id="KW4-Tr-OTi">
                                             <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -325,12 +340,21 @@
                                     <items>
                                         <button width="0.25" height="1" alignment="left" title="D" id="Hlr-z8-4SA">
                                             <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="thirteen" destination="ssS-gV-zfh" id="rZM-fg-hTU"/>
+                                            </connections>
                                         </button>
                                         <button width="0.25" height="1" alignment="left" title="E" id="EgE-Dh-8gh">
                                             <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="fourteen" destination="ssS-gV-zfh" id="iKG-i0-Am9"/>
+                                            </connections>
                                         </button>
                                         <button width="0.25" height="1" alignment="left" title="F" id="6nL-4L-IpA">
                                             <color key="backgroundColor" red="0.0" green="0.01176470588" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="fifteen" destination="ssS-gV-zfh" id="vRf-Yc-BAa"/>
+                                            </connections>
                                         </button>
                                         <button width="0.25" height="1" alignment="left" title="MR" id="slG-C5-kw2">
                                             <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -428,7 +452,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-322" y="366"/>
+            <point key="canvasLocation" x="-322" y="400"/>
         </scene>
         <!--Answer-->
         <scene sceneID="aBH-zn-Ulh">

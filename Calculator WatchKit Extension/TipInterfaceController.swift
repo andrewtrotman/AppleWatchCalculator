@@ -45,44 +45,80 @@ class TipInterfaceController: WKInterfaceController
 		{
 		super.willActivate()
 		
-		let score : Int64 = Int64(ceil(calculator.get_last_answer_as_value() * 100))
+		let score : Int64 = abs(Int64(ceil(calculator.get_last_answer_as_value() * 100)))
 		setTitle("$" + String(format:"%.2f", Double(score) / 100))
 
-		var tip : Int64 = Int64(ceil(Double(score) * 0.15))
-		var total : Int64 = score + tip
+		var tip_amount : Int64 = Int64(ceil(Double(score) * 0.15))
+		var total : Int64 = score + tip_amount
 		
-		tip15.setText(String(format:"%.2f", Double(tip) / 100))
+		tip15.setText(String(format:"%.2f", Double(tip_amount) / 100))
 		total15.setText(String(format:"%.2f", Double(total) / 100))
 
-		tip = Int64(ceil(Double(score) * 0.17))
-		total = score + tip
-		tip17.setText(String(format:"%.2f", Double(tip) / 100))
+		tip_amount = Int64(ceil(Double(score) * 0.17))
+		total = score + tip_amount
+		tip17.setText(String(format:"%.2f", Double(tip_amount) / 100))
 		total17.setText(String(format:"%.2f", Double(total) / 100))
 
-		tip = Int64(ceil(Double(score) * 0.20))
-		total = score + tip
-		tip20.setText(String(format:"%.2f", Double(tip) / 100))
+		tip_amount = Int64(ceil(Double(score) * 0.20))
+		total = score + tip_amount
+		tip20.setText(String(format:"%.2f", Double(tip_amount) / 100))
 		total20.setText(String(format:"%.2f", Double(total) / 100))
 		
-		price_list = []
-		let starting_price = ((score + 499) / 500) * 500
-		
-		for choices in starting_price.stride(to: starting_price * 3, by: 500)
+		if (score <= 0 || score > 100000)
 			{
-			price_list = price_list + [("$" + String(format:"%.2f", Double(choices) / 100), choices)]
-			}
+			price_list = [("", 0)]
 
-		let pickerItems: [WKPickerItem] = price_list.map
+			percent.setText("")
+			tip.setText("")
+			total_picker.setAlpha(0)
+			total_picker.setEnabled(false)
+/*
+			let pickerItems: [WKPickerItem] = price_list.map
+				{
+				let pickerItem = WKPickerItem()
+				pickerItem.title = $0.0
+				pickerItem.caption = "Total"
+
+				return pickerItem
+				}
+			total_picker.setItems(pickerItems)
+			total_picker.setAlpha(0)
+			total_picker.setEnabled(false)
+*/
+			}
+		else
 			{
-			let pickerItem = WKPickerItem()
-			pickerItem.title = $0.0
-			pickerItem.caption = "Total"
+			total_picker.setEnabled(true)
+			total_picker.setAlpha(1)
 
-			return pickerItem
+			price_list = []
+			
+			let starting_price = ((score + 499) / 500) * 500
+			var start_choice: Int = -1
+			var option : Int = 0
+			for choices in starting_price.stride(to: ((score * 2 + 499) / 500) * 500 + 1, by: 500)
+				{
+				price_list = price_list + [("$" + String(format:"%.2f", Double(choices) / 100), choices)]
+				if (Double(choices) / Double(score) >= 1.15 && start_choice < 0)
+					{
+					start_choice = option
+					}
+				option = option + 1
+				}
+
+			let pickerItems: [WKPickerItem] = price_list.map
+				{
+				let pickerItem = WKPickerItem()
+				pickerItem.title = $0.0
+				pickerItem.caption = "Total"
+
+				return pickerItem
+				}
+
+			total_picker.setItems(pickerItems)
+			picker(start_choice)
+			total_picker.setSelectedItemIndex(start_choice)
 			}
-
-		total_picker.setItems(pickerItems)
-		picker(0)
 		}
 	
 	/*
@@ -100,7 +136,7 @@ class TipInterfaceController: WKInterfaceController
 	*/
 	@IBAction func picker(value: Int)
 		{
-		let cost : Int64 = Int64(ceil(calculator.get_last_answer_as_value() * 100))
+		let cost : Int64 = abs(Int64(ceil(calculator.get_last_answer_as_value() * 100)))
 		percent.setText("Tip:" + String(format:"%.0f", ((Double(price_list[value].1) / (Double(cost))) - 1) * 100) + "%")
 		tip.setText("$" + String(format:"%.2f", Double((price_list[value].1 - cost)) / 100))
 		}

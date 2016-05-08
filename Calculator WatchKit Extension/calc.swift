@@ -18,7 +18,7 @@ public class Calc
 
 	public enum button : Int
 		{
-		case zero = 0, one, two, three, four, five, six, seven, eight, nine
+		case zero = 0, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen
 		case dot, plus_minus, equals
 		case plus, minus, multiply, divide, power
 		case square_root, cube_root
@@ -29,6 +29,7 @@ public class Calc
 		case e, pi, c
 		case ln, log2, log10
 		case degrees, radians, gradians
+		case hexadecimal, decimal
 		case memory_plus, memory_minus, memory_clear, memory_recall
 		case and, or, xor, not, shift_left, shift_right
 		}
@@ -57,6 +58,8 @@ public class Calc
 	var last_answer_as_value : Double
 	
 	var memory : Double
+	
+	var numeric_base : Int
 
 	/*
 		INIT()
@@ -79,6 +82,7 @@ public class Calc
 		last_answer_as_value = 0
 		memory = 0
 		angle_format = trig_mode.degrees
+		numeric_base = 10
 		
 		clear()
 		}
@@ -102,12 +106,15 @@ public class Calc
 		decimal_factor = 0
 		last_answer = "0"
 		last_answer_as_value = 0
-		memory = 0
 
 		/*
-			Don't change the angle mode coz that turns out to require the user to repeatedly click the mode button every
-			time they click the AC button.
+			Don't change:
+				the base (ie Hex or Decimal)
+				the value stored in the memory coz its common to compute a value, them m+, then ac, then use memory result.
+				the angle mode coz that turns out to require the user to repeatedly click the mode button every time they click the AC button.
 		*/
+//		numeric_base = 10
+//		memory = 0
 //		angle_format = trig_mode.degrees
 
 		return set_last_answer(result_to_display(0), as_double: 0)
@@ -491,30 +498,37 @@ public class Calc
 		input_mode = false;
 		switch (key)
 			{
-			case button.zero, button.one, button.two, button.three, button.four, button.five, button.six, button.seven, button.eight, button.nine:
-				if (new_integer)
+			case button.zero, button.one, button.two, button.three, button.four, button.five, button.six, button.seven, button.eight, button.nine, button.ten, button.eleven, button.twelve, button.thirteen, button.fourteen, button.fifteen:
+				if (numeric_base == 10 && key.rawValue > 9)
 					{
-					register = 0
-					decimal_factor = 0
-					new_integer = false
+					return get_last_answer()
 					}
-
-				var formatted = round_to_significant_figures(register)
-				if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor < max_digits)
+				else
 					{
-					register = register * (decimal_factor == 0 ? 10 : 1) + Double(key.rawValue) * pow(10.0, Double(decimal_factor))
-					formatted = round_to_significant_figures(register)
-					register = formatted.rounded
-					if (decimal_factor < 0)
+					if (new_integer)
 						{
-						decimal_factor -= 1
+						register = 0
+						decimal_factor = 0
+						new_integer = false
 						}
-					}
-				last_was_equals = false
-				last_was_operator = false
-				input_mode = true;
-				return set_last_answer(result_to_display(register), as_double: register)
 
+					var formatted = round_to_significant_figures(register)
+					if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor < max_digits)
+						{
+						register = register * Double(decimal_factor == 0 ? numeric_base : 1) + Double(key.rawValue) * pow(Double(numeric_base), Double(decimal_factor))
+						formatted = round_to_significant_figures(register)
+						register = formatted.rounded
+						if (decimal_factor < 0)
+							{
+							decimal_factor -= 1
+							}
+						}
+					last_was_equals = false
+					last_was_operator = false
+					input_mode = true;
+					return set_last_answer(result_to_display(register), as_double: register)
+					}
+			
 			case button.dot:
 				if (new_integer)
 					{
@@ -583,6 +597,14 @@ public class Calc
 			case button.degrees, button.radians, button.gradians:
 				set_trig_mode(key)
 				return get_last_answer()
+			
+			case button.hexadecimal:
+				numeric_base = 16
+				return set_last_answer(get_last_answer(), as_double: get_last_answer_as_value())
+
+			case button.decimal:
+				numeric_base = 10
+				return set_last_answer(get_last_answer(), as_double: get_last_answer_as_value())
 
 			case button.equals:
 				if (last_was_equals)

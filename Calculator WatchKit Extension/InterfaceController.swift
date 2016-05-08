@@ -89,6 +89,25 @@ class InterfaceController: WKInterfaceController
 			}
 		}
 
+
+	/*
+		DECIMAL()
+		---------
+	*/
+	@IBAction func decimal()
+		{
+		display_results(calculator.press(Calc.button.decimal))
+		}
+	
+	/*
+		HEXADECIMAL()
+		-------------
+	*/
+	@IBAction func hexadecimal()
+		{
+		display_results(calculator.press(Calc.button.hexadecimal))
+		}
+
 	/*
 		DEGREES()
 		---------
@@ -463,6 +482,61 @@ class InterfaceController: WKInterfaceController
 		{
 		display_results(calculator.press(Calc.button.dot))
 		}
+	
+	/*
+		FIFTEEN()
+		---------
+	*/
+	@IBAction func fifteen()
+		{
+		display_results(calculator.press(Calc.button.fifteen))
+		}
+	
+	/*
+		FOURTEEN()
+		----------
+	*/
+	@IBAction func fourteen()
+		{
+		display_results(calculator.press(Calc.button.fourteen))
+		}
+	
+	/*
+		THIRTEEN()
+		----------
+	*/
+	@IBAction func thirteen()
+		{
+		display_results(calculator.press(Calc.button.thirteen))
+		}
+	
+	/*
+		TWELVE()
+		--------
+	*/
+	@IBAction func twelve()
+		{
+		display_results(calculator.press(Calc.button.twelve))
+		}
+	
+	/*
+		ELEVEN()
+		--------
+	*/
+	@IBAction func eleven()
+		{
+		display_results(calculator.press(Calc.button.eleven))
+		}
+	
+	/*
+		TEN()
+		-----
+	*/
+	@IBAction func ten()
+		{
+		display_results(calculator.press(Calc.button.ten))
+		}
+
 	/*
 		NINE()
 		------

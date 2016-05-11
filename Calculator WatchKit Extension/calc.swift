@@ -229,19 +229,26 @@ public class Calc
 				return -1
 			}
 		}
-	
 
+	/*
+		LOG_BASE
+	*/
+	func log_base(value: Double, base: Double) -> Double
+		{
+		return log(value) / log(base)
+		}
+	
 	/*
 		ROUND_TO_SIGNIFICANT_FIGURES()
 		------------------------------
 	*/
-	func round_to_significant_figures(value : Double) -> (rounded : Double, digits_before_dot : Int, digits_after_dot : Int)
+	func round_to_significant_figures(value : Double, base : Int) -> (rounded : Double, digits_before_dot : Int, digits_after_dot : Int)
 		{
-		if (value >= pow(10, Double(max_digits)))
+		if (value >= pow(Double(base), Double(max_digits)))
 			{
 			return (Double.infinity, 1, 0)
 			}
-		else if (value <= -pow(10, Double(max_digits)))
+		else if (value <= -pow(Double(base), Double(max_digits)))
 			{
 			return (-Double.infinity, 1, 0)
 			}
@@ -252,9 +259,9 @@ public class Calc
 			let integer_part = floor(abs(value))
 			var fractional_part = abs(value) - integer_part
 
-			let digits_before_dot : Int = Int(integer_part == 0 ? 1 : ceil(log10(integer_part + 1)))
-			let decimal_places = pow(10, Double(digits - digits_before_dot))
-		
+			let digits_before_dot : Int = Int(integer_part == 0 ? 1 : ceil(log_base(integer_part + 1, base: Double(base))))
+			let decimal_places = pow(Double(base), Double(digits - digits_before_dot))
+
 			fractional_part = round(fractional_part * decimal_places) / decimal_places
 			let answer = sign == -1 ? -(integer_part + fractional_part) : integer_part + fractional_part
 			
@@ -266,9 +273,9 @@ public class Calc
 				}
 			else
 				{
-				while (((shift_register / 10) * 10) == shift_register)
+				while (((shift_register / Int64(base)) * Int64(base)) == shift_register)
 					{
-					shift_register /= 10
+					shift_register /= Int64(base)
 					digits_after_dot -= 1
 					if (shift_register == 0)
 						{
@@ -292,7 +299,7 @@ public class Calc
 			}
 		else
 			{
-			register = round_to_significant_figures(value).rounded
+			register = round_to_significant_figures(value, base: numeric_base).rounded
 			let negative_zero = -pow(10, -Double(max_digits))
 			let positive_zero = pow(10, -Double(max_digits))
 			
@@ -460,13 +467,14 @@ public class Calc
 		{
 		var leading_zeros = true
 		var answer : String = ""
-		var value = abs(original_value)
+		let value = abs(original_value)
+		let sign = original_value < 0 ? -1 : 1
 		var significant_digits = 0
 		var digits_after_dot = 0
 		
 		for power in (-8 ... 8).reverse()
 			{
-			if (power < 0 && value < 0.00000000001 || digits_after_dot >= required_digits_after_dot)
+			if (power < 0 && value < 0.00000000001 && digits_after_dot >= required_digits_after_dot)
 				{
 				break;
 				}
@@ -486,13 +494,10 @@ public class Calc
 			if (value >= divisor)
 				{
 				leading_zeros = false
-				let digit = floor(value / divisor)
-				let remainder = value - digit * divisor
+				let digit = Int64(value / divisor) % Int64(base)
 
 				let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 				answer = answer + letter[Int(digit)]
-
-				value = remainder
 				}
 			else if (!leading_zeros)
 				{
@@ -508,7 +513,7 @@ public class Calc
 					}
 				}
 			}
-		return answer == "" ? "0" : answer
+		return answer == "" ? "0" : sign < 0 ? "-" + answer : answer
 		}
 
 	/*
@@ -540,7 +545,7 @@ public class Calc
 			}
 		else
 			{
-			let details = round_to_significant_figures(value)
+			let details = round_to_significant_figures(value, base: numeric_base)
 			if (!input_mode)
 				{
 				digits_after_dot = details.digits_after_dot
@@ -555,7 +560,7 @@ public class Calc
 			formatter.maximumFractionDigits = digits_after_dot
 			formatter.minimumFractionDigits = digits_after_dot
 			
-			let got = result_to_display_base(details.rounded, required_digits_after_dot: digits_after_dot, base: 10)
+			let got = result_to_display_base(details.rounded, required_digits_after_dot: digits_after_dot, base: numeric_base)
 			
 			return formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
 //			return got + (input_mode && decimal_factor == -1 ? "." : "")
@@ -585,11 +590,11 @@ public class Calc
 						new_integer = false
 						}
 
-					var formatted = round_to_significant_figures(register)
+					var formatted = round_to_significant_figures(register, base: numeric_base)
 					if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor < max_digits)
 						{
 						register = register * Double(decimal_factor == 0 ? numeric_base : 1) + Double(key.rawValue) * pow(Double(numeric_base), Double(decimal_factor))
-						formatted = round_to_significant_figures(register)
+						formatted = round_to_significant_figures(register, base: numeric_base)
 						register = formatted.rounded
 						if (decimal_factor < 0)
 							{

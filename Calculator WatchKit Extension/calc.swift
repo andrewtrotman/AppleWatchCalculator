@@ -5,6 +5,7 @@
 	Written by Andrew Trotman
 */
 
+import Swift
 import Foundation
 
 /*
@@ -13,7 +14,7 @@ import Foundation
 */
 public class Calc
 	{
-	let max_digits : Int = 10
+	let max_digits : Int = 9
 	let max_hex_value : Int64 = 0xFFFFFFFF
 
 	public enum button : Int
@@ -42,22 +43,22 @@ public class Calc
 		}
 	
 	var angle_format : trig_mode
-	var numeric_stack = [Float80]()
+	var numeric_stack = [Double]()
 	var operator_stack = [button]()
 
-	var last_operand : Float80
+	var last_operand : Double
 	var last_was_operator : Bool
 	var last_operator : button
-	var register : Float80
+	var register : Double
 	var last_was_equals : Bool
 	var new_integer : Bool
 	var decimal_factor : Int
 	var input_mode : Bool
 	
 	var last_answer : String
-	var last_answer_as_value : Float80
+	var last_answer_as_value : Double
 	
-	var memory : Float80
+	var memory : Double
 	
 	var numeric_base : Int
 
@@ -117,17 +118,17 @@ public class Calc
 //		memory = 0
 //		angle_format = trig_mode.degrees
 
-		return set_last_answer(result_to_display(0), as_Float80: 0)
+		return set_last_answer(result_to_display(0), as_Double: 0)
 		}
 
 	/*
 		SET_LAST_ANSWER()
 		-----------------
 	*/
-	func set_last_answer(as_string : String, as_Float80 : Float80) -> String
+	func set_last_answer(as_string : String, as_Double : Double) -> String
 		{
 		last_answer = as_string
-		last_answer_as_value = as_Float80
+		last_answer_as_value = as_Double
 		return last_answer
 		}
 	
@@ -163,7 +164,7 @@ public class Calc
 		GET_LAST_ANSWER_AS_VALUE()
 		--------------------------
 	*/
-	public func get_last_answer_as_value() -> Float80
+	public func get_last_answer_as_value() -> Double
 		{
 		return last_answer_as_value
 		}
@@ -172,16 +173,16 @@ public class Calc
 		ANGLE_TO_RADIANS()
 		------------------
 	*/
-	func angle_to_radians(angle : Float80) -> Float80
+	func angle_to_radians(angle : Double) -> Double
 		{
 		switch (angle_format)
 			{
 			case trig_mode.degrees:
-				return angle * Float80(M_PI) / 180
+				return angle * Double(M_PI) / 180
 			case trig_mode.radians:
 				return angle
 			case trig_mode.gradians:
-				return angle * Float80(M_PI) / 200
+				return angle * Double(M_PI) / 200
 			}
 		}
 
@@ -190,16 +191,16 @@ public class Calc
 		RADIANS_TO_ANGLE()
 		------------------
 	*/
-	func radians_to_angle(radians : Float80) -> Float80
+	func radians_to_angle(radians : Double) -> Double
 		{
 		switch (angle_format)
 			{
 			case trig_mode.degrees:
-				return radians * 180 / Float80(M_PI)
+				return radians * 180 / Double(M_PI)
 			case trig_mode.radians:
 				return radians
 			case trig_mode.gradians:
-				return radians * 200 / Float80(M_PI)
+				return radians * 200 / Double(M_PI)
 			}
 		}
 
@@ -233,36 +234,36 @@ public class Calc
 	/*
 		LOG_BASE
 	*/
-	func log_base(value: Float80, base: Float80) -> Float80
+	func log_base(value: Double, base: Double) -> Double
 		{
-		return Float80(log(Double(value)) / log(Double(base)))
+		return Double(log(Double(value)) / log(Double(base)))
 		}
 	
 	/*
 		ROUND_TO_SIGNIFICANT_FIGURES()
 		------------------------------
 	*/
-	func round_to_significant_figures(value : Float80, base : Int) -> (rounded : Float80, digits_before_dot : Int, digits_after_dot : Int)
+	func round_to_significant_figures(value : Double, base : Int) -> (rounded : Double, digits_before_dot : Int, digits_after_dot : Int)
 		{
-		if (value >= Float80(pow(Double(base), Double(max_digits))))
+		if (value >= Double(pow(Double(base), Double(max_digits))))
 			{
-			return (Float80(Double.infinity), 1, 0)
+			return (Double(Double.infinity), 1, 0)
 			}
-		else if (value <= -Float80(pow(Double(base), Double(max_digits))))
+		else if (value <= -Double(pow(Double(base), Double(max_digits))))
 			{
-			return (-Float80(Double.infinity), 1, 0)
+			return (-Double(Double.infinity), 1, 0)
 			}
 		else
 			{
 			let sign : Int = value < 0 ? -1 : 1
 			let digits = max_digits
-			let integer_part = Float80(floor(Double(abs(value))))
-			var fractional_part = Float80(abs(value)) - Float80(integer_part)
+			let integer_part = Double(floor(Double(abs(value))))
+			var fractional_part = Double(abs(value)) - Double(integer_part)
 
-			let digits_before_dot : Int = Int(integer_part == 0 ? 1 : ceil(Double(log_base(Float80(integer_part + 1), base: Float80(base)))))
-			let decimal_places = Float80(pow(Double(base), Double(digits - digits_before_dot)))
+			let digits_before_dot : Int = Int(integer_part == 0 ? 1 : ceil(Double(log_base(Double(integer_part + 1), base: Double(base)))))
+			let decimal_places = Double(pow(Double(base), Double(digits - digits_before_dot)))
 
-			fractional_part = Float80(round(Double(fractional_part * decimal_places))) / decimal_places
+			fractional_part = Double(round(Double(fractional_part * decimal_places))) / decimal_places
 			let answer = sign == -1 ? -(integer_part + fractional_part) : integer_part + fractional_part
 			
 			var digits_after_dot = digits - digits_before_dot
@@ -291,7 +292,7 @@ public class Calc
 		CHECK_AND_PUSH()
 		----------------
 	*/
-	func check_and_push(value : Float80)
+	func check_and_push(value : Double)
 		{
 		if (Double(value).isNaN)
 			{
@@ -301,8 +302,8 @@ public class Calc
 			{
 			register = round_to_significant_figures(value, base: numeric_base).rounded
 
-			let negative_zero = -Float80(pow(10, -Double(max_digits)))
-			let positive_zero = -Float80(pow(10, -Double(max_digits)))
+			let negative_zero = -Double(pow(10, -Double(max_digits)))
+			let positive_zero = -Double(pow(10, -Double(max_digits)))
 			
 			if (register >= negative_zero && register <= positive_zero)
 				{
@@ -356,13 +357,13 @@ public class Calc
 				case button.divide:
 					check_and_push(operand_1 / operand_2)
 				case button.power:
-					check_and_push(Float80(pow(Double(operand_1), Double(operand_2))))
+					check_and_push(Double(pow(Double(operand_1), Double(operand_2))))
 				case button.and:
-					check_and_push(Float80(Int64(operand_1) & Int64(operand_2)))
+					check_and_push(Double(Int64(operand_1) & Int64(operand_2)))
 				case button.or:
-					check_and_push(Float80(Int64(operand_1) | Int64(operand_2)))
+					check_and_push(Double(Int64(operand_1) | Int64(operand_2)))
 				case button.xor:
-					check_and_push(Float80(Int64(operand_1) ^ Int64(operand_2)))
+					check_and_push(Double(Int64(operand_1) ^ Int64(operand_2)))
 				default:
 					break
 				}
@@ -377,7 +378,7 @@ public class Calc
 		SET_CONSTANT()
 		--------------
 	*/
-	func set_constant(operation : button) -> Float80
+	func set_constant(operation : button) -> Double
 		{
 		if (new_integer)
 			{
@@ -392,9 +393,9 @@ public class Calc
 		switch (operation)
 			{
 			case button.e:
-				register = Float80(M_E)
+				register = Double(M_E)
 			case button.pi:
-				register = Float80(M_PI)
+				register = Double(M_PI)
 			case button.c:
 				register = 299792458			// speed of light (m/s)
 			default:
@@ -407,52 +408,52 @@ public class Calc
 		UNARY_FUNCTION
 		--------------
 	*/
-	func unary_function(operation : button) -> Float80
+	func unary_function(operation : button) -> Double
 	{
 	switch (operation)
 		{
 		case button.plus_minus:
 			register = -register
 		case button.square_root:
-			register = Float80(sqrt(Double(register)))
+			register = Double(sqrt(Double(register)))
 		case button.cube_root:
-			register = Float80(cbrt(Double(register)))
+			register = Double(cbrt(Double(register)))
 		case button.sine:
-			register = Float80(sin(Double(angle_to_radians(register))))
+			register = Double(sin(Double(angle_to_radians(register))))
 		case button.cosine:
-			register = Float80(cos(Double(angle_to_radians(register))))
+			register = Double(cos(Double(angle_to_radians(register))))
 		case button.tangent:
-			register = Float80(tan(Double(angle_to_radians(register))))
+			register = Double(tan(Double(angle_to_radians(register))))
 		case button.sine_inverse:
-			register = Float80(radians_to_angle(Float80(asin(Double(register)))))
+			register = Double(radians_to_angle(Double(asin(Double(register)))))
 		case button.cosine_inverse:
-			register = Float80(radians_to_angle(Float80(acos(Double(register)))))
+			register = Double(radians_to_angle(Double(acos(Double(register)))))
 		case button.tangent_inverse:
-			register = Float80(radians_to_angle(Float80(atan(Double(register)))))
+			register = Double(radians_to_angle(Double(atan(Double(register)))))
 		case button.sine_hyperbolic:
-			register = Float80(sinh(Double(register)))
+			register = Double(sinh(Double(register)))
 		case button.cosine_hyperbolic:
-			register = Float80(cosh(Double(register)))
+			register = Double(cosh(Double(register)))
 		case button.tangent_hyperbolic:
-			register = Float80(tanh(Double(register)))
+			register = Double(tanh(Double(register)))
 		case button.sine_hyperbolic_inverse:
-			register = Float80(asinh(Double(register)))
+			register = Double(asinh(Double(register)))
 		case button.cosine_hyperbolic_inverse:
-			register = Float80(acosh(Double(register)))
+			register = Double(acosh(Double(register)))
 		case button.tangent_hyperbolic_inverse:
-			register = Float80(atanh(Double(register)))
+			register = Double(atanh(Double(register)))
 		case button.ln:
-			register = Float80(log(Double(register)))
+			register = Double(log(Double(register)))
 		case button.log10:
-			register = Float80(log10(Double(register)))
+			register = Double(log10(Double(register)))
 		case button.log2:
-			register = Float80(log2(Double(register)))
+			register = Double(log2(Double(register)))
 		case button.shift_left:
-			register = Float80(Int64(register) << 1)
+			register = Double(Int64(register) << 1)
 		case button.shift_right:
-			register = Float80(Int64(register) >> 1)
+			register = Double(Int64(register) >> 1)
 		case button.not:
-			register = Float80(~Int64(register) & max_hex_value)
+			register = Double(~Int64(register) & max_hex_value)
 		default:
 			break
 		}
@@ -464,12 +465,12 @@ public class Calc
 		RESULT_TO_DISPLAY_BASE()
 		------------------------
 	*/
-	func result_to_display_base(original_value : Float80, required_digits_after_dot : Int, base : Int) -> String
+	func result_to_display_base(original_value : Double, required_digits_after_dot : Int, base : Int) -> String
 		{
 		let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 		let sign = original_value < 0 ? -1 : 1
 		var answer = ""
-		let value = Float80(abs(original_value))
+		let value = Double(abs(original_value))
 		
 		for power in (0 ... max_digits).reverse()
 			{
@@ -495,7 +496,7 @@ public class Calc
 				answer = answer + "."
 				}
 			multiplier = multiplier * Int64(base)
-			let next = value * Float80(multiplier);
+			let next = value * Double(multiplier);
 			answer = answer + letter[Int(Int64(next) % Int64(base))]
 			}
 		
@@ -506,7 +507,7 @@ public class Calc
 		RESULT_TO_DISPLAY
 		-----------------
 	*/
-	func result_to_display(value : Float80) -> String
+	func result_to_display(value : Double) -> String
 		{
 		var digits_after_dot : Int
 		
@@ -576,7 +577,7 @@ public class Calc
 					var formatted = round_to_significant_figures(register, base: numeric_base)
 					if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor < max_digits)
 						{
-						register = register * Float80(decimal_factor == 0 ? numeric_base : 1) + Float80(key.rawValue) * Float80(pow(Double(numeric_base), Double(decimal_factor)))
+						register = register * Double(decimal_factor == 0 ? numeric_base : 1) + Double(key.rawValue) * Double(pow(Double(numeric_base), Double(decimal_factor)))
 						formatted = round_to_significant_figures(register, base: numeric_base)
 						register = formatted.rounded
 						if (decimal_factor < 0)
@@ -587,7 +588,7 @@ public class Calc
 					last_was_equals = false
 					last_was_operator = false
 					input_mode = true;
-					return set_last_answer(result_to_display(register), as_Float80: register)
+					return set_last_answer(result_to_display(register), as_Double: register)
 					}
 			
 			case button.dot:
@@ -604,7 +605,7 @@ public class Calc
 				last_was_equals = false
 				last_was_operator = false
 				input_mode = true;
-				return set_last_answer(result_to_display(register), as_Float80: register)
+				return set_last_answer(result_to_display(register), as_Double: register)
 			
 			case button.plus, button.minus, button.multiply, button.divide, button.power,
 				button.and, button.xor, button.or:
@@ -626,7 +627,7 @@ public class Calc
 				last_was_equals = false
 				last_was_operator = true
 			
-				return set_last_answer(result_to_display(numeric_stack.last!), as_Float80: numeric_stack.last!)
+				return set_last_answer(result_to_display(numeric_stack.last!), as_Double: numeric_stack.last!)
 			
 			case button.plus_minus, button.square_root, button.cube_root,
 				button.sine, button.cosine, button.tangent,
@@ -637,11 +638,11 @@ public class Calc
 				button.shift_left, button.shift_right, button.not:
 				
 				register = unary_function(key)
-				return set_last_answer(result_to_display(register), as_Float80: register)
+				return set_last_answer(result_to_display(register), as_Double: register)
 			
 			case button.e, button.pi, button.c:
 				register = set_constant(key)
-				return set_last_answer(result_to_display(register), as_Float80: register)
+				return set_last_answer(result_to_display(register), as_Double: register)
 			
 			case button.memory_plus:
 				memory = memory + last_answer_as_value
@@ -657,7 +658,7 @@ public class Calc
 			
 			case button.memory_recall:
 				register = memory;
-				return set_last_answer(result_to_display(register), as_Float80: register)
+				return set_last_answer(result_to_display(register), as_Double: register)
 			
 			case button.degrees, button.radians, button.gradians:
 				set_trig_mode(key)
@@ -665,11 +666,11 @@ public class Calc
 			
 			case button.hexadecimal:
 				numeric_base = 16
-				return set_last_answer(get_last_answer(), as_Float80: get_last_answer_as_value())
+				return set_last_answer(get_last_answer(), as_Double: get_last_answer_as_value())
 
 			case button.decimal:
 				numeric_base = 10
-				return set_last_answer(get_last_answer(), as_Float80: get_last_answer_as_value())
+				return set_last_answer(get_last_answer(), as_Double: get_last_answer_as_value())
 
 			case button.equals:
 				if (last_was_equals)
@@ -690,7 +691,7 @@ public class Calc
 				last_was_operator = false
 				
 				let val = numeric_stack.isEmpty ? register : numeric_stack.removeLast()
-				return set_last_answer(result_to_display(val), as_Float80: val)
+				return set_last_answer(result_to_display(val), as_Double: val)
 			}
 		}
 }

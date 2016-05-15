@@ -299,7 +299,9 @@ public class Calc
 			}
 		else
 			{
-			register = round_to_significant_figures(value, base: numeric_base).rounded
+//			register = round_to_significant_figures(value, base: numeric_base).rounded
+			round_to_significant_figures(value, base: numeric_base).rounded
+
 			let negative_zero = -pow(10, -Double(max_digits))
 			let positive_zero = pow(10, -Double(max_digits))
 			
@@ -465,57 +467,44 @@ public class Calc
 	*/
 	func result_to_display_base(original_value : Double, required_digits_after_dot : Int, base : Int) -> String
 		{
-		var leading_zeros = true
-		var answer : String = ""
-		let value = abs(original_value)
+		let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 		let sign = original_value < 0 ? -1 : 1
-		var significant_digits = 0
-		var digits_after_dot = 0
+		var answer = ""
+		var value : Float80 = Float80(abs(original_value))
 		
-		for power in (-8 ... 8).reverse()
+value = 0.00000012
+		
+		for power in (0 ... max_digits).reverse()
 			{
-			if (power < 0 && value < 0.00000000001 && digits_after_dot >= required_digits_after_dot)
+			let divisor : Int64 = Int64(pow(Double(base), Double(power)))
+			
+			if (Int64(value) >= divisor)
+				{
+				let digit = (Int64(value) / divisor) % Int64(base)
+				answer = answer + letter[Int(digit)]
+				}
+			}
+		answer = answer == "" ? "0" : answer
+		
+		var multiplier : Int64 = 1
+		for power in (0 ... max_digits)
+			{
+			if (power >= required_digits_after_dot)
 				{
 				break;
 				}
-				
-			if (power < 0)
+			if (power == 0)
 				{
-				leading_zeros = false
-				digits_after_dot = digits_after_dot + 1
+				answer = answer + "."
 				}
-				
-			if (power == -1)
-				{
-				answer = answer == "" ? "0." : answer + "."
-				}
-
-			let divisor : Double = pow(Double(base), Double(power))
-			if (value >= divisor)
-				{
-				leading_zeros = false
-				let digit = Int64(value / divisor) % Int64(base)
-
-				let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-				answer = answer + letter[Int(digit)]
-				}
-			else if (!leading_zeros)
-				{
-				answer = answer + "0"
-				}
-				
-			if (!leading_zeros)
-				{
-				significant_digits = significant_digits + 1
-				if (significant_digits > max_digits)
-					{
-					break;
-					}
-				}
+			multiplier = multiplier * Int64(base)
+			let next = value * Float80(multiplier);
+			answer = answer + letter[Int(Int64(next) % Int64(base))]
 			}
+		
 		return answer == "" ? "0" : sign < 0 ? "-" + answer : answer
 		}
-
+	
 	/*
 		RESULT_TO_DISPLAY
 		-----------------
@@ -560,10 +549,11 @@ public class Calc
 			formatter.maximumFractionDigits = digits_after_dot
 			formatter.minimumFractionDigits = digits_after_dot
 			
-			let got = result_to_display_base(details.rounded, required_digits_after_dot: digits_after_dot, base: numeric_base)
+//			let got = result_to_display_base(details.rounded, required_digits_after_dot: digits_after_dot, base: numeric_base)
+			let got = result_to_display_base(value, required_digits_after_dot: digits_after_dot, base: numeric_base)
+			return got + (input_mode && decimal_factor == -1 ? "." : "")
 			
-			return formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
-//			return got + (input_mode && decimal_factor == -1 ? "." : "")
+//			return formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")
 			}
 		}
 
@@ -594,8 +584,8 @@ public class Calc
 					if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor < max_digits)
 						{
 						register = register * Double(decimal_factor == 0 ? numeric_base : 1) + Double(key.rawValue) * pow(Double(numeric_base), Double(decimal_factor))
-						formatted = round_to_significant_figures(register, base: numeric_base)
-						register = formatted.rounded
+//						formatted = round_to_significant_figures(register, base: numeric_base)
+//						register = formatted.rounded
 						if (decimal_factor < 0)
 							{
 							decimal_factor -= 1

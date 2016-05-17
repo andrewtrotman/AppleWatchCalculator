@@ -465,6 +465,7 @@ public class Calc
 		RESULT_TO_DISPLAY_BASE()
 		------------------------
 	*/
+/*
 	func result_to_display_base(original_value : Double, original_required_digits_after_dot : Int, base : Int) -> String
 		{
 		let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -504,6 +505,52 @@ public class Calc
 			answer = answer + letter[Int(Int64(next) % Int64(base))]
 			}
 
+		return answer == "" ? "0" : sign < 0 ? "-" + answer : answer
+		}
+*/
+	func result_to_display_base(original_value : Double, original_required_digits_after_dot : Int, base : Int) -> String
+		{
+		let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+		let sign = original_value < 0 ? -1 : 1
+		var answer = ""
+		var value : Double = Double(abs(original_value))
+		var required_digits_after_dot = original_required_digits_after_dot;
+		
+		for power in (0 ... max_digits).reverse()
+			{
+			let divisor : Int64 = Int64(pow(Double(base), Double(power)))
+			
+			if (Int64(value) >= divisor)
+				{
+				let digit = (Int64(value) / divisor) % Int64(base)
+				answer = answer + letter[Int(digit)]
+				}
+			}
+
+		answer = answer == "" ? "0" : answer
+
+		let fractional_part = (value - Double(Int64(value))) * pow(Double(base), Double(required_digits_after_dot))
+		value = Double(Int64(fractional_part))
+		let diff = fractional_part - value
+		if (diff > 0.5)
+			{
+			value = value + 1
+			}
+		var fr : String = ""
+		if (required_digits_after_dot > 0)
+			{
+			for power in (1 ... required_digits_after_dot)
+				{
+				if (power == 1)
+					{
+					answer = answer + "."
+					}
+				let digit = Int64(value) % Int64(base)
+				fr = letter[Int(digit)] + fr;
+				value = value / Double(base)
+				}
+			}
+		answer = answer + fr;
 		return answer == "" ? "0" : sign < 0 ? "-" + answer : answer
 		}
 

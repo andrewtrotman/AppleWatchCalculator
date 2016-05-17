@@ -14,7 +14,7 @@ import Foundation
 */
 public class Calc
 	{
-	let max_digits : Int = 9
+	let max_digits : Int = 15
 	let max_hex_value : Int64 = 0xFFFFFFFF
 
 	public enum button : Int
@@ -460,17 +460,21 @@ public class Calc
 	new_integer = true
 	return register
 	}
-	
+
 	/*
 		RESULT_TO_DISPLAY_BASE()
 		------------------------
 	*/
-	func result_to_display_base(original_value : Double, required_digits_after_dot : Int, base : Int) -> String
+	func result_to_display_base(original_value : Double, original_required_digits_after_dot : Int, base : Int) -> String
 		{
 		let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 		let sign = original_value < 0 ? -1 : 1
 		var answer = ""
-		let value = Double(abs(original_value))
+		var value : Double = Double(abs(original_value))
+		var required_digits_after_dot = original_required_digits_after_dot;
+		
+		value = 0.00000012
+		required_digits_after_dot = 12
 		
 		for power in (0 ... max_digits).reverse()
 			{
@@ -499,10 +503,10 @@ public class Calc
 			let next = value * Double(multiplier);
 			answer = answer + letter[Int(Int64(next) % Int64(base))]
 			}
-		
+
 		return answer == "" ? "0" : sign < 0 ? "-" + answer : answer
 		}
-	
+
 	/*
 		RESULT_TO_DISPLAY
 		-----------------
@@ -544,7 +548,7 @@ public class Calc
 			formatter.minimumFractionDigits = digits_after_dot
 			
 //			let got = result_to_display_base(details.rounded, required_digits_after_dot: digits_after_dot, base: numeric_base)
-			let got = result_to_display_base(value, required_digits_after_dot: digits_after_dot, base: numeric_base)
+			let got = result_to_display_base(value, original_required_digits_after_dot: digits_after_dot, base: numeric_base)
 			return got + (input_mode && decimal_factor == -1 ? "." : "")
 			
 //			return formatter.stringFromNumber(details.rounded)! + (input_mode && decimal_factor == -1 ? "." : "")

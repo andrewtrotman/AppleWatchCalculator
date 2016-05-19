@@ -243,40 +243,40 @@ public class Calc
 		ROUND_TO_SIGNIFICANT_FIGURES()
 		------------------------------
 	*/
-	func round_to_significant_figures(value : Double, base : Int) -> (rounded : Double, digits_before_dot : Int, digits_after_dot : Int)
+	func round_to_significant_figures(value : Double, base : Int64) -> (rounded : Double, digits_before_dot : Int, digits_after_dot : Int)
 		{
-		if (value >= Double(pow(Double(base), Double(max_digits))))
+		if (value >= pow(Double(base), Double(max_digits)))
 			{
-			return (Double(Double.infinity), 1, 0)
+			return (Double.infinity, 1, 0)
 			}
-		else if (value <= -Double(pow(Double(base), Double(max_digits))))
+		else if (value <= -pow(Double(base), Double(max_digits)))
 			{
-			return (-Double(Double.infinity), 1, 0)
+			return (-Double.infinity, 1, 0)
 			}
 		else
 			{
 			let sign : Int = value < 0 ? -1 : 1
 			let digits = max_digits
-			let integer_part = Double(floor(Double(abs(value))))
-			var fractional_part = Double(abs(value)) - Double(integer_part)
+			let integer_part = floor(abs(value))
+			var fractional_part = abs(value) - integer_part
 
-			let digits_before_dot : Int = Int(integer_part == 0 ? 1 : ceil(Double(log_base(Double(integer_part + 1), base: Double(base)))))
-			let decimal_places = Double(pow(Double(base), Double(digits - digits_before_dot)))
+			let digits_before_dot = Int(integer_part == 0 ? 1 : ceil(log_base(integer_part + 1, base: Double(base))))
+			let decimal_places = pow(Double(base), Double(digits - digits_before_dot))
 
-			fractional_part = Double(round(Double(fractional_part * decimal_places))) / decimal_places
+			fractional_part = round(fractional_part * decimal_places) / decimal_places
 			let answer = sign == -1 ? -(integer_part + fractional_part) : integer_part + fractional_part
 			
 			var digits_after_dot = digits - digits_before_dot
-			var shift_register : Int64 = Int64(round(Double(fractional_part * decimal_places)))
+			var shift_register = Int64(round(fractional_part * decimal_places))
 			if (shift_register == 0)
 				{
 				digits_after_dot = 0
 				}
 			else
 				{
-				while (((shift_register / Int64(base)) * Int64(base)) == shift_register)
+				while (((shift_register / base) * base) == shift_register)
 					{
-					shift_register /= Int64(base)
+					shift_register /= base
 					digits_after_dot -= 1
 					if (shift_register == 0)
 						{
@@ -300,10 +300,10 @@ public class Calc
 			}
 		else
 			{
-			register = round_to_significant_figures(value, base: Int(numeric_base)).rounded
+			register = round_to_significant_figures(value, base: numeric_base).rounded
 
-			let negative_zero = -Double(pow(10, -Double(max_digits)))
-			let positive_zero = -Double(pow(10, -Double(max_digits)))
+			let negative_zero = -pow(10, -Double(max_digits))
+			let positive_zero = -pow(10, -Double(max_digits))
 			
 			if (register >= negative_zero && register <= positive_zero)
 				{
@@ -357,7 +357,7 @@ public class Calc
 				case button.divide:
 					check_and_push(operand_1 / operand_2)
 				case button.power:
-					check_and_push(Double(pow(Double(operand_1), Double(operand_2))))
+					check_and_push(pow(operand_1, operand_2))
 				case button.and:
 					check_and_push(Double(Int64(operand_1) & Int64(operand_2)))
 				case button.or:
@@ -393,9 +393,9 @@ public class Calc
 		switch (operation)
 			{
 			case button.e:
-				register = Double(M_E)
+				register = M_E
 			case button.pi:
-				register = Double(M_PI)
+				register = M_PI
 			case button.c:
 				register = 299792458			// speed of light (m/s)
 			default:
@@ -415,39 +415,39 @@ public class Calc
 		case button.plus_minus:
 			register = -register
 		case button.square_root:
-			register = Double(sqrt(Double(register)))
+			register = sqrt(register)
 		case button.cube_root:
-			register = Double(cbrt(Double(register)))
+			register = cbrt(register)
 		case button.sine:
-			register = Double(sin(Double(angle_to_radians(register))))
+			register = sin(angle_to_radians(register))
 		case button.cosine:
-			register = Double(cos(Double(angle_to_radians(register))))
+			register = cos(angle_to_radians(register))
 		case button.tangent:
-			register = Double(tan(Double(angle_to_radians(register))))
+			register = tan(angle_to_radians(register))
 		case button.sine_inverse:
-			register = Double(radians_to_angle(Double(asin(Double(register)))))
+			register = radians_to_angle(asin(register))
 		case button.cosine_inverse:
-			register = Double(radians_to_angle(Double(acos(Double(register)))))
+			register = radians_to_angle(acos(register))
 		case button.tangent_inverse:
-			register = Double(radians_to_angle(Double(atan(Double(register)))))
+			register = radians_to_angle(atan(register))
 		case button.sine_hyperbolic:
-			register = Double(sinh(Double(register)))
+			register = sinh(register)
 		case button.cosine_hyperbolic:
-			register = Double(cosh(Double(register)))
+			register = cosh(register)
 		case button.tangent_hyperbolic:
-			register = Double(tanh(Double(register)))
+			register = tanh(register)
 		case button.sine_hyperbolic_inverse:
-			register = Double(asinh(Double(register)))
+			register = asinh(register)
 		case button.cosine_hyperbolic_inverse:
-			register = Double(acosh(Double(register)))
+			register = acosh(register)
 		case button.tangent_hyperbolic_inverse:
-			register = Double(atanh(Double(register)))
+			register = atanh(register)
 		case button.ln:
-			register = Double(log(Double(register)))
+			register = log(register)
 		case button.log10:
-			register = Double(log10(Double(register)))
+			register = log10(register)
 		case button.log2:
-			register = Double(log2(Double(register)))
+			register = log2(register)
 		case button.shift_left:
 			register = Double(Int64(register) << 1)
 		case button.shift_right:
@@ -567,7 +567,7 @@ public class Calc
 			}
 		else
 			{
-			let details = round_to_significant_figures(value, base: Int(numeric_base))
+			let details = round_to_significant_figures(value, base: numeric_base)
 			if (!input_mode)
 				{
 				digits_after_dot = details.digits_after_dot
@@ -582,7 +582,6 @@ public class Calc
 			formatter.maximumFractionDigits = digits_after_dot
 			formatter.minimumFractionDigits = digits_after_dot
 			
-//			let got = result_to_display_base(details.rounded, required_digits_after_dot: digits_after_dot, base: numeric_base)
 			let got = result_to_display_base(value, original_required_digits_after_dot: digits_after_dot, base: numeric_base)
 			return got + (input_mode && decimal_factor == -1 ? "." : "")
 			
@@ -613,11 +612,11 @@ public class Calc
 						new_integer = false
 						}
 
-					var formatted = round_to_significant_figures(register, base: Int(numeric_base))
-					if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor < max_digits)
+					var formatted = round_to_significant_figures(register, base: numeric_base)
+					if (formatted.digits_before_dot + formatted.digits_after_dot <= max_digits && formatted.digits_before_dot - decimal_factor <= max_digits)
 						{
-						register = register * Double(decimal_factor == 0 ? numeric_base : 1) + Double(key.rawValue) * Double(pow(Double(numeric_base), Double(decimal_factor)))
-						formatted = round_to_significant_figures(register, base: Int(numeric_base))
+						register = register * Double(decimal_factor == 0 ? numeric_base : 1) + Double(key.rawValue) * pow(Double(numeric_base), Double(decimal_factor))
+						formatted = round_to_significant_figures(register, base: numeric_base)
 						register = formatted.rounded
 						if (decimal_factor < 0)
 							{

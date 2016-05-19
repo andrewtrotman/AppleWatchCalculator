@@ -17,6 +17,9 @@ var calculator = Calc()
 */
 class InterfaceController: WKInterfaceController
 	{
+	@IBOutlet var hex_group: WKInterfaceGroup!
+	@IBOutlet var trig_group: WKInterfaceGroup!
+	
 	/*
 		AWAKEWITHCONTEXT()
 		------------------
@@ -76,36 +79,32 @@ class InterfaceController: WKInterfaceController
 	*/
 	func display_results(result : String, pling : Bool = true)
 		{
-		var mode : String = ""
-		
-		if (calculator.get_trig_mode() != Calc.trig_mode.degrees)
-			{
-			mode = calculator.get_trig_mode().rawValue + (result.hasPrefix("-") ? "" : " ")
-			}
-		setTitle(mode + result)
+		setTitle(result)
 		if (pling)
 			{
 			WKInterfaceDevice.currentDevice().playHaptic(.Click)
 			}
 		}
 
-
-	/*
-		DECIMAL()
-		---------
-	*/
-	@IBAction func decimal()
-		{
-		display_results(calculator.press(Calc.button.decimal))
-		}
-	
 	/*
 		HEXADECIMAL()
 		-------------
 	*/
 	@IBAction func hexadecimal()
 		{
-		display_results(calculator.press(Calc.button.hexadecimal))
+		switch (calculator.get_base())
+			{
+			case 10:
+				display_results(calculator.press(Calc.button.hexadecimal))
+				hex_group.setBackgroundImageNamed("hexadecimal_in_hex")
+			case 16:
+				display_results(calculator.press(Calc.button.decimal))
+				hex_group.setBackgroundImageNamed("hexadecimal_in_dec")
+			default:
+				display_results(calculator.press(Calc.button.decimal))
+				hex_group.setBackgroundImageNamed("hexadecimal_in_dec")
+			}
+		equals()
 		}
 
 	/*
@@ -114,27 +113,20 @@ class InterfaceController: WKInterfaceController
 	*/
 	@IBAction func degrees()
 		{
-		display_results(calculator.press(Calc.button.degrees))
+		switch (calculator.get_trig_mode())
+			{
+			case Calc.trig_mode.degrees:
+				display_results(calculator.press(Calc.button.radians))
+				trig_group.setBackgroundImageNamed("trig_in_rad")
+			case Calc.trig_mode.radians:
+				display_results(calculator.press(Calc.button.gradians))
+				trig_group.setBackgroundImageNamed("trig_in_grad")
+			case Calc.trig_mode.gradians:
+				display_results(calculator.press(Calc.button.degrees))
+				trig_group.setBackgroundImageNamed("trig_in_deg")
+			}
 		}
 	
-	/*
-		RADIANS()
-		---------
-	*/
-	@IBAction func radians()
-		{
-		display_results(calculator.press(Calc.button.radians))
-		}
-	
-	/*
-		GRADIANS()
-		----------
-	*/
-	@IBAction func gradians()
-		{
-		display_results(calculator.press(Calc.button.gradians))
-		}
-
 	/*
 		AND()
 		-----

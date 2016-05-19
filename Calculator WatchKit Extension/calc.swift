@@ -14,7 +14,7 @@ import Foundation
 */
 public class Calc
 	{
-	let max_digits : Int = 15
+	let max_digits : Int = 9
 	let max_hex_value : Int64 = 0xFFFFFFFF
 
 	public enum button : Int
@@ -60,7 +60,7 @@ public class Calc
 	
 	var memory : Double
 	
-	var numeric_base : Int
+	var numeric_base : Int64
 
 	/*
 		INIT()
@@ -157,7 +157,7 @@ public class Calc
 	*/
 	public func get_base() -> Int
 		{
-		return numeric_base
+		return Int(numeric_base)
 		}
 	
 	/*
@@ -300,7 +300,7 @@ public class Calc
 			}
 		else
 			{
-			register = round_to_significant_figures(value, base: numeric_base).rounded
+			register = round_to_significant_figures(value, base: Int(numeric_base)).rounded
 
 			let negative_zero = -Double(pow(10, -Double(max_digits)))
 			let positive_zero = -Double(pow(10, -Double(max_digits)))
@@ -465,92 +465,80 @@ public class Calc
 		RESULT_TO_DISPLAY_BASE()
 		------------------------
 	*/
-/*
-	func result_to_display_base(original_value : Double, original_required_digits_after_dot : Int, base : Int) -> String
+	func result_to_display_base(original_value : Double, original_required_digits_after_dot : Int, base : Int64) -> String
 		{
+		let required_digits_after_dot = original_required_digits_after_dot;
 		let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-		let sign = original_value < 0 ? -1 : 1
 		var answer = ""
-		var value : Double = Double(abs(original_value))
-		var required_digits_after_dot = original_required_digits_after_dot;
-		
-		value = 0.00000012
-		required_digits_after_dot = 12
-		
-		for power in (0 ... max_digits).reverse()
-			{
-			let divisor : Int64 = Int64(pow(Double(base), Double(power)))
-			
-			if (Int64(value) >= divisor)
-				{
-				let digit = (Int64(value) / divisor) % Int64(base)
-				answer = answer + letter[Int(digit)]
-				}
-			}
-		answer = answer == "" ? "0" : answer
-		
-		var multiplier : Int64 = 1
-		for power in (0 ... max_digits)
-			{
-			if (power >= required_digits_after_dot)
-				{
-				break;
-				}
-			if (power == 0)
-				{
-				answer = answer + "."
-				}
-			multiplier = multiplier * Int64(base)
-			let next = value * Double(multiplier);
-			answer = answer + letter[Int(Int64(next) % Int64(base))]
-			}
 
-		return answer == "" ? "0" : sign < 0 ? "-" + answer : answer
-		}
-*/
-	func result_to_display_base(original_value : Double, original_required_digits_after_dot : Int, base : Int) -> String
-		{
-		let letter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+		/*
+			break into sign, integer, and fractional parts
+		*/
 		let sign = original_value < 0 ? -1 : 1
-		var answer = ""
-		var value : Double = Double(abs(original_value))
-		var required_digits_after_dot = original_required_digits_after_dot;
+		let value = abs(original_value)
+		var integer_part : Int64 = Int64(value)
+		let fractional_part_as_double = (value - Double(integer_part)) * pow(Double(base), Double(required_digits_after_dot))
+		var fractional_part = Int64(fractional_part_as_double)
 		
-		for power in (0 ... max_digits).reverse()
+		/*
+			round at the least significant digit
+		*/
+		let rounding = fractional_part_as_double - Double(fractional_part)
+		if (rounding > 0.5)
 			{
-			let divisor : Int64 = Int64(pow(Double(base), Double(power)))
-			
-			if (Int64(value) >= divisor)
+			fractional_part = fractional_part + 1;
+			if (fractional_part >= Int64(pow(Double(base), Double(required_digits_after_dot))))
 				{
-				let digit = (Int64(value) / divisor) % Int64(base)
-				answer = answer + letter[Int(digit)]
+				fractional_part = 0
+				integer_part = integer_part + 1
 				}
 			}
-
-		answer = answer == "" ? "0" : answer
-
-		let fractional_part = (value - Double(Int64(value))) * pow(Double(base), Double(required_digits_after_dot))
-		value = Double(Int64(fractional_part))
-		let diff = fractional_part - value
-		if (diff > 0.5)
+		else if (rounding == 0.5 && (fractional_part == 0 || (fractional_part & 1) != 0))
 			{
-			value = value + 1
+			fractional_part = fractional_part + 1   // don't ask.  This is described as "strange" in the algorithm!!!
 			}
-		var fr : String = ""
+		/*
+			Print out the fractinal part
+		*/
 		if (required_digits_after_dot > 0)
 			{
-			for power in (1 ... required_digits_after_dot)
+			for _ in (1 ... required_digits_after_dot)
 				{
-				if (power == 1)
-					{
-					answer = answer + "."
-					}
-				let digit = Int64(value) % Int64(base)
-				fr = letter[Int(digit)] + fr;
-				value = value / Double(base)
+				let digit = fractional_part % base
+				answer = letter[Int(digit)] + answer;
+				fractional_part = fractional_part / base
 				}
 			}
-		answer = answer + fr;
+			
+		/*
+			put the dot in place
+		*/
+		answer = answer == "" ? answer : "." + answer
+
+		/*
+			Now print out the integer part
+		*/
+		if (integer_part == 0)
+			{
+			answer = "0" + answer
+			}
+		else
+			{
+			for power in (0 ... max_digits)
+				{
+				let divisor = Int64(pow(Double(base), Double(power)))
+				
+				if (integer_part >= divisor)
+					{
+					let digit = (integer_part / divisor) % base
+					answer = letter[Int(digit)] + answer
+					}
+				}
+			}
+
+		/*
+			put the sign back in (and check for zero)
+		*/
 		return answer == "" ? "0" : sign < 0 ? "-" + answer : answer
 		}
 
@@ -579,7 +567,7 @@ public class Calc
 			}
 		else
 			{
-			let details = round_to_significant_figures(value, base: numeric_base)
+			let details = round_to_significant_figures(value, base: Int(numeric_base))
 			if (!input_mode)
 				{
 				digits_after_dot = details.digits_after_dot
@@ -625,11 +613,11 @@ public class Calc
 						new_integer = false
 						}
 
-					var formatted = round_to_significant_figures(register, base: numeric_base)
+					var formatted = round_to_significant_figures(register, base: Int(numeric_base))
 					if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor < max_digits)
 						{
 						register = register * Double(decimal_factor == 0 ? numeric_base : 1) + Double(key.rawValue) * Double(pow(Double(numeric_base), Double(decimal_factor)))
-						formatted = round_to_significant_figures(register, base: numeric_base)
+						formatted = round_to_significant_figures(register, base: Int(numeric_base))
 						register = formatted.rounded
 						if (decimal_factor < 0)
 							{

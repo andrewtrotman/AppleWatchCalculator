@@ -451,7 +451,7 @@
                                 </group>
                             </items>
                         </group>
-                        <picker width="1" height="33" alignment="left" focusStyle="stack" id="NBl-Q4-FA6">
+                        <picker width="1" height="32" alignment="left" focusStyle="stack" id="NBl-Q4-FA6">
                             <connections>
                                 <action selector="picker:" destination="PQt-fN-lB9" id="6HQ-JE-Ysx"/>
                             </connections>

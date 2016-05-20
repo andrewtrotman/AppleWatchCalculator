@@ -8,76 +8,118 @@
         <!--Answer-->
         <scene sceneID="Itc-rk-cGd">
             <objects>
-                <controller title="Answer" id="i1T-ZN-QyW" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
+                <controller identifier="extras" title="Answer" id="i1T-ZN-QyW" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" layout="vertical" id="7Mw-EL-Acc">
+                        <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" backgroundImage="Extras.png" layout="vertical" id="7Mw-EL-Acc">
                             <items>
-                                <group width="1" height="0.25" alignment="left" id="uMI-cz-QEd">
+                                <group width="1" height="0.25" alignment="left" alpha="0.050000000000000003" id="uMI-cz-QEd">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="√" id="eJ1-sz-k5t">
+                                        <button width="0.25" height="1" alignment="left" id="eJ1-sz-k5t">
                                             <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="square_root" destination="i1T-ZN-QyW" id="w2E-VF-9dt"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="∛" id="A0H-mY-hE5">
+                                        <button width="0.25" height="1" alignment="left" id="A0H-mY-hE5">
                                             <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="cube_root" destination="ssS-gV-zfh" id="V6d-c8-tGe"/>
                                             </connections>
                                         </button>
-                                    </items>
-                                </group>
-                                <group width="1" height="0.25" alignment="left" id="CGX-dJ-0j8">
-                                    <items>
-                                        <button width="0.25" height="1" alignment="left" title="not" id="Wod-xg-irW">
+                                        <button width="0.25" height="1" alignment="left" id="zBG-4M-dX2">
                                             <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <action selector="not" destination="i1T-ZN-QyW" id="x1p-ZK-Q79"/>
+                                                <action selector="factorial" destination="i1T-ZN-QyW" id="cmj-RC-Tqe"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" id="Wod-xg-irW">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="hypotenuse" destination="i1T-ZN-QyW" id="joa-T6-P0f"/>
                                             </connections>
                                         </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.25" alignment="left" id="jZM-XD-bMT">
+                                <group width="1" height="0.25" alignment="left" alpha="0.050000000000000003" id="CGX-dJ-0j8">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="π" id="YcE-pR-d9A">
+                                        <button width="0.25" height="1" alignment="left" id="awJ-nB-xzp">
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="golden_ratio" destination="i1T-ZN-QyW" id="2fA-1j-Dp0"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" id="cCr-39-afH">
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="square_root_of_2" destination="i1T-ZN-QyW" id="aF9-zM-uGA"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" id="ElN-6Z-uPT">
+                                            <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="zero_kelvin_in_celsius" destination="i1T-ZN-QyW" id="2qE-hr-Je6"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" id="RdD-BP-waj">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="mod" destination="i1T-ZN-QyW" id="AXq-AM-p2J"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.25" alignment="left" alpha="0.050000000000000003" id="jZM-XD-bMT">
+                                    <items>
+                                        <button width="0.25" height="1" alignment="left" id="YcE-pR-d9A">
                                             <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="pi" destination="i1T-ZN-QyW" id="kwQ-fE-MWP"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="e" id="hSp-ou-rlQ">
+                                        <button width="0.25" height="1" alignment="left" id="hSp-ou-rlQ">
                                             <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="e" destination="i1T-ZN-QyW" id="8gq-N6-X3z"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="c" id="cRn-bI-Uih">
+                                        <button width="0.25" height="1" alignment="left" id="cRn-bI-Uih">
                                             <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="c" destination="i1T-ZN-QyW" id="Sai-wu-IUt"/>
                                             </connections>
                                         </button>
+                                        <button width="0.25" height="1" alignment="left" id="njS-mk-Yx5">
+                                            <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="reciprocal" destination="i1T-ZN-QyW" id="Nns-Hc-Fz9"/>
+                                            </connections>
+                                        </button>
                                     </items>
                                 </group>
-                                <group width="1" height="0.25" alignment="left" id="a2J-ap-gVU">
+                                <group width="1" height="0.25" alignment="left" alpha="0.050000000000000003" id="a2J-ap-gVU">
                                     <items>
-                                        <button width="0.25" height="1" alignment="left" title="ln" id="tAq-Vi-7Vm">
+                                        <button width="0.25" height="1" alignment="left" id="tAq-Vi-7Vm">
                                             <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="ln" destination="i1T-ZN-QyW" id="d3o-3I-C8z"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="log2" id="cNt-HD-LfO">
+                                        <button width="0.25" height="1" alignment="left" id="cNt-HD-LfO">
                                             <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="log2" destination="i1T-ZN-QyW" id="jO6-Or-VTt"/>
                                             </connections>
                                         </button>
-                                        <button width="0.25" height="1" alignment="left" title="log10" id="M9h-CI-pSS">
+                                        <button width="0.25" height="1" alignment="left" id="M9h-CI-pSS">
                                             <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="log10" destination="i1T-ZN-QyW" id="VmR-4d-F10"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.25" height="1" alignment="left" id="aTi-MX-i0Y">
+                                            <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="log_x" destination="i1T-ZN-QyW" id="bbr-ws-7uA"/>
                                             </connections>
                                         </button>
                                     </items>
@@ -96,7 +138,7 @@
         <!--Answer-->
         <scene sceneID="2qO-yd-7Oi">
             <objects>
-                <controller title="Answer" id="bT8-ln-86X" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
+                <controller identifier="numeric" title="Answer" id="bT8-ln-86X" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
                     <items>
                         <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" backgroundImage="numeric.png" layout="vertical" id="xSY-xP-2BL">
                             <items>
@@ -229,7 +271,7 @@
         <!--Answer-->
         <scene sceneID="Y1x-O4-xNu">
             <objects>
-                <controller title="Answer" id="ssS-gV-zfh" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
+                <controller identifier="hexadecimal" title="Answer" id="ssS-gV-zfh" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
                     <items>
                         <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" backgroundImage="hexadecimal_in_dec.png" layout="vertical" id="8eS-Ab-3tX">
                             <items>
@@ -362,7 +404,7 @@
             <objects>
                 <controller title="Answer" id="PQt-fN-lB9" customClass="TipInterfaceController" customModule="Calculator_WatchKit_Extension">
                     <items>
-                        <group width="1" alignment="left" id="dUs-hZ-iXF">
+                        <group width="1" alignment="left" contentMode="top" id="dUs-hZ-iXF">
                             <items>
                                 <group width="0.14999999999999999" alignment="left" layout="vertical" id="Tms-q5-f7O">
                                     <items>
@@ -409,12 +451,12 @@
                                 </group>
                             </items>
                         </group>
-                        <picker height="29" alignment="left" focusStyle="sequence" id="NBl-Q4-FA6">
+                        <picker width="1" height="33" alignment="left" focusStyle="stack" id="NBl-Q4-FA6">
                             <connections>
                                 <action selector="picker:" destination="PQt-fN-lB9" id="6HQ-JE-Ysx"/>
                             </connections>
                         </picker>
-                        <group width="1" alignment="left" id="Sah-tr-JP5">
+                        <group width="1" alignment="left" contentMode="bottom" id="Sah-tr-JP5">
                             <items>
                                 <label alignment="left" text="Label" id="H62-fs-0nv"/>
                                 <label alignment="right" text="Label" id="mWn-fF-veQ"/>
@@ -439,7 +481,7 @@
         <!--Answer-->
         <scene sceneID="aBH-zn-Ulh">
             <objects>
-                <controller title="Answer" id="E32-b2-Jui" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
+                <controller identifier="trig" title="Answer" id="E32-b2-Jui" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
                     <items>
                         <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" backgroundImage="trig_in_deg.png" layout="vertical" id="Mla-93-uH5">
                             <items>

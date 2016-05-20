@@ -35,6 +35,7 @@ class TipInterfaceController: WKInterfaceController
 		{
 		super.awakeWithContext(context)
 		// Configure interface objects here.
+		pushControllerWithName("numeric", context: nil)
 		}
 
 	/*
@@ -72,19 +73,6 @@ class TipInterfaceController: WKInterfaceController
 			tip.setText("")
 			total_picker.setAlpha(0)
 			total_picker.setEnabled(false)
-/*
-			let pickerItems: [WKPickerItem] = price_list.map
-				{
-				let pickerItem = WKPickerItem()
-				pickerItem.title = $0.0
-				pickerItem.caption = "Total"
-
-				return pickerItem
-				}
-			total_picker.setItems(pickerItems)
-			total_picker.setAlpha(0)
-			total_picker.setEnabled(false)
-*/
 			}
 		else
 			{

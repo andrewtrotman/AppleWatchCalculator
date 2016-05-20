@@ -104,7 +104,6 @@ class InterfaceController: WKInterfaceController
 				display_results(calculator.press(Calc.button.decimal))
 				hex_group.setBackgroundImageNamed("hexadecimal_in_dec")
 			}
-		equals()
 		}
 
 	/*
@@ -217,6 +216,42 @@ class InterfaceController: WKInterfaceController
 		}
 	
 	/*
+		FACTORIAL()
+		-----------
+	*/
+	@IBAction func factorial()
+		{
+		display_results(calculator.press(Calc.button.factorial))
+		}
+	
+	/*
+		HYPOTENUSE()
+		------------
+	*/
+	@IBAction func hypotenuse()
+		{
+		display_results(calculator.press(Calc.button.hypotenuse))
+		}
+	
+	/*
+		MOD()
+		-----
+	*/
+	@IBAction func mod()
+		{
+		display_results(calculator.press(Calc.button.modulus))
+		}
+	
+	/*
+		RECIPROCAL()
+		------------
+	*/
+	@IBAction func reciprocal()
+		{
+		display_results(calculator.press(Calc.button.reciprocal))
+		}
+	
+	/*
 		LN()
 		----
 	*/
@@ -242,7 +277,42 @@ class InterfaceController: WKInterfaceController
 		{
 		display_results(calculator.press(Calc.button.log10))
 		}
-		
+	
+	/*
+		LOG()
+		-----
+	*/
+	@IBAction func log_x()
+		{
+		display_results(calculator.press(Calc.button.log_x))
+		}
+	/*
+		SQUARE_ROOT_OF_2()
+		------------------
+	*/
+	@IBAction func square_root_of_2()
+		{
+		display_results(calculator.press(Calc.button.square_root_of_2))
+		}
+	
+	/*
+		ZERO_KELVIN_IN_CELSIUS()
+		------------------------
+	*/
+	@IBAction func zero_kelvin_in_celsius()
+		{
+		display_results(calculator.press(Calc.button.zero_kelvin_in_celsius))
+		}
+	
+	/*
+		GOLDEN_RATIO()
+		--------------
+	*/
+	@IBAction func golden_ratio()
+		{
+		display_results(calculator.press(Calc.button.golden_ratio))
+		}
+	
 	/*
 		E()
 		---

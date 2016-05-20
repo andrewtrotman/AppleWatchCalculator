@@ -21,14 +21,15 @@ public class Calc
 		{
 		case zero = 0, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen
 		case dot, plus_minus, equals
-		case plus, minus, multiply, divide, power
-		case square_root, cube_root
+		case plus, minus, multiply, divide, modulus, power
+		case reciprocal, hypotenuse
+		case square_root, cube_root, factorial
 		case sine, cosine, tangent
 		case sine_inverse, cosine_inverse, tangent_inverse
 		case sine_hyperbolic, cosine_hyperbolic, tangent_hyperbolic
 		case sine_hyperbolic_inverse, cosine_hyperbolic_inverse, tangent_hyperbolic_inverse
-		case e, pi, c
-		case ln, log2, log10
+		case e, pi, c, golden_ratio, square_root_of_2, zero_kelvin_in_celsius
+		case ln, log2, log10, log_x
 		case degrees, radians, gradians
 		case hexadecimal, decimal
 		case memory_plus, memory_minus, memory_clear, memory_recall
@@ -203,6 +204,26 @@ public class Calc
 				return radians * 200 / Double(M_PI)
 			}
 		}
+	
+	/*
+		FACTORIAL()
+		-----------
+	*/
+	func factorial(of : Double) -> Double
+		{
+		if (of <= 1)
+			{
+			return 1;
+			}
+		else if (of >= 12) || of == Double.NaN || of == Double.infinity
+			{
+			return Double.infinity;
+			}
+		else
+			{
+			return floor(of) * factorial(floor(of) - 1)
+			}
+		}
 
 	/*
 		PRECIDENCE()
@@ -222,10 +243,12 @@ public class Calc
 				return 3
 			case button.plus, button.minus:
 				return 4
-			case button.multiply, button.divide:
+			case button.multiply, button.divide, button.modulus:
 				return 5
 			case button.power:
 				return 6
+			case button.hypotenuse:
+				return 7
 			default:
 				return -1
 			}
@@ -356,6 +379,8 @@ public class Calc
 					check_and_push(operand_1 * operand_2)
 				case button.divide:
 					check_and_push(operand_1 / operand_2)
+				case button.modulus:
+					check_and_push(operand_1 % operand_2)
 				case button.power:
 					check_and_push(pow(operand_1, operand_2))
 				case button.and:
@@ -364,6 +389,10 @@ public class Calc
 					check_and_push(Double(Int64(operand_1) | Int64(operand_2)))
 				case button.xor:
 					check_and_push(Double(Int64(operand_1) ^ Int64(operand_2)))
+				case button.hypotenuse:
+					check_and_push(hypot(operand_1, operand_2))
+				case button.log_x:
+					check_and_push(log_base(operand_1, base: operand_2))
 				default:
 					break
 				}
@@ -398,6 +427,12 @@ public class Calc
 				register = M_PI
 			case button.c:
 				register = 299792458			// speed of light (m/s)
+			case button.golden_ratio:
+				register = (1.0 + sqrt(5)) / 2.0
+			case button.square_root_of_2:
+				register = sqrt(2)
+			case button.zero_kelvin_in_celsius:
+				register = -273.15
 			default:
 				break
 			}
@@ -454,6 +489,10 @@ public class Calc
 			register = Double(Int64(register) >> 1)
 		case button.not:
 			register = Double(~Int64(register) & max_hex_value)
+		case button.factorial:
+			register = factorial(register)
+		case button.reciprocal:
+			register = 1.0 / register
 		default:
 			break
 		}
@@ -646,7 +685,9 @@ public class Calc
 				return set_last_answer(result_to_display(register), as_Double: register)
 			
 			case button.plus, button.minus, button.multiply, button.divide, button.power,
-				button.and, button.xor, button.or:
+				button.and, button.xor, button.or,
+				button.hypotenuse, button.modulus, button.log_x:
+				
 				if (!last_was_operator)
 					{
 					numeric_stack.append(register)
@@ -673,12 +714,13 @@ public class Calc
 				button.sine_hyperbolic, button.cosine_hyperbolic, button.tangent_hyperbolic,
 				button.sine_hyperbolic_inverse, button.cosine_hyperbolic_inverse, button.tangent_hyperbolic_inverse,
 				button.ln, button.log2, button.log10,
-				button.shift_left, button.shift_right, button.not:
+				button.shift_left, button.shift_right, button.not,
+				button.factorial, button.reciprocal:
 				
 				register = unary_function(key)
 				return set_last_answer(result_to_display(register), as_Double: register)
 			
-			case button.e, button.pi, button.c:
+			case button.e, button.pi, button.c, button.golden_ratio, button.square_root_of_2, button.zero_kelvin_in_celsius:
 				register = set_constant(key)
 				return set_last_answer(result_to_display(register), as_Double: register)
 			
@@ -704,11 +746,11 @@ public class Calc
 			
 			case button.hexadecimal:
 				numeric_base = 16
-				return set_last_answer(get_last_answer(), as_Double: get_last_answer_as_value())
+				return set_last_answer(result_to_display(get_last_answer_as_value()), as_Double: get_last_answer_as_value())
 
 			case button.decimal:
 				numeric_base = 10
-				return set_last_answer(get_last_answer(), as_Double: get_last_answer_as_value())
+				return set_last_answer(result_to_display(get_last_answer_as_value()), as_Double: get_last_answer_as_value())
 
 			case button.equals:
 				if (last_was_equals)

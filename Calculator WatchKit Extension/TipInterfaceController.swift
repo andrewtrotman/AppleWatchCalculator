@@ -35,7 +35,6 @@ class TipInterfaceController: WKInterfaceController
 		{
 		super.awakeWithContext(context)
 		// Configure interface objects here.
-		pushControllerWithName("numeric", context: nil)
 		}
 
 	/*

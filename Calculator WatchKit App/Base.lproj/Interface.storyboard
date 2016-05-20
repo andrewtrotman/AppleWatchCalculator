@@ -138,7 +138,7 @@
         <!--Answer-->
         <scene sceneID="2qO-yd-7Oi">
             <objects>
-                <controller identifier="numeric" title="Answer" id="bT8-ln-86X" customClass="InterfaceController" customModule="Calculator_WatchKit_Extension">
+                <controller identifier="numeric" title="Answer" id="bT8-ln-86X" customClass="StartInterfaceController" customModule="Calculator_WatchKit_Extension">
                     <items>
                         <group width="1" height="1" heightAdjustment="-1" alignment="center" verticalAlignment="center" backgroundImage="numeric.png" layout="vertical" id="xSY-xP-2BL">
                             <items>

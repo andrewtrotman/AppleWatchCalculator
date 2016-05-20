@@ -31,6 +31,7 @@
 		49BCD10A1CB71DC2002789D3 /* calc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCD1091CB71DC2002789D3 /* calc.swift */; };
 		49BCD10B1CB71DC2002789D3 /* calc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCD1091CB71DC2002789D3 /* calc.swift */; };
 		49F33A701CEF0DE200985840 /* Extras.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F33A6F1CEF0DE200985840 /* Extras.png */; };
+		49F33A7A1CEF1DD400985840 /* StartInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F33A791CEF1DD400985840 /* StartInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		499BD1691CDDD86B0086F8C1 /* TipInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipInterfaceController.swift; sourceTree = "<group>"; };
 		49BCD1091CB71DC2002789D3 /* calc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = calc.swift; sourceTree = "<group>"; };
 		49F33A6F1CEF0DE200985840 /* Extras.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Extras.png; sourceTree = "<group>"; };
+		49F33A791CEF1DD400985840 /* StartInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				497848F71CB701C50037B908 /* InterfaceController.swift */,
+				49F33A791CEF1DD400985840 /* StartInterfaceController.swift */,
 				499BD1691CDDD86B0086F8C1 /* TipInterfaceController.swift */,
 				49BCD1091CB71DC2002789D3 /* calc.swift */,
 				497848F91CB701C50037B908 /* ExtensionDelegate.swift */,
@@ -470,6 +473,7 @@
 			files = (
 				497848FA1CB701C50037B908 /* ExtensionDelegate.swift in Sources */,
 				499BD16A1CDDD86B0086F8C1 /* TipInterfaceController.swift in Sources */,
+				49F33A7A1CEF1DD400985840 /* StartInterfaceController.swift in Sources */,
 				49BCD10B1CB71DC2002789D3 /* calc.swift in Sources */,
 				497848F81CB701C50037B908 /* InterfaceController.swift in Sources */,
 			);

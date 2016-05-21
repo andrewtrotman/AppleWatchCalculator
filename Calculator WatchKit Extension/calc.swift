@@ -215,9 +215,13 @@ public class Calc
 			{
 			return 1;
 			}
-		else if (of >= 12) || of == Double.NaN || of == Double.infinity
+		else if (of >= 12 || of.isInfinite)
 			{
 			return Double.infinity;
+			}
+		else if (of.isNaN)
+			{
+			return Double.NaN;
 			}
 		else
 			{

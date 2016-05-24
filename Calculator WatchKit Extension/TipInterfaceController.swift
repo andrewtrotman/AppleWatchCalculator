@@ -44,8 +44,20 @@ class TipInterfaceController: WKInterfaceController
 	override func willActivate()
 		{
 		super.willActivate()
+	
+		var score : Int64
 		
-		let score : Int64 = abs(Int64(ceil(calculator.get_last_answer_as_value() * 100)))
+		let displayed_value = calculator.get_last_answer_as_value()
+		
+		if (displayed_value.isNaN || displayed_value.isInfinite)
+			{
+			score = 0
+			}
+		else
+			{
+			score = abs(Int64(ceil(calculator.get_last_answer_as_value() * 100)))
+			}
+			
 		setTitle("$" + String(format:"%.2f", Double(score) / 100))
 
 		var tip_amount : Int64 = Int64(ceil(Double(score) * 0.15))

@@ -251,8 +251,10 @@ public class Calc
 				return 5
 			case button.power:
 				return 6
-			case button.hypotenuse:
+			case button.log_x:
 				return 7
+			case button.hypotenuse:
+				return 8
 			default:
 				return -1
 			}

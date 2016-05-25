@@ -735,7 +735,7 @@ public class Calc
 				return get_last_answer()
 			
 			case button.memory_minus:
-				memory = memory + last_answer_as_value
+				memory = memory - last_answer_as_value
 				return get_last_answer()
 			
 			case button.memory_clear:

@@ -42,7 +42,124 @@ class ViewController: UIViewController
 		{
 		display.text = what
 		}
-		
+	
+	/*
+		LOG_BASE_X()
+		------------
+	*/
+	@IBAction func log_base_x(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.log_x))
+		}
+	
+	/*
+		LOG_BASE_10()
+		-------------
+	*/
+	@IBAction func log_base_10(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.log10))
+		}
+	
+	/*
+		LOG_BASE_2()
+		------------
+	*/
+	@IBAction func log_base_2(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.log2))
+		}
+	
+	/*
+		NATURAL_LOG()
+		-------------
+	*/
+	@IBAction func natural_log(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.ln))
+		}
+	
+	/*
+		E()
+		---
+	*/
+	@IBAction func e(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.e))
+		}
+	
+	/*
+		PI()
+		----
+	*/
+	@IBAction func pi(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.pi))
+		}
+	
+	/*
+		RECIPROCAL()
+		------------
+	*/
+	@IBAction func reciprocal(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.reciprocal))
+		}
+
+	/*
+		MOD()
+		-----
+	*/
+	@IBAction func mod(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.modulus))
+		}
+	
+	/*
+		CUBE_ROOT()
+		-----------
+	*/
+	@IBAction func cube_root(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.cube_root))
+		}
+	
+	/*
+		SQUARE_ROOT()
+		-------------
+	*/
+	@IBAction func square_root(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.square_root))
+		}
+	
+	/*
+		FACTORIAL()
+		-----------
+	*/
+	@IBAction func factorial(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.factorial))
+		}
+	
+	/*
+		POWER()
+		-------
+	*/
+	@IBAction func power(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.power))
+		}
+	
+	/*
+		HYPOTENUSE()
+		------------
+	*/
+	@IBAction func hypotenuse(sender: AnyObject)
+		{
+		display_results(calculator.press(Calc.button.hypotenuse))
+		}
+	
 	/*
 		SIN()
 		-----

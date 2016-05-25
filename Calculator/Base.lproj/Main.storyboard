@@ -32,38 +32,78 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb5-Sm-StS">
                                                 <rect key="frame" x="0.0" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="∛">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="cube_root:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="lbs-rx-rmB"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VB6-NR-Y3B">
                                                 <rect key="frame" x="94" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="mod">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="mod:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Di2-Pe-5xd"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYU-Ni-1Ce">
                                                 <rect key="frame" x="188" y="0.0" width="90" height="51"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="1/x">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="reciprocal:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="SFY-EP-yAW"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MgX-bG-2IW">
                                                 <rect key="frame" x="283" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="π">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="pi:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="8M1-K5-w5x"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SJ-bT-G4c">
                                                 <rect key="frame" x="377" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.14901960780000001" green="0.43529411759999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="e">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="e:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="vIH-YF-aR6"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZb-L0-dpg">
                                                 <rect key="frame" x="471" y="0.0" width="89" height="51"/>
@@ -71,6 +111,11 @@
                                                 <state key="normal" title="AC">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="all_clear:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="ntg-mU-Tiz"/>
                                                 </connections>
@@ -87,6 +132,11 @@
                                                 <state key="normal" title="hex">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-zE-v7L">
                                                 <rect key="frame" x="94" y="0.0" width="89" height="50"/>
@@ -94,34 +144,71 @@
                                                 <state key="normal" title="rad">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haP-f8-tWZ">
-                                                <rect key="frame" x="188" y="0.0" width="90" height="50"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="ln">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqZ-R8-vMn">
-                                                <rect key="frame" x="283" y="0.0" width="89" height="50"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="188" y="0.0" width="90" height="50"/>
+                                                <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="log2">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="log_base_2:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="DAT-AL-O97"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haP-f8-tWZ">
+                                                <rect key="frame" x="283" y="0.0" width="89" height="50"/>
+                                                <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="ln">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="natural_log:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="EJ3-Q3-C0K"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp2-S7-AG7">
                                                 <rect key="frame" x="377" y="0.0" width="89" height="50"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="log10">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="log_base_10:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="i34-yj-sIY"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qF4-d4-dKm">
                                                 <rect key="frame" x="471" y="0.0" width="89" height="50"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.37254901959999998" green="0.0" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="logx">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="log_base_x:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="aIm-rI-EWQ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -129,59 +216,95 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Bag-WJ-Alh">
                                         <rect key="frame" x="0.0" y="111" width="560" height="51"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbJ-jP-v6L">
-                                                <rect key="frame" x="0.0" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="MC">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="memory_clear:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="UpA-Yb-Sz8"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3e-qf-gls">
-                                                <rect key="frame" x="94" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="M+">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="memory_plus:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="TI4-U1-cLt"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L13-Y0-7qC">
-                                                <rect key="frame" x="188" y="0.0" width="90" height="51"/>
-                                                <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="M-">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="memory_minus:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="mFI-HQ-UiH"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbi-SR-NL2">
-                                                <rect key="frame" x="283" y="0.0" width="89" height="51"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="89" height="51"/>
                                                 <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="MR">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="memory_recall:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="7ED-aX-Xo5"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L13-Y0-7qC">
+                                                <rect key="frame" x="94" y="0.0" width="89" height="51"/>
+                                                <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="M-">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="memory_minus:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="mFI-HQ-UiH"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3e-qf-gls">
+                                                <rect key="frame" x="188" y="0.0" width="90" height="51"/>
+                                                <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="M+">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="memory_plus:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="TI4-U1-cLt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbJ-jP-v6L">
+                                                <rect key="frame" x="283" y="0.0" width="89" height="51"/>
+                                                <color key="backgroundColor" red="0.98823529409999999" green="0.46666666670000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="MC">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="memory_clear:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="UpA-Yb-Sz8"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcw-Gi-ZKm">
                                                 <rect key="frame" x="377" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="√">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="square_root:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="hba-qp-4KN"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efi-kU-mzs">
                                                 <rect key="frame" x="471" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="!">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="factorial:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="I4Y-aV-NLt"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,6 +318,11 @@
                                                 <state key="normal" title="&lt;&lt;">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="shift_left:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="UR9-Fd-uTv"/>
                                                 </connections>
@@ -205,6 +333,11 @@
                                                 <state key="normal" title="and">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="and:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="G6x-Ne-AYr"/>
                                                 </connections>
@@ -215,6 +348,11 @@
                                                 <state key="normal" title="xor">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="xor:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Ejs-0O-LMs"/>
                                                 </connections>
@@ -225,6 +363,11 @@
                                                 <state key="normal" title="or">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="or:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="ZQx-yI-EH0"/>
                                                 </connections>
@@ -235,16 +378,29 @@
                                                 <state key="normal" title="&gt;&gt;">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="shift_right:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="B7v-Qq-khA"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOg-cf-nMd">
                                                 <rect key="frame" x="471" y="0.0" width="89" height="50"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="^">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="power:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="5vH-KG-FcT"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -258,6 +414,11 @@
                                                 <state key="normal" title="sin">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="sin:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="RK4-1E-tQV"/>
                                                 </connections>
@@ -268,6 +429,11 @@
                                                 <state key="normal" title="sin-1">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="inverse_sin:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="KWP-0f-zCO"/>
                                                 </connections>
@@ -304,10 +470,13 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bab-9Z-eVc">
                                                 <rect key="frame" x="471" y="0.0" width="89" height="51"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="◺">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="hypotenuse:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="zwG-8F-i3b"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -321,6 +490,11 @@
                                                 <state key="normal" title="cos">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="cos:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="cmy-Vg-lxa"/>
                                                 </connections>
@@ -331,6 +505,11 @@
                                                 <state key="normal" title="cos-1">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="inverse_cos:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Tbg-YU-R8E"/>
                                                 </connections>
@@ -387,6 +566,11 @@
                                                 <state key="normal" title="tan">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="tan:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="EhB-iH-8Zr"/>
                                                 </connections>
@@ -397,6 +581,11 @@
                                                 <state key="normal" title="tan-1">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="inverse_tan:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="4l3-mq-PFG"/>
                                                 </connections>
@@ -453,6 +642,11 @@
                                                 <state key="normal" title="hsin">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="hyperbolic_sin:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="PXB-nF-iGX"/>
                                                 </connections>
@@ -463,6 +657,11 @@
                                                 <state key="normal" title="hsin-1">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="inverse_hyperbolic_sin:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="k6g-V2-cbi"/>
                                                 </connections>
@@ -519,6 +718,11 @@
                                                 <state key="normal" title="hcos">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="hyperbolic_cos:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="4tp-gL-EPW"/>
                                                 </connections>
@@ -529,6 +733,11 @@
                                                 <state key="normal" title="hcos-1">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="inverse_hyperbolic_cos:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="A61-PY-5Ym"/>
                                                 </connections>
@@ -585,6 +794,11 @@
                                                 <state key="normal" title="htan">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="hyperbolic_tan:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="bZm-VA-zKM"/>
                                                 </connections>
@@ -595,6 +809,11 @@
                                                 <state key="normal" title="htan-1">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="inverse_hyperbolic_tan:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="dTA-co-lAX"/>
                                                 </connections>

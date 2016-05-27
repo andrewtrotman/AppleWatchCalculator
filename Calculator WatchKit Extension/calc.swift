@@ -14,8 +14,11 @@ import Foundation
 */
 public class Calc
 	{
+	let π : Double = 3.14159265358979323846
 	let max_digits : Int = 9
 	let max_hex_value : Int64 = 0xFFFFFFFF
+	var negative_zero : Double
+	var positive_zero : Double
 
 	public enum button : Int
 		{
@@ -69,6 +72,9 @@ public class Calc
 	*/
 	init()
 		{
+		negative_zero = -pow(10, -Double(max_digits))
+		positive_zero = pow(10, -Double(max_digits))
+
 		numeric_stack.removeAll()
 		operator_stack.removeAll()
 
@@ -143,15 +149,6 @@ public class Calc
 		}
 	
 	/*
-		GET_LAST_ANSWER()
-		-----------------
-	*/
-	public func get_last_answer() -> String
-		{
-		return last_answer
-		}
-	
-	/*
 		GET_BASE()
 		----------
 		Returns 10 for base 10 and 16 fgor base 16
@@ -159,6 +156,24 @@ public class Calc
 	public func get_base() -> Int
 		{
 		return Int(numeric_base)
+		}
+
+	/*
+		GET_MEMORY()
+		------------
+	*/
+	public func get_memory() -> Double
+		{
+		return memory
+		}
+	
+	/*
+		GET_LAST_ANSWER()
+		-----------------
+	*/
+	public func get_last_answer() -> String
+		{
+		return last_answer
 		}
 	
 	/*
@@ -179,11 +194,11 @@ public class Calc
 		switch (angle_format)
 			{
 			case trig_mode.degrees:
-				return angle * Double(M_PI) / 180
+				return angle * Double(π) / 180
 			case trig_mode.radians:
 				return angle
 			case trig_mode.gradians:
-				return angle * Double(M_PI) / 200
+				return angle * Double(π) / 200
 			}
 		}
 
@@ -197,11 +212,11 @@ public class Calc
 		switch (angle_format)
 			{
 			case trig_mode.degrees:
-				return radians * 180 / Double(M_PI)
+				return radians * 180 / Double(π)
 			case trig_mode.radians:
 				return radians
 			case trig_mode.gradians:
-				return radians * 200 / Double(M_PI)
+				return radians * 200 / Double(π)
 			}
 		}
 	
@@ -331,14 +346,15 @@ public class Calc
 			{
 			register = round_to_significant_figures(value, base: numeric_base).rounded
 
-			let negative_zero = -pow(10, -Double(max_digits))
-			let positive_zero = -pow(10, -Double(max_digits))
-			
 			if (register >= negative_zero && register <= positive_zero)
 				{
 				register = 0
 				}
-			}
+			if (register > pow(10.0, Double(max_digits)))
+				{
+				register = Double.infinity
+				}
+		}
 		numeric_stack.append(register)
 		}
 	
@@ -430,7 +446,7 @@ public class Calc
 			case button.e:
 				register = M_E
 			case button.pi:
-				register = M_PI
+				register = π
 			case button.c:
 				register = 299792458			// speed of light (m/s)
 			case button.golden_ratio:
@@ -503,6 +519,16 @@ public class Calc
 			break
 		}
 	new_integer = true
+
+	if (register >= negative_zero && register <= positive_zero)
+		{
+		register = 0
+		}
+	if (register > pow(10.0, Double(max_digits)))
+		{
+		register = Double.infinity
+		}
+
 	return register
 	}
 
@@ -584,7 +610,7 @@ public class Calc
 		/*
 			put the sign back in (and check for zero)
 		*/
-		return answer == "" ? "0" : sign < 0 ? "-" + answer : answer
+		return answer == "" ? "0" : (sign < 0 && answer != "0") ? "-" + answer : answer
 		}
 
 	/*

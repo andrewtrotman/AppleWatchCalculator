@@ -13,6 +13,11 @@ var calculator = Calc()
 class ViewController: UIViewController
 	{
 	@IBOutlet weak var display: UILabel!
+	@IBOutlet weak var base: UILabel!
+	@IBOutlet weak var base_button: UIButton!
+	@IBOutlet weak var trig_mode: UILabel!
+	@IBOutlet weak var trig_mode_button: UIButton!
+	@IBOutlet weak var memory: UILabel!
 
 	/*
 		VIEWDIDLOAD()
@@ -41,6 +46,53 @@ class ViewController: UIViewController
 	func display_results(what : String)
 		{
 		display.text = what
+		memory.text = calculator.get_memory() == 0 ? " " : "M"
+		}
+	
+	/*
+		TRIG_MODE()
+		-----------
+	*/
+	@IBAction func trig_mode(sender: AnyObject)
+		{
+		switch (calculator.get_trig_mode())
+			{
+			case Calc.trig_mode.degrees:
+				display_results(calculator.press(Calc.button.radians))
+				trig_mode.text = "rad"
+				trig_mode_button.setTitle("grad", forState: .Normal)
+			case Calc.trig_mode.radians:
+				display_results(calculator.press(Calc.button.gradians))
+				trig_mode.text = "grad"
+				trig_mode_button.setTitle("deg", forState: .Normal)
+			case Calc.trig_mode.gradians:
+				display_results(calculator.press(Calc.button.degrees))
+				trig_mode.text = "deg"
+				trig_mode_button.setTitle("rad", forState: .Normal)
+			}
+		}
+
+	/*
+		BASE_MODE()
+		-----------
+	*/
+	@IBAction func base_mode(sender: AnyObject)
+		{
+		switch (calculator.get_base())
+			{
+			case 10:
+				display_results(calculator.press(Calc.button.hexadecimal))
+				base.text = "hex"
+				base_button.setTitle("dec", forState: .Normal)
+			case 16:
+				display_results(calculator.press(Calc.button.decimal))
+				base.text = "dec"
+				base_button.setTitle("hex", forState: .Normal)
+			default:
+				display_results(calculator.press(Calc.button.decimal))
+				base.text = "dec"
+				base_button.setTitle("hex", forState: .Normal)
+			}
 		}
 	
 	/*

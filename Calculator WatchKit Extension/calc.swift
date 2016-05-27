@@ -157,7 +157,7 @@ public class Calc
 		{
 		return Int(numeric_base)
 		}
-
+		
 	/*
 		GET_MEMORY()
 		------------

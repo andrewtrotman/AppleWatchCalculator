@@ -8,7 +8,7 @@
 
 import UIKit
 
-var calculator = Calc()
+var calculator = Calc(precision: 10)
 
 class ViewController: UIViewController
 	{
@@ -27,6 +27,8 @@ class ViewController: UIViewController
 		{
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		let width_of_window = UIScreen.mainScreen().bounds.size.width
+		display.font = display.font.fontWithSize(width_of_window / 9)
 		}
 
 	/*
@@ -59,15 +61,15 @@ class ViewController: UIViewController
 			{
 			case Calc.trig_mode.degrees:
 				display_results(calculator.press(Calc.button.radians))
-				trig_mode.text = "rad"
+				trig_mode.text = "RAD"
 				trig_mode_button.setTitle("grad", forState: .Normal)
 			case Calc.trig_mode.radians:
 				display_results(calculator.press(Calc.button.gradians))
-				trig_mode.text = "grad"
+				trig_mode.text = "GRAD"
 				trig_mode_button.setTitle("deg", forState: .Normal)
 			case Calc.trig_mode.gradians:
 				display_results(calculator.press(Calc.button.degrees))
-				trig_mode.text = "deg"
+				trig_mode.text = "DEG"
 				trig_mode_button.setTitle("rad", forState: .Normal)
 			}
 		}
@@ -82,15 +84,15 @@ class ViewController: UIViewController
 			{
 			case 10:
 				display_results(calculator.press(Calc.button.hexadecimal))
-				base.text = "hex"
+				base.text = "HEX"
 				base_button.setTitle("dec", forState: .Normal)
 			case 16:
 				display_results(calculator.press(Calc.button.decimal))
-				base.text = "dec"
+				base.text = "DEC"
 				base_button.setTitle("hex", forState: .Normal)
 			default:
 				display_results(calculator.press(Calc.button.decimal))
-				base.text = "dec"
+				base.text = "DEC"
 				base_button.setTitle("hex", forState: .Normal)
 			}
 		}

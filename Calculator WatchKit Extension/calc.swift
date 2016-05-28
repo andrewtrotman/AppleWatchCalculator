@@ -15,7 +15,7 @@ import Foundation
 public class Calc
 	{
 	let π : Double = 3.14159265358979323846
-	let max_digits : Int = 9
+	var max_digits : Int = 9
 	let max_hex_value : Int64 = 0xFFFFFFFF
 	var negative_zero : Double
 	var positive_zero : Double
@@ -70,8 +70,9 @@ public class Calc
 		INIT()
 		------
 	*/
-	init()
+	init(precision : Int)
 		{
+		max_digits = precision
 		negative_zero = -pow(10, -Double(max_digits))
 		positive_zero = pow(10, -Double(max_digits))
 

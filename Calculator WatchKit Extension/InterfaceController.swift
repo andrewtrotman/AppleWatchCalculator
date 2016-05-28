@@ -9,7 +9,7 @@
 import WatchKit
 import Foundation
 
-var calculator = Calc()
+var calculator = Calc(precision: 9)
 
 /*
 	CLASS INTERFACECONTROLLER

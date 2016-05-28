@@ -1271,8 +1271,8 @@
                                                 <variation key="heightClass=compact" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="12"/>
                                                 </variation>
-                                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="3"/>
+                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="12"/>
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4q-co-0YY">
@@ -1283,8 +1283,8 @@
                                                 <variation key="heightClass=compact" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="12" width="40" height="13"/>
                                                 </variation>
-                                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="3" width="40" height="17"/>
+                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="12" width="40" height="13"/>
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwc-kG-46S">
@@ -1295,17 +1295,14 @@
                                                 <variation key="heightClass=compact" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="25" width="40" height="12"/>
                                                 </variation>
-                                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="20" width="40" height="17"/>
+                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="25" width="40" height="12"/>
                                                 </variation>
                                             </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="klD-WI-Kye"/>
                                         </constraints>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="40" height="37"/>
-                                        </variation>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjK-e0-FHh">
                                         <rect key="frame" x="40" y="0.0" width="520" height="51"/>
@@ -1313,9 +1310,6 @@
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="39"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="40" y="0.0" width="320" height="37"/>
-                                        </variation>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                             <rect key="frame" x="20" y="20" width="360" height="39"/>
                                         </variation>

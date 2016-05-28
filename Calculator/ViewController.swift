@@ -19,6 +19,27 @@ class ViewController: UIViewController
 	@IBOutlet weak var trig_mode_button: UIButton!
 	@IBOutlet weak var memory: UILabel!
 
+
+	/*
+		SUPPORTEDINTERFACEORIENTATIONS()
+		--------------------------------
+		On iPhone with a narrow screen we can't go landscape because the keyboard doesn't fit on the screen
+		so this code prevents landscape is the screen is too narrow.
+	*/
+	override func supportedInterfaceOrientations() ->  UIInterfaceOrientationMask
+		{
+		if UIDevice.currentDevice().userInterfaceIdiom == .Pad
+			{
+			return UIInterfaceOrientationMask.All
+			}
+
+		let size = self.view.bounds.size
+		let smallerDimension = min(size.width, size.height)
+		let largerDimension = max(size.width, size.height)
+
+		return smallerDimension >= 350 && largerDimension >= 500 ? UIInterfaceOrientationMask.All : UIInterfaceOrientationMask.Portrait
+		}
+
 	/*
 		VIEWDIDLOAD()
 		-------------
@@ -29,6 +50,7 @@ class ViewController: UIViewController
 		// Do any additional setup after loading the view, typically from a nib.
 		let width_of_window = UIScreen.mainScreen().bounds.size.width
 		display.font = display.font.fontWithSize(width_of_window / 9)
+		display_results(calculator.get_last_answer())
 		}
 
 	/*
@@ -49,6 +71,27 @@ class ViewController: UIViewController
 		{
 		display.text = what
 		memory.text = calculator.get_memory() == 0 ? " " : "M"
+		switch (calculator.get_base())
+			{
+			case 10:
+				base.text = "DEC"
+				base_button.setTitle("hex", forState: .Normal)
+			default:			// case 16:
+				base.text = "HEX"
+				base_button.setTitle("dec", forState: .Normal)
+			}
+		switch (calculator.get_trig_mode())
+			{
+			case Calc.trig_mode.degrees:
+				trig_mode.text = "DEG"
+				trig_mode_button.setTitle("rad", forState: .Normal)
+			case Calc.trig_mode.radians:
+				trig_mode.text = "RAD"
+				trig_mode_button.setTitle("grad", forState: .Normal)
+			case Calc.trig_mode.gradians:
+				trig_mode.text = "GRAD"
+				trig_mode_button.setTitle("deg", forState: .Normal)
+			}
 		}
 	
 	/*
@@ -61,16 +104,10 @@ class ViewController: UIViewController
 			{
 			case Calc.trig_mode.degrees:
 				display_results(calculator.press(Calc.button.radians))
-				trig_mode.text = "RAD"
-				trig_mode_button.setTitle("grad", forState: .Normal)
 			case Calc.trig_mode.radians:
 				display_results(calculator.press(Calc.button.gradians))
-				trig_mode.text = "GRAD"
-				trig_mode_button.setTitle("deg", forState: .Normal)
 			case Calc.trig_mode.gradians:
 				display_results(calculator.press(Calc.button.degrees))
-				trig_mode.text = "DEG"
-				trig_mode_button.setTitle("rad", forState: .Normal)
 			}
 		}
 
@@ -84,16 +121,10 @@ class ViewController: UIViewController
 			{
 			case 10:
 				display_results(calculator.press(Calc.button.hexadecimal))
-				base.text = "HEX"
-				base_button.setTitle("dec", forState: .Normal)
 			case 16:
 				display_results(calculator.press(Calc.button.decimal))
-				base.text = "DEC"
-				base_button.setTitle("hex", forState: .Normal)
 			default:
 				display_results(calculator.press(Calc.button.decimal))
-				base.text = "DEC"
-				base_button.setTitle("hex", forState: .Normal)
 			}
 		}
 	

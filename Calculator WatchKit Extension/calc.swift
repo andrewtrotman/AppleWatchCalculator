@@ -16,7 +16,8 @@ public class Calc
 	{
 	let π : Double = 3.14159265358979323846
 	var max_digits : Int = 9
-	let max_hex_value : Int64 = 0xFFFFFFFF
+	var max_digits_base_10 : Int = 9
+	var max_hex_value : Int64 = 0xFFFFFFFF
 	var negative_zero : Double
 	var positive_zero : Double
 
@@ -73,6 +74,7 @@ public class Calc
 	init(precision : Int)
 		{
 		max_digits = precision
+		max_digits_base_10 = precision
 		negative_zero = -pow(10, -Double(max_digits))
 		positive_zero = pow(10, -Double(max_digits))
 
@@ -277,7 +279,8 @@ public class Calc
 		}
 
 	/*
-		LOG_BASE
+		LOG_BASE()
+		----------
 	*/
 	func log_base(value: Double, base: Double) -> Double
 		{
@@ -671,7 +674,7 @@ public class Calc
 		switch (key)
 			{
 			case button.zero, button.one, button.two, button.three, button.four, button.five, button.six, button.seven, button.eight, button.nine, button.ten, button.eleven, button.twelve, button.thirteen, button.fourteen, button.fifteen:
-				if (numeric_base == 10 && key.rawValue > 9)
+				if (key.rawValue > numeric_base - 1)
 					{
 					return get_last_answer()
 					}
@@ -685,7 +688,7 @@ public class Calc
 						}
 
 					var formatted = round_to_significant_figures(register, base: numeric_base)
-					if (formatted.digits_before_dot + formatted.digits_after_dot <= max_digits && formatted.digits_before_dot - decimal_factor <= max_digits)
+					if (formatted.digits_before_dot + formatted.digits_after_dot < max_digits && formatted.digits_before_dot - decimal_factor <= max_digits)
 						{
 						register = register * Double(decimal_factor == 0 ? numeric_base : 1) + Double(key.rawValue) * pow(Double(numeric_base), Double(decimal_factor))
 						formatted = round_to_significant_figures(register, base: numeric_base)
@@ -779,10 +782,24 @@ public class Calc
 			
 			case button.hexadecimal:
 				numeric_base = 16
-				return set_last_answer(result_to_display(get_last_answer_as_value()), as_Double: get_last_answer_as_value())
+				max_digits = Int(floor(log_base(pow(10.0, Double(max_digits_base_10)), base: 16.0)))
+				max_hex_value = Int64(pow(16.0, Double(max_digits)))
+				if (register >= Double(max_hex_value))
+					{
+					register = Double.infinity
+					}
+				if (get_last_answer_as_value() > Double(max_hex_value))
+					{
+					return set_last_answer(result_to_display(Double.infinity), as_Double: Double.infinity)
+					}
+				else
+					{
+					return set_last_answer(result_to_display(get_last_answer_as_value()), as_Double: get_last_answer_as_value())
+					}
 
 			case button.decimal:
 				numeric_base = 10
+				max_digits = max_digits_base_10
 				return set_last_answer(result_to_display(get_last_answer_as_value()), as_Double: get_last_answer_as_value())
 
 			case button.equals:

@@ -788,7 +788,7 @@ public class Calc
 					{
 					register = Double.infinity
 					}
-				if (get_last_answer_as_value() > Double(max_hex_value))
+				if (get_last_answer_as_value() >= Double(max_hex_value))
 					{
 					return set_last_answer(result_to_display(Double.infinity), as_Double: Double.infinity)
 					}
